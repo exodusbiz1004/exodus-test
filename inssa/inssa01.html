@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인싸가족 시트콤 뮤지컬 - 제1편 : 서울 첫 합주와 치킨 대참사</title>
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --primary-dark: #d97706;
+      --secondary: #ec4899;
+      --bg: #fffbeb;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-sub: #4b5563;
+      --border: #fde68a;
+      --bongja: #ec4899;
+      --bongdu: #3b82f6;
+      --yepd: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, #fef3c7 0%, #fffbeb 100%);
+      color: var(--text-main);
+      padding: 20px 14px;
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    .book-container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 3px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 12px 36px rgba(245, 158, 11, 0.15);
+      padding: 30px 24px;
+      overflow: hidden;
+    }
+
+    /* 포스터 & 커버 영역 */
+    .novel-cover {
+      text-align: center;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .tour-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ef4444, #f59e0b);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    .novel-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #b45309;
+      line-height: 1.35;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .novel-subtitle {
+      font-size: 17px;
+      font-weight: 800;
+      color: #d97706;
+      margin-bottom: 18px;
+    }
+
+    /* 커버 일러스트 (inssa-familly.jpg 참고 감성 포스터) */
+    .cover-poster-wrap {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border: 2px solid #fed7aa;
+      line-height: 0;
+    }
+
+    .cover-poster-wrap svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 캐릭터 소개 카드 그리드 */
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .char-card {
+      background: #fdf2f8;
+      border: 1px solid #fbcfe8;
+      border-radius: 14px;
+      padding: 12px 10px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .char-card.bongdu { background: #eff6ff; border-color: #bfdbfe; }
+    .char-card.yepd { background: #ecfdf5; border-color: #a7f3d0; }
+
+    .char-name {
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .char-name.bongja { color: #db2777; }
+    .char-name.bongdu { color: #2563eb; }
+    .char-name.yepd { color: #059669; }
+
+    .char-desc {
+      color: #6b7280;
+      line-height: 1.4;
+      font-size: 11px;
+    }
+
+    /* 읽기 진행바 */
+    .progress-wrap {
+      background: #fef3c7;
+      border-radius: 10px;
+      height: 8px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #ec4899);
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    /* 챕터 본문 */
+    .chapter-section {
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 2px dashed #fde68a;
+    }
+    .chapter-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .chapter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #b45309;
+      background: #fef3c7;
+      padding: 4px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .chapter-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #92400e;
+      margin-bottom: 16px;
+    }
+
+    /* 대화창 말풍선 스타일 */
+    .story-p {
+      margin-bottom: 16px;
+      color: #1f2937;
+      text-indent: 8px;
+      word-break: keep-all;
+    }
+
+    .talk-box {
+      margin: 14px 0;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 16px;
+      line-height: 1.6;
+      border-left: 5px solid #ccc;
+    }
+
+    .talk-bongja {
+      background: #fdf2f8;
+      border-left-color: #ec4899;
+      color: #831843;
+    }
+    .talk-bongdu {
+      background: #eff6ff;
+      border-left-color: #3b82f6;
+      color: #1e3a8a;
+    }
+    .talk-yepd {
+      background: #ecfdf5;
+      border-left-color: #10b981;
+      color: #064e3b;
+    }
+
+    .talk-name {
+      font-weight: 900;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .talk-name.bongja { color: #db2777; }
+    .talk-name.bongdu { color: #2563eb; }
+    .talk-name.yepd { color: #059669; }
+
+    /* 시트콤 효과음 강조 텍스트 */
+    .sfx {
+      display: inline-block;
+      font-weight: 900;
+      color: #ea580c;
+      background: #ffedd5;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin: 0 4px;
+    }
+
+    /* 뮤지컬 넘버 가사 박스 */
+    .musical-lyrics {
+      background: linear-gradient(135deg, #fef3c7, #fdf2f8);
+      border: 2px solid #fbcfe8;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      text-align: center;
+      font-style: italic;
+      color: #701a75;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);
+    }
+    .musical-tag {
+      font-size: 12px;
+      background: #db2777;
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 8px;
+      font-style: normal;
+    }
+
+    /* 다음 화 예고 배너 */
+    .next-preview {
+      background: #fef3c7;
+      border: 2px dashed #f59e0b;
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .next-preview h4 {
+      font-size: 16px;
+      color: #b45309;
+      margin-bottom: 6px;
+      font-weight: 900;
+    }
+    .next-preview p {
+      font-size: 14px;
+      color: #92400e;
+    }
+
+    /* 네비게이션 버튼 */
+    .nav-bar {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-nav {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 12px 24px;
+      border-radius: 24px;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+      transition: transform 0.2s;
+    }
+    .btn-nav:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+
+  <div class="book-container">
+
+    <!-- 소설 표지 헤더 -->
+    <header class="novel-cover">
+      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제1화 (서울 편)</div>
+      <h1 class="novel-title">인싸가족 : 시트콤 뮤지컬</h1>
+      <div class="novel-subtitle">제1편 : 서울 첫 합주와 치킨 대참사</div>
+
+      <!-- 제1화 서울 스페셜 커버 아트 포스터 -->
+      <div class="cover-poster-wrap">
+        <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="seoulSky" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fdba74"/>
+              <stop offset="60%" stop-color="#fbcfe8"/>
+              <stop offset="100%" stop-color="#fef08a"/>
+            </linearGradient>
+            <linearGradient id="stageWood" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#78350f"/>
+              <stop offset="50%" stop-color="#b45309"/>
+              <stop offset="100%" stop-color="#78350f"/>
+            </linearGradient>
+          </defs>
+
+          <!-- 배경: 서울 연습실 무대 & 조명 -->
+          <rect width="680" height="380" fill="url(#seoulSky)"/>
+          
+          <!-- 서울 N서울타워 실루엣 -->
+          <polygon points="340,30 338,80 342,80" fill="#a855f7" opacity="0.4"/>
+          <rect x="336" y="80" width="8" height="30" fill="#a855f7" opacity="0.5"/>
+          <ellipse cx="340" cy="110" rx="14" ry="8" fill="#a855f7" opacity="0.6"/>
+
+          <!-- 연습실 무대 마루 -->
+          <path d="M0 260 L680 260 L680 380 L0 380 Z" fill="url(#stageWood)"/>
+          <!-- 무대 조명 스포트라이트 -->
+          <polygon points="140,0 60,260 220,260" fill="#fef08a" opacity="0.25"/>
+          <polygon points="540,0 460,260 620,260" fill="#fbcfe8" opacity="0.25"/>
+
+          <!-- 1. 좌측: 화려한 K-POP 댄스 포즈의 봉자 (15살, 뷰티인싸) -->
+          <circle cx="160" cy="150" r="30" fill="#fed7aa"/>
+          <!-- 봉자의 스타일리시 롱헤어 -->
+          <path d="M130 150 C130 100 190 100 190 150 C190 190 170 210 160 210 C150 210 130 190 130 150 Z" fill="#db2777"/>
+          <!-- 반짝이는 눈 & 미소 -->
+          <circle cx="152" cy="148" r="4" fill="#831843"/>
+          <circle cx="168" cy="148" r="4" fill="#831843"/>
+          <path d="M156 160 Q160 166 164 160" stroke="#be185d" stroke-width="2.5" fill="none"/>
+          <!-- 볼터치 -->
+          <circle cx="146" cy="155" r="4" fill="#f43f5e" opacity="0.6"/>
+          <circle cx="174" cy="155" r="4" fill="#f43f5e" opacity="0.6"/>
+          <!-- 화려한 크롭 아이돌 무대의상 & 마이크 -->
+          <path d="M140 185 L180 185 L190 240 L130 240 Z" fill="#ec4899"/>
+          <rect x="180" y="160" width="8" height="24" rx="4" fill="#374151" transform="rotate(-30 180 160)"/>
+          <circle cx="172" cy="152" r="6" fill="#9ca3af"/>
+
+          <!-- 2. 중앙: 치킨 다리를 들고 춤추다 엉킨 봉두 (14살, 대두 게임인싸) -->
+          <!-- 봉두의 시그니처 대두(커다란 머리) -->
+          <ellipse cx="340" cy="145" rx="42" ry="38" fill="#fed7aa"/>
+          <!-- 봉두의 바가지 머리 -->
+          <path d="M296 140 C296 90 384 90 384 140 L384 135 L296 135 Z" fill="#1e293b"/>
+          <!-- 땡글땡글 당황한 눈 -->
+          <circle cx="326" cy="140" r="5" fill="#000"/>
+          <circle cx="354" cy="140" r="5" fill="#000"/>
+          <!-- 침 흘리며 치킨 먹는 입 -->
+          <path d="M334 155 Q340 168 346 155 Z" fill="#ef4444"/>
+          <circle cx="348" cy="165" r="2.5" fill="#38bdf8"/> <!-- 침방울 -->
+          <!-- 뚱뚱한 파란 후드티 -->
+          <rect x="305" y="185" width="70" height="65" rx="16" fill="#3b82f6"/>
+          <!-- 오른손에 들린 거대한 닭다리 -->
+          <ellipse cx="395" cy="180" rx="14" ry="10" fill="#b45309" transform="rotate(-20 395 180)"/>
+          <rect x="405" y="185" width="16" height="5" fill="#fef3c7" transform="rotate(-20 405 185)"/>
+          <!-- 춤추다 다리가 꼬인 땀방울 -->
+          <text x="365" y="115" font-size="20">💦</text>
+
+          <!-- 3. 우측: 큐카드와 메가폰을 들고 절규하는 예PD -->
+          <circle cx="520" cy="155" r="28" fill="#fed7aa"/>
+          <!-- 예PD 안경 -->
+          <rect x="502" y="148" width="16" height="12" rx="3" fill="none" stroke="#065f46" stroke-width="2.5"/>
+          <rect x="522" y="148" width="16" height="12" rx="3" fill="none" stroke="#065f46" stroke-width="2.5"/>
+          <line x1="518" y1="154" x2="522" y2="154" stroke="#065f46" stroke-width="2.5"/>
+          <!-- 피곤한 입과 이마 핏대 -->
+          <path d="M512 170 Q520 164 528 170" stroke="#064e3b" stroke-width="2" fill="none"/>
+          <text x="535" y="135" font-size="16" fill="#dc2626" font-weight="bold">💢</text>
+          <!-- 초록색 조끼 & 메가폰 -->
+          <path d="M500 185 L540 185 L545 250 L495 250 Z" fill="#10b981"/>
+          <!-- 메가폰 -->
+          <polygon points="480,180 460,170 460,195" fill="#dc2626"/>
+
+          <!-- 하단 타이틀 텍스트 -->
+          <rect x="180" y="325" width="320" height="38" rx="19" fill="rgba(15, 23, 42, 0.85)"/>
+          <text x="340" y="350" font-size="15" font-weight="900" fill="#fde047" text-anchor="middle">
+            🎪 1막 1장 : 서울 대학로 연습실의 악몽
+          </text>
+        </svg>
+      </div>
+
+      <!-- 주인공 3인방 프로필 카드 -->
+      <div class="char-grid">
+        <div class="char-card">
+          <div class="char-name bongja">💄 봉자 (15)</div>
+          <div class="char-desc">ENFP 뷰티인싸<br>칼군무 댄스퀸<br>1일 2끼 식단관리</div>
+        </div>
+        <div class="char-card bongdu">
+          <div class="char-name bongdu">🍗 봉두 (14)</div>
+          <div class="char-desc">ISFJ 게임인싸<br>몸치 대두 먹방러<br>1일 5끼 폭풍흡입</div>
+        </div>
+        <div class="char-card yepd">
+          <div class="char-name yepd">🎬 예PD</div>
+          <div class="char-desc">인싸가족 총연출<br>혈압 상승 중주자<br>멘탈 케어 전담</div>
+        </div>
+      </div>
+
+      <div class="progress-wrap"><div id="novel-progress" class="progress-bar"></div></div>
+    </header>
+
+    <!-- 1장: 대망의 전국 투어 선언 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🎬 1장 / 총 4장</div>
+      <h2 class="chapter-title">1. 구독자 100만 기념! 전국 투어 뮤지컬의 서막</h2>
+
+      <p class="story-p">서울 마포구의 한적한 지하 연습실. 에어컨은 탈탈거리며 더운 숨을 뱉어내고 있었고, 거울 벽면 앞에는 거대한 현수막이 번쩍이고 있었다.</p>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name yepd">🎬 예PD (확성기를 들고 흥분하며)</div>
+        "자, 주목! 인싸가족 유튜브 역사상 가장 위대한 프로젝트! 서울을 시작으로 성남, 안동, 광주, 대전, 제주, 인천, 고양, 울산, 부산, 전주, 여수까지! 총 12개 도시를 뒤흔들 <strong>『인싸가족 전국투어 시트콤 뮤지컬』</strong> 연습을 오늘부터 시작한다!"
+      </div>
+
+      <p class="story-p">봉자는 핑크빛 크롭탑 연습복을 입고 입술에 립글로스를 톡톡 바르며 거울 속 자신을 향해 윙크를 날렸다. ENFP 특유의 반짝이는 텐션이 온몸에서 뿜어져 나왔다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자 (아이돌 턴을 돌며)</div>
+        "꺄아악! 예PD님, 드디어 제 끼를 전국의 인싸 팬들에게 보여줄 때가 왔군요? 저 하루 두 끼 샐러드만 먹으면서 댄스 특훈 완료했잖아요! 센터는 당연히 저 맞죠?"
+      </div>
+
+      <p class="story-p">그때 거울 구석 매트리스에 거대한 햄버거 쿠션처럼 누워 있던 봉두가 부스스 일어났다. 봉두의 큼직한 머리 위에는 까치집이 지어져 있었고, 손에는 이미 배달앱이 켜져 있었다.</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (하품을 쩌억 하며)</div>
+        "아니 누나, 뮤지컬이고 뭐고 지금 12시 10분이거든? 나 오늘 아침에 토스트 3장, 10시에 라면 2봉지 먹었는데 지금 3번째 끼니 먹을 시간이란 말이야. 서울 첫 연습인데 치킨에 떡볶이 안 시켜줘요?"
+      </div>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자 (기겁하며)</div>
+        "야, 이 대두 식충아! 춤 연습 시작도 전에 기름진 치킨 냄새 풍길래?! 넌 몸치라서 턴 한 바퀴도 못 돌면서 배부를 생각만 하냐?!"
+      </div>
+    </section>
+
+    <!-- 2장: 봉자의 스파르타 댄스 교실 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">💃 2장 / 총 4장</div>
+      <h2 class="chapter-title">2. 봉두의 로봇 댄스와 삐걱거리는 합주</h2>
+
+      <p class="story-p">예PD가 이마의 땀을 닦으며 반주 음악을 틀었다. <span class="sfx">쿵- 짝- 쿵쿵- 짝!</span> 신나는 베이스 비트가 울려 퍼지자 봉자는 마치 물 만난 물고기처럼 날렵한 웨이브와 칼군무를 선보였다.</p>
+
+      <div class="musical-lyrics">
+        <div class="musical-tag">🎵 뮤지컬 넘버 01 : '우린 인싸 패밀리'</div>
+        "거울 속을 봐, 오늘 내가 제일 빛나~ (봉자)<br>
+        배고파서 손이 떨려, 당장 치킨 줘~ (봉두)<br>
+        제발 박자 좀 맞춰줘, 내 혈압 올라가~ (예PD)"
+      </div>
+
+      <p class="story-p">하지만 봉두의 차례가 오자 분위기는 급변했다. 봉두는 큰 머리의 무게중심을 이기지 못하고 뻣뻣한 각목처럼 뒤뚱거렸다. <span class="sfx">삐걱- 쿵!</span></p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자 (머리를 쥐어뜯으며)</div>
+        "야아아 박봉두! 그게 아이돌 댄스야, 고장 난 세탁기 탈수 댄스야?! 팔을 45도로 뻗으라고 했지, 누가 마늘 빻는 절굿공이처럼 찧으랬어?!"
+      </div>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (억울해하며)</div>
+        "아 누나는 머리가 작아서 회전이 잘 되는 거고! 난 머리가 커서 원심력 때문에 몸이 앞으로 쏠린다고! 이게 내 시그니처 <strong>'대두 팝핀'</strong>이거든?!"
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name yepd">🎬 예PD (뒷목을 잡으며)</div>
+        "스톱! 스톱! 봉두야, 네가 턴할 때마다 무대 배경 세트가 바람에 날아가잖아! 서울 본공연이 일주일 뒤인데 이래서 대학로 극장 무대에 올라갈 수나 있겠어?!"
+      </div>
+    </section>
+
+    <!-- 3장: 치킨 배달과 대참사의 순간 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">💥 3장 / 총 4장</div>
+      <h2 class="chapter-title">3. 바삭한 유혹과 무대 의상 오염 사건</h2>
+
+      <p class="story-p">결국 예PD는 사기 진작을 위해 '양념 반 후라이드 반' 치킨 세 박스를 긴급 공수했다. 치킨 상자가 열리자 봉두의 눈동자가 게임 속 버프를 받은 캐릭터처럼 번쩍였다.</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (양손에 닭다리를 쥐고)</div>
+        "크으으! 역시 서울 종로 원조 마늘간장 치킨! 겉바속촉의 예술이다! 밥심이 들어가야 댄스 스텝도 밟히는 법이지!"
+      </div>
+
+      <p class="story-p">봉자는 침을 꼴깍 삼켰지만, 프로 뷰티인싸의 자존심을 걸고 거울 앞을 지켰다. 샐러드 방울토마토 하나를 입에 넣으며 째려보았다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자</div>
+        "난 2끼 원칙 지킬 거야. 무대의상 지퍼 안 잠기면 책임질 거야? 너나 양념 손에 묻히지 말고 조심해서 먹어라!"
+      </div>
+
+      <p class="story-p">하지만 불길한 예감은 틀리지 않았다. 봉두가 닭날개를 야무지게 뜯으며 봉자의 화려한 턴 동작을 흉내 낸답시고 엉거주춤 회전을 시도한 것이다! <span class="sfx">휘청- 꽈당!</span></p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (비틀거리며)</div>
+        "어어어? 누나, 원심력이… 통제가 안 돼애애!"
+      </div>
+
+      <p class="story-p">봉두의 손에서 미끄러진 매콤달콤한 양념 닭날개가 허공을 가르더니, 거치대에 곱게 걸려 있던 서울 오프닝용 **'봉자의 핑크 스팽글 드레스'** 한가운데로 정확하게 날아가 찰싹 달라붙었다! <span class="sfx">처덕——!</span></p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자 (5단 고음 비명)</div>
+        "내 드레스으으으으! 파리 컬렉션 느낌으로 특수 주문 제작한 내 핑크빛 오프닝 의상에 시뻘건 양념 소스를 발라버렸어어어?!"
+      </div>
+    </section>
+
+    <!-- 4장: 위기 극복과 서울 첫 공연의 기적 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">✨ 4장 / 총 4장</div>
+      <h2 class="chapter-title">4. 역발상 리폼과 대학로의 뜨거운 함성</h2>
+
+      <p class="story-p">연습실은 순식간에 아수라장이 되었다. 봉자는 봉두를 잡으러 빗자루를 들고 뛰었고, 봉두는 큰 머리를 요리조리 피하며 연습실 매트를 방패 삼아 숨었다. 예PD는 울먹이며 소주 대신 쌍화탕을 들이켰다.</p>
+
+      <p class="story-p">하지만 공연 당일, 예PD의 반짝이는 기지가 빛을 발했다. 지워지지 않는 양념 얼룩 위에 핫핑크 글리터와 'INSSA' 로고 패치를 과감하게 덧붙여, 세상에 단 하나뿐인 스트리트 힙합 스타일 무대의상으로 리폼한 것이다!</p>
+
+      <p class="story-p">드디어 서울 대학로 드림아트홀. 500석 객석을 가득 채운 인싸가족 팬들의 환호성이 터져 나왔다. <span class="sfx">와아아아——!</span></p>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name yepd">🎬 예PD (무대 뒤에서 인이어로 속삭이며)</div>
+        "봉자, 봉두 스탠바이! 유튜브 화면 밖에서 진짜 팬들을 만나는 첫 순간이야. 싸우지 말고 우리가 연습한 그대로 보여줘!"
+      </div>
+
+      <p class="story-p">조명이 켜지고 반주가 터져 나오자, 봉자는 전율이 돋는 파워풀한 댄스로 관객들의 시선을 단숨에 사로잡았다. 그리고 봉두의 엉성한 '대두 팝핀' 파트가 되자, 관객들은 그것이 원래 계획된 코믹 댄스인 줄 알고 폭소를 터뜨리며 환호했다!</p>
+
+      <div class="musical-lyrics">
+        <div class="musical-tag">🎵 피날레 : '서울의 밤을 인싸로 물들여'</div>
+        "티격태격 싸워도 우리는 하나~<br>
+        무대 위에서 뿜어내는 환상의 케미!<br>
+        전국 12개 도시야 기다려라, 인싸가족이 간다!"
+      </div>
+
+      <p class="story-p">커튼콜이 내려오고 팬들의 기립박수가 쏟아졌다. 무대 뒤로 뛰어 들어온 봉자와 봉두는 서로 땀투성이가 된 얼굴을 보며 피식 웃음을 터뜨렸다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자 (땀을 닦으며)</div>
+        "야, 박봉두. 오늘 네 그 엉성한 춤 솔직히 좀 웃겼다? 관객들 빵 터진 거 봤어?"
+      </div>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (뿌듯하게 배를 두드리며)</div>
+        "거봐, 내 대두 팝핀이 서울 팬심을 저격했다니까! 누나, 성공적으로 끝났으니까 이따 성남 넘어가기 전에 곱창 5인분 쏘는 거지?"
+      </div>
+
+      <p class="story-p">서울의 첫 번째 뮤지컬 무대는 우당탕 대참사 속에서도 대성공으로 막을 내렸다. 하지만 인싸가족 앞에는 앞으로 11개의 도시가 더 기다리고 있었다. 과연 다음 도시인 **성남**에서는 또 어떤 시트콤 같은 사건이 기다리고 있을까?</p>
+    </section>
+
+    <!-- 다음 화 예고 박스 -->
+    <div class="next-preview">
+      <h4>📍 [다음 화 예고] 제2편 : 성남 아트센터의 도플갱어 소동</h4>
+      <p>성남의 IT 테크 밸리에 입성한 인싸가족! 그런데 봉두와 똑같이 생긴 AI 로봇이 무대에 난입했다?! 춤도 잘 추고 말도 잘 듣는 로봇 봉두의 등장에 진짜 봉두는 팀 퇴출 위기에 처하는데…!</p>
+    </div>
+
+    <!-- 하단 내비게이션 바 -->
+    <div class="nav-bar">
+      <a href="../index.html" class="btn-nav" style="background: #4b5563;">🏠 메인 포털 허브</a>
+      <a href="inssa02.html" class="btn-nav">제2편 (성남 편) 읽으러 가기 ➡️</a>
+    </div>
+
+  </div>
+
+  <script>
+    // 읽기 진행도 바
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('novel-progress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

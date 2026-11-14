@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인싸가족 시트콤 뮤지컬 - 제2편 : 성남 판교 테크밸리와 AI 로봇 봉두</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --secondary: #10b981;
+      --bg: #eff6ff;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-sub: #4b5563;
+      --border: #bfdbfe;
+      --bongja: #ec4899;
+      --bongdu: #3b82f6;
+      --yepd: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: radial-gradient(circle at 50% 0%, #dbeafe 0%, #eff6ff 100%); color: var(--text-main); padding: 20px 14px; line-height: 1.85; font-size: 17px; }
+    .book-container { max-width: 720px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 28px; box-shadow: 0 12px 36px rgba(59, 130, 246, 0.15); padding: 30px 24px; overflow: hidden; }
+    .novel-cover { text-align: center; margin-bottom: 28px; position: relative; }
+    .tour-badge { display: inline-block; background: linear-gradient(135deg, #2563eb, #06b6d4); color: #fff; font-size: 13px; font-weight: 800; padding: 6px 16px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+    .novel-title { font-size: 26px; font-weight: 900; color: #1e40af; line-height: 1.35; margin-bottom: 6px; letter-spacing: -0.5px; }
+    .novel-subtitle { font-size: 17px; font-weight: 800; color: #0284c7; margin-bottom: 18px; }
+    .cover-poster-wrap { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 2px solid #bae6fd; line-height: 0; }
+    .cover-poster-wrap svg { width: 100%; height: auto; display: block; }
+    .char-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+    .char-card { background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 14px; padding: 12px 10px; text-align: center; font-size: 12px; }
+    .char-card.bongdu { background: #eff6ff; border-color: #bfdbfe; }
+    .char-card.yepd { background: #ecfdf5; border-color: #a7f3d0; }
+    .char-name { font-size: 14px; font-weight: 900; margin-bottom: 4px; }
+    .char-name.bongja { color: #db2777; }
+    .char-name.bongdu { color: #2563eb; }
+    .char-name.yepd { color: #059669; }
+    .char-desc { color: #6b7280; line-height: 1.4; font-size: 11px; }
+    .progress-wrap { background: #dbeafe; border-radius: 10px; height: 8px; margin-bottom: 28px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #3b82f6, #06b6d4); width: 0%; transition: width 0.3s; }
+    .chapter-section { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 2px dashed #bfdbfe; }
+    .chapter-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .chapter-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #1d4ed8; background: #dbeafe; padding: 4px 12px; border-radius: 12px; margin-bottom: 10px; }
+    .chapter-title { font-size: 20px; font-weight: 900; color: #1e3a8a; margin-bottom: 16px; }
+    .story-p { margin-bottom: 16px; color: #1f2937; text-indent: 8px; word-break: keep-all; }
+    .talk-box { margin: 14px 0; padding: 12px 16px; border-radius: 14px; font-size: 16px; line-height: 1.6; border-left: 5px solid #ccc; }
+    .talk-bongja { background: #fdf2f8; border-left-color: #ec4899; color: #831843; }
+    .talk-bongdu { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+    .talk-yepd { background: #ecfdf5; border-left-color: #10b981; color: #064e3b; }
+    .talk-robot { background: #f1f5f9; border-left-color: #64748b; color: #334155; }
+    .talk-name { font-weight: 900; font-size: 13px; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .sfx { display: inline-block; font-weight: 900; color: #ea580c; background: #ffedd5; padding: 2px 8px; border-radius: 6px; font-size: 14px; margin: 0 4px; }
+    .musical-lyrics { background: linear-gradient(135deg, #eff6ff, #fdf2f8); border: 2px solid #bfdbfe; border-radius: 16px; padding: 16px 20px; margin: 20px 0; text-align: center; font-style: italic; color: #1e40af; font-weight: 700; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1); }
+    .musical-tag { font-size: 12px; background: #2563eb; color: #fff; padding: 2px 10px; border-radius: 12px; display: inline-block; margin-bottom: 8px; font-style: normal; }
+    .next-preview { background: #eff6ff; border: 2px dashed #3b82f6; border-radius: 16px; padding: 18px; margin-top: 30px; text-align: center; }
+    .next-preview h4 { font-size: 16px; color: #1e40af; margin-bottom: 6px; font-weight: 900; }
+    .next-preview p { font-size: 14px; color: #1e3a8a; }
+    .nav-bar { margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn-nav { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 24px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35); transition: transform 0.2s; }
+    .btn-nav:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+
+  <div class="book-container">
+    <header class="novel-cover">
+      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제2화 (성남 편)</div>
+      <h1 class="novel-title">인싸가족 : 시트콤 뮤지컬</h1>
+      <div class="novel-subtitle">제2편 : 성남 판교 테크밸리와 AI 로봇 봉두</div>
+
+      <!-- 성남 스페셜 커버 아트 포스터 -->
+      <div class="cover-poster-wrap">
+        <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="seongnamSky" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0284c7"/>
+              <stop offset="50%" stop-color="#38bdf8"/>
+              <stop offset="100%" stop-color="#e0f2fe"/>
+            </linearGradient>
+            <linearGradient id="stageTech" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0f172a"/>
+              <stop offset="50%" stop-color="#1e293b"/>
+              <stop offset="100%" stop-color="#0f172a"/>
+            </linearGradient>
+          </defs>
+
+          <!-- 배경: 성남 판교 첨단 빌딩 실루엣 -->
+          <rect width="680" height="380" fill="url(#seongnamSky)"/>
+          <rect x="80" y="40" width="90" height="220" fill="#0369a1" opacity="0.4"/>
+          <rect x="200" y="70" width="70" height="190" fill="#0284c7" opacity="0.3"/>
+          <rect x="420" y="50" width="100" height="210" fill="#0369a1" opacity="0.4"/>
+          <rect x="540" y="80" width="80" height="180" fill="#0284c7" opacity="0.3"/>
+
+          <!-- 첨단 메카 무대 바닥 -->
+          <path d="M0 260 L680 260 L680 380 L0 380 Z" fill="url(#stageTech)"/>
+          <line x1="0" y1="300" x2="680" y2="300" stroke="#06b6d4" stroke-width="2" stroke-dasharray="10 5"/>
+          <line x1="0" y1="340" x2="680" y2="340" stroke="#06b6d4" stroke-width="2" stroke-dasharray="10 5"/>
+
+          <!-- 1. 좌측: 진짜 봉두 (사탕 물고 억울해하는 대두) -->
+          <ellipse cx="160" cy="155" rx="42" ry="38" fill="#fed7aa"/>
+          <path d="M116 150 C116 100 204 100 204 150 L204 145 L116 145 Z" fill="#1e293b"/>
+          <circle cx="146" cy="150" r="5" fill="#000"/>
+          <circle cx="174" cy="150" r="5" fill="#000"/>
+          <path d="M150 168 Q160 160 170 168" stroke="#ef4444" stroke-width="3" fill="none"/>
+          <rect x="125" y="195" width="70" height="65" rx="16" fill="#3b82f6"/>
+          <!-- 핫도그를 들고 있는 손 -->
+          <ellipse cx="205" cy="190" rx="12" ry="7" fill="#ea580c"/>
+          <line x1="205" y1="197" x2="205" y2="215" stroke="#fed7aa" stroke-width="4"/>
+          <text x="180" y="120" font-size="22">💢</text>
+
+          <!-- 2. 중앙: 똑같이 생겼는데 완벽한 칼군무 추는 AI 로봇 봉두 (머리에 안테나) -->
+          <ellipse cx="340" cy="145" rx="42" ry="38" fill="#cbd5e1"/>
+          <path d="M296 140 C296 90 384 90 384 140 L384 135 L296 135 Z" fill="#475569"/>
+          <!-- 사이보그 발광 눈 -->
+          <circle cx="326" cy="140" r="6" fill="#06b6d4"/>
+          <circle cx="354" cy="140" r="6" fill="#06b6d4"/>
+          <circle cx="326" cy="140" r="2" fill="#fff"/>
+          <circle cx="354" cy="140" r="2" fill="#fff"/>
+          <!-- 머리 안테나 -->
+          <line x1="340" y1="107" x2="340" y2="75" stroke="#64748b" stroke-width="4"/>
+          <circle cx="340" cy="70" r="7" fill="#ef4444"/>
+          <!-- 은빛 메카 바디 & 날렵한 댄스 포즈 -->
+          <rect x="305" y="185" width="70" height="65" rx="16" fill="#64748b"/>
+          <rect x="325" y="200" width="30" height="20" rx="4" fill="#06b6d4" opacity="0.6"/>
+          <text x="340" y="215" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">AI-BD</text>
+          <!-- 번쩍이는 전자기 파동 -->
+          <text x="385" y="125" font-size="22">⚡</text>
+
+          <!-- 3. 우측: 감탄하는 봉자와 당황한 예PD -->
+          <circle cx="510" cy="150" r="26" fill="#fed7aa"/>
+          <path d="M485 150 C485 110 535 110 535 150 Z" fill="#db2777"/>
+          <path d="M495 180 L525 180 L530 240 L490 240 Z" fill="#ec4899"/>
+          <!-- 봉자의 하트 눈 -->
+          <text x="500" y="152" font-size="14" fill="#ec4899">😍</text>
+
+          <!-- 예PD -->
+          <circle cx="590" cy="160" r="22" fill="#fed7aa"/>
+          <rect x="580" y="185" width="30" height="55" rx="10" fill="#10b981"/>
+          <text x="585" y="140" font-size="16">😱</text>
+
+          <rect x="180" y="325" width="320" height="38" rx="19" fill="rgba(15, 23, 42, 0.85)"/>
+          <text x="340" y="350" font-size="15" font-weight="900" fill="#38bdf8" text-anchor="middle">
+            🤖 2막 : 성남 판교 아트리움의 대결투
+          </text>
+        </svg>
+      </div>
+
+      <div class="char-grid">
+        <div class="char-card">
+          <div class="char-name bongja">💄 봉자 (15)</div>
+          <div class="char-desc">"로봇 봉두가 훨씬 춤 잘 추네! 팀 교체 찬성~"</div>
+        </div>
+        <div class="char-card bongdu">
+          <div class="char-name bongdu">🍗 봉두 (14)</div>
+          <div class="char-desc">"내가 진짜라니까! 쟤는 핫도그 맛도 모른단 말야!"</div>
+        </div>
+        <div class="char-card yepd">
+          <div class="char-name yepd">🎬 예PD</div>
+          <div class="char-desc">"성남 공연 티켓 매진인데 주연이 둘이라니?!"</div>
+        </div>
+      </div>
+
+      <div class="progress-wrap"><div id="novel-progress" class="progress-bar"></div></div>
+    </header>
+
+    <!-- 1장: 판교 IT 밸리의 협찬 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🏢 1장 / 총 4장</div>
+      <h2 class="chapter-title">1. 대한민국 실리콘밸리, 성남 판교에 상륙하다</h2>
+
+      <p class="story-p">서울 공연의 폭발적인 대성공에 힘입어, 인싸가족 투어 버스는 대한민국 최첨단 테크의 심장부인 **경기도 성남시 분당구 판교**에 입성했다. 으리으리한 유리 빌딩숲 사이에 자리 잡은 성남 아트리움 대극장 앞은 시작 전부터 코딩 꿈나무들과 인싸가족 팬들로 북새통을 이루었다.</p>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name yepd">🎬 예PD (들뜬 목소리로 대기실 문을 열며)</div>
+        "얘들아! 대박 사건! 판교의 유명 인공지능 로봇 벤처기업에서 우리 인싸가족 공연에 무려 <strong>『최첨단 무대 보조 AI』</strong>를 협찬해 줬어! 이름하여 '사이버 봉두 1호'!"
+      </div>
+
+      <p class="story-p">문이 열리며 스르륵 등장한 것은 놀랍게도 봉두와 키, 몸집, 그리고 시그니처인 거대한 머리 크기까지 100% 똑같이 생긴 안드로이드 로봇이었다. 단 하나의 차이점은 정수리에 달린 깜찍한 빨간 안테나뿐이었다!</p>
+
+      <div class="talk-box talk-robot">
+        <div class="talk-name" style="color: #475569;">🤖 AI 봉두 (기계음이지만 완벽한 미성으로)</div>
+        "삐리릭- 안녕하십니까. 봉두의 외모와 K-POP 댄스 알고리즘 5000곡을 딥러닝한 슈퍼 안드로이드입니다. 봉자 누나의 안무를 0.01초 오차 없이 서포트하겠습니다."
+      </div>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자 (입을 틀어막고 감탄하며)</div>
+        "어머어머! 대박! 진짜 박봉두랑 머리 크기는 똑같은데, 피부결도 은빛 메탈이라 사이버 뷰티 느낌 나고 완전 힙하잖아?! 야, 박봉두! 너 이제 무대에서 빠져도 되겠다!"
+      </div>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (핫도그를 우물거리며 발끈)</div>
+        "누나, 제정신이야?! 저 깡통 로봇이 내 영혼의 바이브를 어떻게 따라 해? 난 판교 편의점에서 핫바 2개랑 모짜렐라 핫도그 먹고 와서 전투력 200% 충전됐거든?!"
+      </div>
+    </section>
+
+    <!-- 2장: 로봇의 칼군무와 봉두의 위기 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">⚡ 2장 / 총 4장</div>
+      <h2 class="chapter-title">2. 완벽한 칼군무 vs 뒤뚱뒤뚱 대두 팝핀</h2>
+
+      <p class="story-p">리허설 음악이 흘러나오자, AI 봉두의 진가가 드러났다. <span class="sfx">치키- 탕- 탕!</span> AI 봉두는 레이저처럼 정교한 관절 꺾기와 마이클 잭슨 뺨치는 문워크를 완벽하게 구사했다. 심지어 거대한 머리를 자유자재로 회전시키는 '360도 헤드스핀'까지 선보였다!</p>
+
+      <div class="musical-lyrics">
+        <div class="musical-tag">🎵 뮤지컬 넘버 02 : '판교의 사이버 인싸'</div>
+        "0과 1로 계산된 완벽한 리듬~ (AI 봉두)<br>
+        나보다 춤 잘 추는 로봇은 필요 없어! (진짜 봉두)<br>
+        인건비 줄어드니 차라리 로봇 쓸까? (예PD)"
+      </div>
+
+      <p class="story-p">반면 옆에서 진짜 봉두가 따라 하려 하자, 역시나 머리 무게를 이기지 못하고 <span class="sfx">쿵- 꽈당!</span> 무대 바닥으로 고꾸라졌다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자 (엄지를 치켜들며)</div>
+        "예PD님! 이번 성남 본공연에는 저 AI 봉두랑 더블 센터로 서게 해주세요! 박봉두는 무대 뒤에서 대기실 지키라고 하고요!"
+      </div>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (눈에 눈물이 핑 돌며)</div>
+        "아니 누나, 어떻게 피를 나눈 친동생을 고철 덩어리랑 바꿔?! 나 ISFJ라 상처받으면 한 달 동안 누나 거울 닦아주기 파업할 거야!"
+      </div>
+    </section>
+
+    <!-- 3장: 로봇의 과열과 성남 공연의 돌발 참사 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🔥 3장 / 총 4장</div>
+      <h2 class="chapter-title">3. 배터리 폭주와 멈춰버린 AI</h2>
+
+      <p class="story-p">결국 예PD는 팬들을 위한 특급 이벤트로, 1막에는 봉자&AI 봉두가 무대에 서고, 2막에는 진짜 봉두가 깜짝 등장하는 연출을 확정했다.</p>
+
+      <p class="story-p">성남 아트리움 객석 800석이 꽉 들어차고, 마침내 막이 올랐다. 화려한 사이버 무대 조명 아래 봉자와 AI 봉두의 숨 막히는 듀엣 댄스가 펼쳐졌다. 성남 판교의 관객들은 환호성을 질렀다. <span class="sfx">와아아아-!!</span></p>
+
+      <p class="story-p">그런데 1막 클라이맥스 하이라이트 구간, AI 봉두의 머리 위 안테나에서 찌릿한 스파크가 튀기 시작했다. <span class="sfx">치지지직——!</span></p>
+
+      <div class="talk-box talk-robot">
+        <div class="talk-name" style="color: #ef4444;">🤖 AI 봉두 (눈이 빨갛게 깜빡이며)</div>
+        "경고… 봉자 누나의… 텐션을 계산 불가… CPU 온도 120도 도달… 삐리릭… 떡볶이 먹고 싶다… 오류 발생…!"
+      </div>
+
+      <p class="story-p">너무 격렬한 ENFP 봉자의 텐션 안무를 따라잡으려다 AI 로봇의 연산 회로가 과열되어 버린 것이었다! AI 봉두는 엉거주춤 우스꽝스러운 자세로 무대 한복판에 굳어버렸다. 음악은 계속 흐르고 있었고, 관객석이 웅성거리기 시작했다.</p>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name yepd">🎬 예PD (무대 뒤에서 절규하며)</div>
+        "망했다! 생방송 중인데 메인 로봇이 뻗었어! 봉자 혼자선 저 긴 댄스 브레이크를 못 메워!"
+      </div>
+    </section>
+
+    <!-- 4장: 진짜 봉두의 출격과 성남의 감동 피날레 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🏆 4장 / 총 4장</div>
+      <h2 class="chapter-title">4. 인간미 넘치는 몸치 댄스의 역전 홈런</h2>
+
+      <p class="story-p">그때 대기실에서 대왕 핫도그를 쥐고 있던 진짜 봉두가 무대 옆 커튼을 박차고 뛰어나왔다!</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (마이크를 낚아채며)</div>
+        "인싸가족의 진정한 무대는 완벽한 기계가 아니라, 땀과 인간미로 만드는 거다! 누나, 2절 가자!"
+      </div>
+
+      <p class="story-p">봉두는 굳어버린 AI 로봇을 슬쩍 밀어내고, 특유의 능청스러운 표정과 함께 자기만의 '대두 꿀렁 팝핀'을 선보였다. 봉자도 당황하지 않고 봉두의 손을 맞잡으며 완벽한 남매 락킹 댄스로 전환했다!</p>
+
+      <div class="musical-lyrics">
+        <div class="musical-tag">🎵 피날레 넘버 : '기계는 흉내 못 내는 찐남매 케미'</div>
+        "로봇이 춤을 백 번 잘 춰도~<br>
+        서로 싸우며 웃는 우리가 진짜 인싸!<br>
+        성남의 밤을 뜨겁게 달궈보자, 뛰어!"
+      </div>
+
+      <p class="story-p">객석의 관객들은 이것이 고도의 반전 시트콤 연출인 줄 알고 전원 기립해 열광적인 박수갈채를 쏟아냈다! <span class="sfx">박수 짝짝짝-!!</span> 심지어 판교 테크 기업 연구원들도 "인간의 따뜻함을 이길 수 있는 AI는 없다!"라며 눈물을 글썽였다.</p>
+
+      <p class="story-p">공연이 끝나고 무대 뒤, 고장 난 로봇을 보며 봉자가 봉두의 등을 툭 쳤다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name bongja">💄 봉자 (씨익 웃으며)</div>
+        "야, 박봉두. 오늘 솔직히 좀 멋있었다? 로봇보다 네 그 뚱땅거리는 춤이 백배 낫더라."
+      </div>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name bongdu">🍗 봉두 (으스대며)</div>
+        "거봐, 인간 봉두의 가치를 이제 알겠지? 그러니까 판교 명물 수제버거 세트 3개 사줘!"
+      </div>
+
+      <p class="story-p">이렇게 성남 투어 무대도 유쾌한 시트콤과 함께 대성황을 이뤘다. 하지만 예PD가 다음 목적지 티켓을 꺼내 들었다.</p>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name yepd">🎬 예PD</div>
+        "자, 감동은 여기까지! 다음 목적지는 유교의 고장, 전통과 예절의 도시 **안동**이다! 거기선 얌전하게 해야 해!"
+      </div>
+
+      <p class="story-p">과연 흥 넘치는 봉자와 먹방 대두 봉두는 점잖은 선비의 고장 **안동**에서 어떤 파란만장한 소동을 일으키게 될까?</p>
+    </section>
+
+    <!-- 다음 화 예고 박스 -->
+    <div class="next-preview">
+      <h4>📍 [다음 화 예고] 제3편 : 안동 하회마을의 갓 쓴 힙합 대소동</h4>
+      <p>조선시대 선비의 도시 안동에 도착한 인싸가족! 갓을 쓰고 도포를 입은 봉두가 하회탈 댄스 배틀에 휘말리는데… 유교 걸 봉자의 판소리 랩 도전기 대공개!</p>
+    </div>
+
+    <!-- 하단 내비게이션 바 -->
+    <div class="nav-bar">
+      <a href="inssa01.html" class="btn-nav" style="background: #64748b;">⬅️ 제1편 (서울 편) 보기</a>
+      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털 허브</a>
+      <a href="inssa03.html" class="btn-nav">제3편 (안동 편) 읽으러 가기 ➡️</a>
+    </div>
+
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('novel-progress').style.width = (winScroll / height * 100) + '%';
+    });
+  </script>
+</body>
+</html>
