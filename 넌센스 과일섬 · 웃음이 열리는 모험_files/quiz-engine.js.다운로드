@@ -1,0 +1,22 @@
+const QuizEngine = (() => {
+  const id = q => q[0] + ':' + q[2];
+  function history(value) {
+    return value && typeof value === 'object' && !Array.isArray(value)
+      ? Object.fromEntries(Object.entries(value).filter(([,n]) => Number.isSafeInteger(n) && n > 0)) : {};
+  }
+  function choose(pool, seen, count = 3, random = Math.random) {
+    // Shuffle ties, then unseen first and least recently displayed next.
+    const shuffled = pool.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled.sort((a,b) => (seen[id(a)] || 0) - (seen[id(b)] || 0)).slice(0,count);
+  }
+  function mark(seen, question) {
+    // A monotonic counter also works when the device clock changes.
+    seen[id(question)] = Math.max(0, ...Object.values(seen)) + 1;
+  }
+  return {id, history, choose, mark};
+})();
+if (typeof module !== 'undefined') module.exports = QuizEngine;
