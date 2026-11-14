@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>별빛 구름 숲과 퐁퐁이의 은빛 열쇠 - 판타지 동화</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-light: #ddd6fe;
+      --accent: #f59e0b;
+      --bg: #faf5ff;
+      --card-bg: #ffffff;
+      --text-main: #2e1065;
+      --text-body: #4c1d95;
+      --border: #e9d5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Nanum Gothic", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, #f3e8ff 0%, #faf5ff 100%);
+      color: var(--text-main);
+      padding: 20px 14px;
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    .book-container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.12);
+      overflow: hidden;
+      padding: 28px 22px;
+    }
+
+    /* 표지 헤더 */
+    .book-header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px dashed var(--border);
+      margin-bottom: 28px;
+    }
+
+    .series-badge {
+      display: inline-block;
+      background: #ede9fe;
+      color: #6d28d9;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #5b21b6;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .meta-info {
+      font-size: 13px;
+      color: #7c3aed;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* 진행도 바 (5분 읽기) */
+    .progress-wrap {
+      background: #f3e8ff;
+      border-radius: 10px;
+      height: 8px;
+      margin: 18px 0 28px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #a855f7, #6366f1);
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    /* 챕터 페이지 섹션 */
+    .page-section {
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .page-num {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #8b5cf6;
+      background: #f5f3ff;
+      padding: 4px 12px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+
+    .chapter-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #4c1d95;
+      margin-bottom: 16px;
+    }
+
+    /* 일러스트레이션 아트 박스 (SVG 감성 삽화) */
+    .illustration-box {
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      margin: 16px 0 22px;
+      box-shadow: 0 6px 18px rgba(109, 40, 217, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      line-height: 0;
+      background: #fdf4ff;
+    }
+
+    .illustration-box svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .story-text {
+      color: #3b0764;
+      line-height: 1.9;
+      font-size: 16.5px;
+      text-align: justify;
+      word-break: keep-all;
+    }
+
+    .story-text p {
+      margin-bottom: 14px;
+      text-indent: 10px;
+    }
+
+    .dialogue {
+      font-weight: 700;
+      color: #6d28d9;
+      background: #faf5ff;
+      padding: 2px 6px;
+      border-radius: 6px;
+      text-indent: 0 !important;
+    }
+
+    /* 생각 쑥쑥 질문 상자 */
+    .quiz-card {
+      background: #fdf4ff;
+      border: 2px dashed #d946ef;
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .quiz-card h3 {
+      font-size: 17px;
+      color: #a21caf;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .quiz-card p {
+      font-size: 14.5px;
+      color: #701a75;
+      line-height: 1.6;
+    }
+
+    /* 하단 홈 바로가기 */
+    .footer-nav {
+      margin-top: 26px;
+      text-align: center;
+    }
+
+    .btn-home {
+      display: inline-block;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .btn-home:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book-container">
+    <!-- 책 표지 및 정보 -->
+    <header class="book-header">
+      <div class="series-badge">✨ 하나와 퐁퐁이의 무지개 모험 시리즈 · 제1화</div>
+      <h1>별빛 구름 숲과 퐁퐁이의 은빛 열쇠</h1>
+      <div class="meta-info">
+        <span>👧 주인공: 열 살 소녀 하나 & 포메라니안 퐁퐁이</span>
+        <span>⏱️ 추천 읽기 시간: 5분 (초등 3학년 권장)</span>
+      </div>
+      <div class="progress-wrap">
+        <div id="read-progress" class="progress-bar"></div>
+      </div>
+    </header>
+
+    <!-- 1장 -->
+    <section class="page-section">
+      <div class="page-num">📖 1장 / 총 4장</div>
+      <h2 class="chapter-title">1. 복슬복슬 솜뭉치의 이상한 재채기</h2>
+
+      <!-- 삽화 1 -->
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sky1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fed7aa"/>
+              <stop offset="100%" stop-color="#fef08a"/>
+            </linearGradient>
+            <linearGradient id="fur" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffedd5"/>
+              <stop offset="100%" stop-color="#fed7aa"/>
+            </linearGradient>
+          </defs>
+          <!-- 방 창문과 따뜻한 햇살 -->
+          <rect width="600" height="340" fill="#fdf2f8"/>
+          <rect x="50" y="30" width="500" height="240" rx="20" fill="url(#sky1)"/>
+          <circle cx="480" cy="80" r="35" fill="#fde047" opacity="0.8"/>
+          <path d="M50 200 C 150 160, 250 220, 550 170 L550 270 L50 270 Z" fill="#bbf7d0"/>
+          
+          <!-- 창틀 -->
+          <rect x="40" y="20" width="520" height="260" rx="16" fill="none" stroke="#fbcfe8" stroke-width="12"/>
+          <line x1="300" y1="20" x2="300" y2="280" stroke="#fbcfe8" stroke-width="6"/>
+
+          <!-- 주인공 소녀 하나 -->
+          <circle cx="230" cy="190" r="32" fill="#fed7aa"/>
+          <path d="M195 190 C 195 140, 265 140, 265 190 C 265 170, 245 160, 230 160 C 215 160, 195 170, 195 190 Z" fill="#78350f"/>
+          <!-- 포니테일 -->
+          <circle cx="195" cy="175" r="14" fill="#78350f"/>
+          <circle cx="220" cy="190" r="3" fill="#451a03"/>
+          <circle cx="238" cy="190" r="3" fill="#451a03"/>
+          <path d="M225 202 Q230 208 235 202" stroke="#ea580c" stroke-width="2" fill="none"/>
+          <path d="M205 222 C 205 210, 255 210, 255 222 L260 280 L200 280 Z" fill="#ec4899"/>
+
+          <!-- 포메라니안 퐁퐁이 (풍성한 솜뭉치 털과 반짝이) -->
+          <circle cx="360" cy="225" r="36" fill="url(#fur)"/>
+          <circle cx="335" cy="215" r="30" fill="url(#fur)"/>
+          <!-- 쫑긋한 귀 -->
+          <polygon points="320,195 330,175 340,195" fill="#f97316"/>
+          <polygon points="345,195 355,175 365,195" fill="#f97316"/>
+          <!-- 초롱초롱한 눈, 코 -->
+          <circle cx="330" cy="210" r="4" fill="#1c1917"/>
+          <circle cx="346" cy="210" r="4" fill="#1c1917"/>
+          <ellipse cx="338" cy="218" rx="4" ry="3" fill="#1c1917"/>
+          <!-- 혓바닥 -->
+          <path d="M336 222 Q338 227 340 222" fill="#f43f5e"/>
+          <!-- 풍성한 꼬리 -->
+          <circle cx="390" cy="205" r="18" fill="#ffedd5"/>
+
+          <!-- 반짝이는 마법 가루 효과 -->
+          <polygon points="338,150 342,158 350,160 342,162 338,170 334,162 326,160 334,158" fill="#facc15"/>
+          <polygon points="400,170 403,176 410,178 403,180 400,186 397,180 390,178 397,176" fill="#67e8f9"/>
+          <text x="300" y="315" font-size="14" font-weight="bold" fill="#701a75" text-anchor="middle">"에취! 퐁퐁이의 재채기에 신비한 별빛이 피어올랐어요!"</text>
+        </svg>
+      </div>
+
+      <div class="story-text">
+        <p>초등학교 3학년인 하나의 곁에는 언제나 하얀 솜사탕처럼 폭신한 포메라니안 강아지 '퐁퐁이'가 함께 있었어요. 퐁퐁이는 걸을 때마다 엉덩이를 실룩실룩 흔들며 방울 소리처럼 경쾌하게 꼬리를 흔드는 귀염둥이였지요.</p>
+        <p>토요일 오후, 하나가 방바닥에 엎드려 모험 그림책을 읽고 있을 때였어요. 옆에서 뒹굴거리던 퐁퐁이가 별안간 코를 찡긋하더니 크게 소리쳤어요.</p>
+        <p class="dialogue">"에취——!"</p>
+        <p>단순한 재채기가 아니었어요! 퐁퐁이의 촉촉한 까만 코끝에서 은빛 별가루가 팡 터져 나오더니, 침대 밑 어두운 구석으로 반짝거리며 굴러 들어가는 게 아니겠어요?</p>
+        <p class="dialogue">"어라? 퐁퐁아, 너 방금 코에서 별이 튀어나왔어!"</p>
+        <p>하나가 놀라 눈을 크게 뜨자, 퐁퐁이는 꼬리를 붕붕 돌리며 침대 밑으로 쏙 기어들어갔어요. 그리고는 입에 무언가를 물고 씩씩하게 걸어 나왔답니다. 그것은 은은한 달빛을 머금은 주먹만 한 은빛 열쇠였어요.</p>
+      </div>
+    </section>
+
+    <!-- 2장 -->
+    <section class="page-section">
+      <div class="page-num">📖 2장 / 총 4장</div>
+      <h2 class="chapter-title">2. 열려라, 벽장 너머의 무지개 구름길</h2>
+
+      <!-- 삽화 2 -->
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="portal" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="50%" stop-color="#818cf8"/>
+              <stop offset="100%" stop-color="#c084fc"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="340" fill="#1e1b4b"/>
+          
+          <!-- 열린 옷장 문 -->
+          <rect x="120" y="30" width="360" height="280" rx="14" fill="#312e81" stroke="#6366f1" stroke-width="4"/>
+          <!-- 포털 구름빛 -->
+          <ellipse cx="300" cy="170" rx="140" ry="110" fill="url(#portal)"/>
+          <!-- 구름 덩어리들 -->
+          <circle cx="230" cy="210" r="35" fill="#f8fafc" opacity="0.9"/>
+          <circle cx="280" cy="220" r="45" fill="#f8fafc" opacity="0.95"/>
+          <circle cx="340" cy="210" r="40" fill="#f8fafc" opacity="0.9"/>
+          <circle cx="390" cy="220" r="30" fill="#f8fafc" opacity="0.85"/>
+
+          <!-- 무지개 아치 -->
+          <path d="M180 180 Q300 70 420 180" fill="none" stroke="#f43f5e" stroke-width="5" opacity="0.7"/>
+          <path d="M185 185 Q300 80 415 185" fill="none" stroke="#f59e0b" stroke-width="5" opacity="0.7"/>
+          <path d="M190 190 Q300 90 410 190" fill="none" stroke="#10b981" stroke-width="5" opacity="0.7"/>
+          <path d="M195 195 Q300 100 405 195" fill="none" stroke="#3b82f6" stroke-width="5" opacity="0.7"/>
+
+          <!-- 하나와 퐁퐁이의 뒷모습 (모험으로 발걸음을 옮김) -->
+          <ellipse cx="270" cy="250" rx="14" ry="20" fill="#ec4899"/>
+          <circle cx="270" cy="225" r="12" fill="#78350f"/>
+          <!-- 퐁퐁이 -->
+          <circle cx="320" cy="250" r="16" fill="#fed7aa"/>
+          <circle cx="330" cy="242" r="8" fill="#ffedd5"/>
+
+          <text x="300" y="315" font-size="14" font-weight="bold" fill="#c084fc" text-anchor="middle">"벽장 문이 열리자 신비로운 구름 숲이 눈앞에 펼쳐졌어요!"</text>
+        </svg>
+      </div>
+
+      <div class="story-text">
+        <p>퐁퐁이가 물고 온 열쇠에는 조그맣게 '별빛 구름 숲'이라는 글씨가 새겨져 있었어요. 신기하게도 열쇠는 마치 자석에 이끌리듯 벽장 서랍의 오래된 자물쇠 구멍으로 쑥 빨려 들어갔지요.</p>
+        <p class="dialogue">"찰칵- 스르르륵!"</p>
+        <p>서랍 문이 활짝 열리는 순간, 겨울 코트 대신 보랏빛 밤하늘과 몽실몽실한 솜사탕 구름들이 쏟아져 나왔어요! 달콤한 딸기우유 냄새가 바람을 타고 살랑살랑 불어왔지요.</p>
+        <p class="dialogue">"와아! 퐁퐁아, 우리 집 옷장이 하늘 위 구름 숲이랑 연결되어 있었나 봐!"</p>
+        <p>퐁퐁이는 신이 나서 멍멍 짖으며 구름 계단 위로 콩콩 뛰어 올라갔어요. 발을 디딜 때마다 푹신한 구름에서 도레미파 소리가 울려 퍼졌지요. 하나는 주저하지 않고 퐁퐁이의 부드러운 손을 잡고 미지의 숲으로 발을 내딛었습니다.</p>
+      </div>
+    </section>
+
+    <!-- 3장 -->
+    <section class="page-section">
+      <div class="page-num">📖 3장 / 총 4장</div>
+      <h2 class="chapter-title">3. 길 잃은 아기 부엉이와 마법 도토리</h2>
+
+      <!-- 삽화 3 -->
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="340" fill="#0f172a"/>
+          <!-- 밤하늘 별과 은하수 -->
+          <circle cx="80" cy="40" r="2" fill="#fff"/>
+          <circle cx="150" cy="80" r="3" fill="#fef08a"/>
+          <circle cx="520" cy="50" r="2" fill="#fff"/>
+          <circle cx="450" cy="90" r="3" fill="#a7f3d0"/>
+
+          <!-- 빛나는 보라색 거대 버섯 나무 -->
+          <path d="M120 340 Q140 200 160 160 Q220 120 280 160 Q300 200 320 340 Z" fill="#334155"/>
+          <ellipse cx="220" cy="140" rx="90" ry="45" fill="#8b5cf6"/>
+          <circle cx="180" cy="130" r="12" fill="#c084fc"/>
+          <circle cx="230" cy="120" r="10" fill="#c084fc"/>
+          <circle cx="260" cy="140" r="8" fill="#c084fc"/>
+
+          <!-- 나뭇가지에 앉은 우는 아기 부엉이 -->
+          <ellipse cx="230" cy="175" rx="16" ry="22" fill="#a16207"/>
+          <circle cx="230" cy="165" r="14" fill="#ca8a04"/>
+          <circle cx="224" cy="163" r="5" fill="#fff"/>
+          <circle cx="236" cy="163" r="5" fill="#fff"/>
+          <circle cx="224" cy="163" r="2" fill="#000"/>
+          <circle cx="236" cy="163" r="2" fill="#000"/>
+          <!-- 눈물 방울 -->
+          <path d="M222 170 Q220 178 224 178 Q226 178 224 170" fill="#38bdf8"/>
+
+          <!-- 아래에서 위로 도토리를 전해주는 하나와 퐁퐁이 -->
+          <circle cx="340" cy="270" r="22" fill="#fed7aa"/>
+          <circle cx="340" cy="255" r="16" fill="#78350f"/>
+          <!-- 반짝이는 황금 도토리 -->
+          <ellipse cx="310" cy="225" rx="10" ry="13" fill="#eab308"/>
+          <path d="M302 218 Q310 212 318 218 Z" fill="#713f12"/>
+          <!-- 도토리 광채 -->
+          <circle cx="310" cy="225" r="24" fill="#fef08a" opacity="0.3"/>
+
+          <!-- 퐁퐁이 응원 포즈 -->
+          <circle cx="410" cy="285" r="25" fill="#fed7aa"/>
+          <circle cx="395" cy="275" r="18" fill="#ffedd5"/>
+          <polygon points="385,260 392,245 400,260" fill="#f97316"/>
+          <polygon points="405,260 412,245 420,260" fill="#f97316"/>
+
+          <text x="300" y="325" font-size="14" font-weight="bold" fill="#fde047" text-anchor="middle">"울지 마, 아기 부엉이야! 우리가 집을 찾아줄게!"</text>
+        </svg>
+      </div>
+
+      <div class="story-text">
+        <p>구름 숲 깊은 곳으로 들어가자, 오색 사탕처럼 빛나는 버섯 나무들이 가득했어요. 그런데 어디선가 희미하게 훌쩍이는 소리가 들려왔어요.</p>
+        <p class="dialogue">"훌쩍… 흑흑, 어두워져서 둥지로 가는 길을 잃어버렸어…"</p>
+        <p>커다란 보랏빛 버섯 가지 위에 동글동글한 아기 부엉이 '루루'가 눈물을 뚝뚝 흘리고 있었어요. 엄마 부엉이가 준 '길잡이 황금 도토리'를 덤불 속에 떨어뜨렸다는 것이었지요.</p>
+        <p class="dialogue">"걱정 마, 루루야! 내 단짝 퐁퐁이는 세상에서 제일 똑똑한 명탐정이거든!"</p>
+        <p>하나의 말에 퐁퐁이는 킁킁거리며 구름 바닥 냄새를 맡기 시작했어요. 왼쪽으로 세 걸음, 푹신한 별빛 이끼 속으로 다이빙하더니 흙투성이가 된 채로 쏙 고개를 내밀었지요. 퐁퐁이의 입에는 밤하늘 별처럼 환하게 빛나는 황금 도토리가 물려 있었어요!</p>
+      </div>
+    </section>
+
+    <!-- 4장 -->
+    <section class="page-section">
+      <div class="page-num">📖 4장 / 총 4장</div>
+      <h2 class="chapter-title">4. 빛나는 우정, 다시 만날 약속</h2>
+
+      <!-- 삽화 4 -->
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="warmSunrise" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fdba74"/>
+              <stop offset="60%" stop-color="#fbcfe8"/>
+              <stop offset="100%" stop-color="#e0e7ff"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="340" fill="url(#warmSunrise)"/>
+          
+          <!-- 엄마 부엉이와 아기 부엉이의 따뜻한 포옹 -->
+          <ellipse cx="200" cy="160" rx="36" ry="46" fill="#854d0e"/>
+          <ellipse cx="240" cy="180" rx="20" ry="26" fill="#ca8a04"/>
+          <path d="M170 150 Q140 180 180 200" fill="#a16207"/>
+          <circle cx="190" cy="145" r="4" fill="#000"/>
+          <circle cx="235" cy="175" r="3" fill="#000"/>
+          <polygon points="182,150 176,155 186,155" fill="#f97316"/>
+
+          <!-- 목걸이를 선물받아 반짝이는 퐁퐁이와 하나 -->
+          <circle cx="390" cy="210" r="30" fill="#fed7aa"/>
+          <circle cx="365" cy="195" r="22" fill="#ffedd5"/>
+          <!-- 목에 건 별빛 펜던트 -->
+          <circle cx="380" cy="225" r="7" fill="#38bdf8"/>
+          <!-- 하트 이펙트 -->
+          <path d="M375 145 C375 135 360 135 360 145 C360 155 375 165 375 165 C375 165 390 155 390 145 C390 135 375 135 375 145 Z" fill="#ec4899"/>
+
+          <!-- 행복한 하나의 미소 -->
+          <circle cx="480" cy="190" r="28" fill="#fed7aa"/>
+          <circle cx="480" cy="175" r="20" fill="#78350f"/>
+          <path d="M472 195 Q480 205 488 195" stroke="#ea580c" stroke-width="2.5" fill="none"/>
+
+          <text x="300" y="315" font-size="14" font-weight="bold" fill="#581c87" text-anchor="middle">"고마워! 너희는 별빛 구름 숲의 영원한 친구야!"</text>
+        </svg>
+      </div>
+
+      <div class="story-text">
+        <p>황금 도토리가 빛을 발하자, 나무 꼭대기에서 걱정스러운 얼굴로 아기를 찾던 엄마 부엉이가 큰 날개를 퍼덕이며 날아내려왔어요. 엄마 부엉이는 아기를 품에 꼭 안으며 눈물을 글썽였지요.</p>
+        <p class="dialogue">"고마운 인간 소녀와 용감한 강아지 친구여, 너희들의 따뜻한 마음 덕분에 우리 가족이 다시 만날 수 있었단다."</p>
+        <p>엄마 부엉이는 감사의 표시로 퐁퐁이의 목에 영롱하게 푸른빛을 내는 **'하늘 바람의 방울 펜던트'**를 걸어주었어요. 위험할 때 방울을 울리면 구름 숲 친구들이 언제든 도와주러 달려오는 마법의 징표였지요.</p>
+        <p class="dialogue">"퐁퐁아, 우리 오늘 정말 멋진 일을 해냈지?"</p>
+        <p>서서히 노을이 지며 옷장 문 너머로 방 안의 따뜻한 주황빛이 비치기 시작했어요. 하나와 퐁퐁이는 부엉이 모자에게 손을 힘차게 흔들며 우리 집 방으로 씩씩하게 돌아왔답니다.</p>
+        <p>방바닥에 누운 퐁퐁이는 목에 걸린 방울을 보며 행복하게 하품을 했어요. 내일은 또 어떤 신비로운 모험이 기다리고 있을까요? 하나와 퐁퐁이의 비밀 모험은 이제 막 시작되었을 뿐이랍니다!</p>
+      </div>
+    </section>
+
+    <!-- 생각 쑥쑥 독후 질문 카드 -->
+    <div class="quiz-card">
+      <h3>🌟 함께 생각하고 이야기해 봐요! (독후 활동)</h3>
+      <p>1. 퐁퐁이가 코에서 별빛 재채기를 했을 때 침대 밑에서 발견한 것은 무엇이었나요?<br>
+      2. 만약 내 옷장 뒤에 다른 세상으로 가는 비밀 통로가 열린다면, 누구와 함께 가보고 싶나요?<br>
+      3. 길을 잃은 아기 부엉이를 도와준 하나와 퐁퐁이처럼, 친구가 곤란할 때 도와준 경험을 떠올려 보세요.</p>
+    </div>
+
+    <div class="footer-nav">
+      <a href="index.html" class="btn-home">⬅️ 메인 포털 허브로 돌아가기</a>
+    </div>
+  </div>
+
+  <script>
+    // 읽기 스크롤 진행도 표시
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('read-progress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

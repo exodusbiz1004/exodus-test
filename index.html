@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exodus Lab - 미니게임 & 테스트 프로젝트 허브</title>
+  <title>Exodus Lab - 게임 & 스토리 포털 허브</title>
   <style>
     :root {
       --bg-dark: #090d16;
@@ -35,18 +35,26 @@
       overflow-x: hidden;
     }
 
-    /* 헤더 */
+    /* 상단 헤더 */
     header {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 50;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
     }
 
     .brand {
@@ -70,7 +78,7 @@
     }
 
     .brand-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       letter-spacing: -0.5px;
     }
@@ -78,6 +86,49 @@
     .brand-sub {
       font-size: 11px;
       color: var(--text-sub);
+    }
+
+    /* 🌟 상단 내비게이션 메뉴 (Game / Story / 추후 확장 가능) */
+    .nav-tabs {
+      display: flex;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .nav-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-tab-btn.active {
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+    }
+
+    .nav-tab-btn .badge-count {
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 1px 6px;
+      border-radius: 10px;
     }
 
     .header-link {
@@ -96,7 +147,7 @@
       color: #090d16;
     }
 
-    /* 레이아웃 (좌: 목록, 우: 상세 및 미리보기) */
+    /* 메인 2열 레이아웃 */
     .container {
       flex: 1;
       display: flex;
@@ -107,7 +158,7 @@
       gap: 24px;
     }
 
-    /* 좌측 사이드바: 게임 리스트 */
+    /* 좌측 사이드바 */
     .sidebar {
       width: 380px;
       display: flex;
@@ -127,14 +178,14 @@
       justify-content: space-between;
     }
 
-    .game-list {
+    .content-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
       overflow-y: auto;
     }
 
-    .game-item {
+    .content-item {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 14px;
@@ -147,18 +198,18 @@
       position: relative;
     }
 
-    .game-item:hover {
+    .content-item:hover {
       background: var(--card-hover);
       transform: translateX(4px);
     }
 
-    .game-item.active {
+    .content-item.active {
       background: rgba(37, 99, 235, 0.2);
       border-color: var(--border-active);
       box-shadow: 0 0 18px rgba(56, 189, 248, 0.2);
     }
 
-    .game-icon {
+    .content-icon {
       font-size: 28px;
       width: 48px;
       height: 48px;
@@ -170,12 +221,12 @@
       flex-shrink: 0;
     }
 
-    .game-info {
+    .content-info {
       flex: 1;
       overflow: hidden;
     }
 
-    .game-title {
+    .content-title {
       font-size: 15px;
       font-weight: 700;
       white-space: nowrap;
@@ -184,7 +235,7 @@
       margin-bottom: 4px;
     }
 
-    .game-tag {
+    .content-tag {
       font-size: 11px;
       color: var(--primary);
       background: rgba(56, 189, 248, 0.12);
@@ -194,7 +245,7 @@
       display: inline-block;
     }
 
-    /* 우측: 상세 정보 및 인터랙티브 샘플 프리뷰 */
+    /* 우측 상세 정보 & 미리보기 패널 */
     .detail-panel {
       flex: 1;
       background: var(--panel-bg);
@@ -269,7 +320,7 @@
       background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
     }
 
-    /* 프리뷰 창 (iframe 샘플 화면) */
+    /* 프리뷰 창 (iframe) */
     .preview-box {
       flex: 1;
       display: flex;
@@ -278,7 +329,7 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
-      min-height: 480px;
+      min-height: 500px;
       position: relative;
     }
 
@@ -327,53 +378,78 @@
         padding: 18px;
       }
       .preview-box {
-        min-height: 380px;
+        min-height: 400px;
+      }
+      header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .header-left {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .nav-tabs {
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- 헤더 -->
+  <!-- 상단 헤더 & 메뉴 탭 -->
   <header>
-    <div class="brand">
-      <div class="brand-logo">E</div>
-      <div>
-        <div class="brand-title">Exodus Test Lab</div>
-        <div class="brand-sub">프로젝트 & 미니게임 모음 포털</div>
+    <div class="header-left">
+      <div class="brand">
+        <div class="brand-logo">E</div>
+        <div>
+          <div class="brand-title">Exodus Creative Hub</div>
+          <div class="brand-sub">게임 & 스토리 창작 아카이브</div>
+        </div>
       </div>
+
+      <!-- 상단 카테고리 메뉴 (Game, Story) -->
+      <nav class="nav-tabs">
+        <button class="nav-tab-btn active" data-category="game">
+          🎮 Game <span class="badge-count" id="count-game">6</span>
+        </button>
+        <button class="nav-tab-btn" data-category="story">
+          📖 Story <span class="badge-count" id="count-story">1</span>
+        </button>
+      </nav>
     </div>
+
     <a href="https://github.com/exodusbiz1004/exodus-test" target="_blank" rel="noopener noreferrer" class="header-link">
       GitHub Repository ↗
     </a>
   </header>
 
   <div class="container">
-    <!-- 좌측 목록 -->
+    <!-- 좌측 목록 (카테고리별 동적 표시) -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <span>플레이 가능한 게임 (7)</span>
-        <span>TEST PROJECTS</span>
+        <span id="category-title">콘텐츠 목록</span>
+        <span id="category-sub">CATEGORY ITEMS</span>
       </div>
-      <div class="game-list" id="game-list">
-        <!-- JS로 동적 생성 -->
+      <div class="content-list" id="content-list">
+        <!-- JS 동적 생성 -->
       </div>
     </aside>
 
-    <!-- 우측 상세 정보 & 샘플 화면 -->
+    <!-- 우측 상세 정보 & 라이브 샘플 화면 -->
     <main class="detail-panel">
       <div class="detail-top">
         <div class="detail-header-left">
           <div class="detail-badge" id="view-tag">장르</div>
-          <h2 class="detail-title" id="view-title">게임 제목</h2>
-          <p class="detail-desc" id="view-desc">게임 설명이 들어갑니다.</p>
+          <h2 class="detail-title" id="view-title">콘텐츠 제목</h2>
+          <p class="detail-desc" id="view-desc">콘텐츠 설명이 들어갑니다.</p>
         </div>
         <button id="btn-run" class="btn-launch">
-          🚀 새창에서 게임 실행
+          🚀 새창에서 전체화면 실행
         </button>
       </div>
 
-      <!-- 실시간 라이브 샘플 화면 -->
+      <!-- 실시간 라이브 미리보기 (iframe) -->
       <div class="preview-box">
         <div class="preview-bar">
           <div class="dots">
@@ -381,78 +457,101 @@
             <span class="dot dot-y"></span>
             <span class="dot dot-g"></span>
           </div>
-          <span id="preview-url-label">샘플 미리보기 화면 (직접 터치/클릭 가능)</span>
+          <span id="preview-url-label">샘플 미리보기 화면 (직접 터치/조작 가능)</span>
           <span>LIVE PREVIEW</span>
         </div>
-        <iframe id="preview-frame" src="" title="Game Preview"></iframe>
+        <iframe id="preview-frame" src="" title="Content Preview"></iframe>
       </div>
     </main>
   </div>
 
   <script>
-    // 7가지 게임 데이터 정의
-    const GAMES = [
+    // ==========================================
+    // 콘텐츠 데이터 (폴더 구조 반영: game/ , story/ )
+    // ==========================================
+    const CONTENTS = [
+      // 1. GAME 카테고리 (game/ 폴더)
       {
         id: 'galaga-special',
+        category: 'game',
         title: '갤러그 스페셜 에디션',
-        file: 'galaga-special.html',
+        file: 'game/galaga-special.html',
         tag: '슈팅 · 시그니처 멜로디 · 난이도 선택',
         icon: '👑',
         desc: '시그니처 클리어 음악과 중간 성적표(휴식 모달), 상/중/하 난이도 선택, 5스테이지 보상 아이템(보호막/2초 레이저/생명), 트랙터 빔 듀얼 파이터 2연발 합체를 모두 지원하는 갤러그 최종 결정판입니다!'
       },
       {
         id: 'galaga-basic',
+        category: 'game',
         title: '갤러그 클래식 기본형',
-        file: 'galaga-basic.html',
+        file: 'game/galaga-basic.html',
         tag: '슈팅 · 오리지널 클래식',
         icon: '🚀',
         desc: '전통 오락실 감성의 클래식 갤러그입니다! 외계 편대의 급강하 공격과 미사일 난사, 사운드 효과음과 모바일 연사 터치 패드를 제공합니다.'
       },
       {
         id: 'tetris',
+        category: 'game',
         title: '레트로 아케이드 테트리스',
-        file: 'tetris.html',
+        file: 'game/tetris.html',
         tag: '아케이드 · 효과음 탑재',
         icon: '🕹️',
         desc: 'Web Audio API 사운드 신시사이저가 탑재된 정통 테트리스 게임입니다. 회전, 하드드롭, 라인 클리어 효과음과 함께 모바일 터치 패드 및 키보드 조작을 지원합니다.'
       },
       {
         id: 'game01',
+        category: 'game',
         title: '코스믹 스네이크 (Cosmic Snake)',
-        file: 'Game01.html',
+        file: 'game/Game01.html',
         tag: '스페이스 · 액션',
         icon: '🌌',
         desc: '우주를 배경으로 별빛 에너지를 흡수하며 성장하는 환상적인 비주얼의 스네이크 게임입니다. 반응형 컨트롤과 화려한 네온 그라디언트 그래픽이 돋보입니다.'
       },
       {
         id: 'game02',
+        category: 'game',
         title: '클래식 지렁이 게임 (Snake Game)',
-        file: 'Game02.html',
+        file: 'game/Game02.html',
         tag: '클래식 · 캐주얼',
         icon: '🐍',
         desc: '언제 즐겨도 재미있는 전통적인 지렁이 아케이드 게임입니다. 사과를 먹고 점점 길어지는 지렁이를 조작하여 최고 점수를 달성해 보세요!'
       },
       {
         id: 'random-play',
+        category: 'game',
         title: '오늘 뭐 하고 놀까? 랜덤 플레이',
-        file: '오늘 뭐 하고 놀까_ _ 랜덤 플레이.html',
+        file: 'game/오늘 뭐 하고 놀까_ _ 랜덤 플레이.html',
         tag: '인터랙티브 · 룰렛',
         icon: '🎲',
         desc: '무엇을 할지 고민될 때 유쾌한 영감을 주는 인터랙티브 룰렛 & 랜덤 결정 게임입니다. 친구들과 함께 벌칙이나 놀거리를 정할 때 안성맞춤입니다.'
       },
       {
         id: 'nonsense-island',
+        category: 'game',
         title: '넌센스 과일섬 · 웃음이 열리는 모험',
-        file: '넌센스 과일섬 · 웃음이 열리는 모험.html',
+        file: 'game/넌센스 과일섬 · 웃음이 열리는 모험.html',
         tag: '퀴즈 · 퍼즐 어드벤처',
         icon: '🏝️',
-        desc: '알쏭달쏭 재미있는 넌센스 퀴즈를 풀며 과일섬을 탐험하는 스토리형 퀴즈 어드벤처 게임입니다. 남녀노소 누구나 웃으며 즐길 수 있습니다.'
+        desc: '알쏭달쏭 재미있는 넌센스 퀴즈를 풀며 과일섬을 탐험하는 스토리형 퀴즈 어드벤처 게임입니다.'
+      },
+
+      // 2. STORY 카테고리 (story/ 폴더)
+      {
+        id: 'story-03-01',
+        category: 'story',
+        title: '별빛 구름 숲과 퐁퐁이의 은빛 열쇠',
+        file: 'story/story-03-01.html',
+        tag: '창작 동화 · 5분 읽기 · 초등 3학년',
+        icon: '📖',
+        desc: '열 살 소녀 하나와 복슬복슬 포메라니안 퐁퐁이의 환상적인 판타지 모험 동화 시리즈 1화입니다. 각 페이지마다 고화질 감성 삽화와 생각 쑥쑥 독후 퀴즈 카드가 담겨 있습니다.'
       }
     ];
 
+    let currentCategory = 'game';
     let currentIndex = 0;
 
-    const gameListElem = document.getElementById('game-list');
+    const contentListElem = document.getElementById('content-list');
+    const categoryTitle = document.getElementById('category-title');
     const viewTitle = document.getElementById('view-title');
     const viewTag = document.getElementById('view-tag');
     const viewDesc = document.getElementById('view-desc');
@@ -460,53 +559,76 @@
     const previewFrame = document.getElementById('preview-frame');
     const previewUrlLabel = document.getElementById('preview-url-label');
 
-    // 리스트 렌더링
+    // 개수 배지 업데이트
+    document.getElementById('count-game').innerText = CONTENTS.filter(c => c.category === 'game').length;
+    document.getElementById('count-story').innerText = CONTENTS.filter(c => c.category === 'story').length;
+
+    // 카테고리별 리스트 렌더링
     function renderList() {
-      gameListElem.innerHTML = '';
-      GAMES.forEach((game, index) => {
-        const item = document.createElement('div');
-        item.className = `game-item ${index === currentIndex ? 'active' : ''}`;
-        item.innerHTML = `
-          <div class="game-icon">${game.icon}</div>
-          <div class="game-info">
-            <div class="game-title">${game.title}</div>
-            <span class="game-tag">${game.tag}</span>
+      contentListElem.innerHTML = '';
+      const filtered = CONTENTS.filter(c => c.category === currentCategory);
+
+      categoryTitle.innerText = currentCategory === 'game' 
+        ? `플레이 가능한 게임 (${filtered.length})` 
+        : `함께 읽는 동화 이야기 (${filtered.length})`;
+
+      filtered.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = `content-item ${index === currentIndex ? 'active' : ''}`;
+        div.innerHTML = `
+          <div class="content-icon">${item.icon}</div>
+          <div class="content-info">
+            <div class="content-title">${item.title}</div>
+            <span class="content-tag">${item.tag}</span>
           </div>
         `;
-        item.addEventListener('click', () => selectGame(index));
-        gameListElem.appendChild(item);
+        div.addEventListener('click', () => selectItem(index));
+        contentListElem.appendChild(div);
       });
+
+      if (filtered.length > 0) {
+        selectItem(Math.min(currentIndex, filtered.length - 1));
+      }
     }
 
-    // 게임 선택 처리
-    function selectGame(index) {
+    // 아이템 선택 처리
+    function selectItem(index) {
       currentIndex = index;
-      const game = GAMES[index];
+      const filtered = CONTENTS.filter(c => c.category === currentCategory);
+      const item = filtered[index];
+      if (!item) return;
 
-      // 활성화 클래스 갱신
-      document.querySelectorAll('.game-item').forEach((el, idx) => {
+      document.querySelectorAll('.content-item').forEach((el, idx) => {
         el.classList.toggle('active', idx === index);
       });
 
-      // 상세 영역 갱신
-      viewTitle.innerText = `${game.icon} ${game.title}`;
-      viewTag.innerText = game.tag;
-      viewDesc.innerText = game.desc;
+      viewTitle.innerText = `${item.icon} ${item.title}`;
+      viewTag.innerText = item.tag;
+      viewDesc.innerText = item.desc;
 
-      // 파일 경로 인코딩 처리
-      const encodedFile = encodeURI(game.file);
+      const encodedFile = encodeURI(item.file);
       previewFrame.src = encodedFile;
-      previewUrlLabel.innerText = `샘플 화면: ${game.file}`;
+      previewUrlLabel.innerText = `샘플 미리보기: ${item.file}`;
 
-      // 새창 실행 버튼 바인딩
+      btnRun.innerText = currentCategory === 'game' ? '🚀 새창에서 게임 실행' : '📖 새창에서 동화 읽기';
       btnRun.onclick = () => {
         window.open(encodedFile, '_blank');
       };
     }
 
+    // 상단 탭 클릭 이벤트 (Game / Story 전환)
+    document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.dataset.category;
+        currentIndex = 0;
+        renderList();
+      });
+    });
+
     // 초기화
     renderList();
-    selectGame(0);
   </script>
 </body>
 </html>
