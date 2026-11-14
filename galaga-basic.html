@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>레트로 갤러그 - 트랙터 빔 & 듀얼 파이터</title>
+  <style>
+    :root {
+      --bg: #030712;
+      --primary: #38bdf8;
+      --danger: #ef4444;
+      --tractor: #a855f7;
+      --text: #f8fafc;
+      --text-sub: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #0b1329 0%, #030712 100%);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #f59e0b;
+      text-shadow: 0 0 16px rgba(245, 158, 11, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* 상단 정보 바 */
+    .status-bar {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .score-val { color: #38bdf8; }
+    .stage-val { color: #f59e0b; }
+    .lives-val { color: #ef4444; }
+
+    .btn-sound-toggle, .btn-pause-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-sound-toggle:hover, .btn-pause-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* 게임 화면 컨테이너 */
+    .game-wrapper {
+      position: relative;
+      border: 3px solid #f59e0b;
+      border-radius: 12px;
+      box-shadow: 0 0 24px rgba(245, 158, 11, 0.3), inset 0 0 12px rgba(0,0,0,0.8);
+      background: #000;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    canvas#galaga {
+      display: block;
+      background: #000;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* 일시정지 / 게임오버 오버레이 */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.88);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      z-index: 20;
+      padding: 16px;
+    }
+
+    .overlay h2 {
+      font-size: 26px;
+      font-weight: 900;
+      color: #ef4444;
+      margin-bottom: 8px;
+      text-shadow: 0 0 14px rgba(239, 68, 68, 0.6);
+      letter-spacing: 1px;
+    }
+
+    .overlay p {
+      font-size: 13.5px;
+      color: var(--text-sub);
+      margin-bottom: 18px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #030712;
+      border: none;
+      font-weight: 800;
+      padding: 12px 28px;
+      border-radius: 24px;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.5);
+      transition: transform 0.1s;
+    }
+
+    .btn-action:active {
+      transform: scale(0.96);
+    }
+
+    /* 듀얼 파이터 뱃지 알림 */
+    .dual-alert {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(56, 189, 248, 0.9);
+      color: #030712;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 0 16px #38bdf8;
+      pointer-events: none;
+      display: none;
+    }
+
+    /* 모바일 터치 패드 */
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.2fr;
+      grid-gap: 8px;
+      width: 100%;
+      max-width: 420px;
+      margin-top: 10px;
+    }
+
+    .ctrl-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #fff;
+      height: 52px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      touch-action: manipulation;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .ctrl-btn:active {
+      background: #f59e0b;
+      color: #030712;
+      transform: translateY(2px);
+    }
+
+    .ctrl-btn.fire {
+      background: #dc2626;
+      border-color: #ef4444;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+    }
+
+    .guide {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-sub);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .guide kbd {
+      background: #334155;
+      color: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚀 GALAGA · TRACTOR BEAM 👾</h1>
+  </header>
+
+  <div class="status-bar">
+    <div class="status-item">SCORE <span id="ui-score" class="score-val">0</span></div>
+    <div class="status-item">STAGE <span id="ui-stage" class="stage-val">1</span></div>
+    <div class="status-item">LIVES <span id="ui-lives" class="lives-val">❤️❤️❤️</span></div>
+    <div style="display: flex; gap: 6px;">
+      <button id="btn-pause-toggle" class="btn-pause-toggle">
+        <span id="pause-icon">⏸️</span> 일시정지
+      </button>
+      <button id="btn-sound-toggle" class="btn-sound-toggle">
+        <span id="sound-icon">🔊</span> ON
+      </button>
+    </div>
+  </div>
+
+  <div class="game-wrapper">
+    <canvas id="galaga" width="400" height="540"></canvas>
+
+    <div id="dual-alert" class="dual-alert">⚡ 듀얼 파이터 합체 완료! (2연발 미사일)</div>
+
+    <!-- 오버레이 -->
+    <div id="overlay" class="overlay">
+      <h2 id="overlay-title">GALAGA</h2>
+      <p id="overlay-msg">
+        👾 <strong>보스 외계선의 트랙터 빔(광선그물) 주의!</strong><br>
+        비행기가 빨려 들어가 포로가 되면 다음 비행기가 출격합니다.<br>
+        포로를 데리고 내려오는 보스를 격추하면<br>
+        <strong>비행기 2대가 합체하여 2발 미사일(듀얼 파이터)</strong>을 쏩니다!
+      </p>
+      <button id="btn-start" class="btn-action">게임 시작</button>
+    </div>
+  </div>
+
+  <!-- 모바일 컨트롤러 -->
+  <div class="controls">
+    <button class="ctrl-btn" id="btn-left">◀ 좌측</button>
+    <button class="ctrl-btn" id="btn-right">우측 ▶</button>
+    <button class="ctrl-btn fire" id="btn-fire">🔥 발사 (연사)</button>
+  </div>
+
+  <div class="guide">
+    <kbd>←</kbd> <kbd>→</kbd> 좌우 이동 | <kbd>Space</kbd> 미사일 발사 | <kbd>P</kbd> 일시정지 | <kbd>M</kbd> 사운드 On/Off
+  </div>
+
+  <script>
+    // ==========================================
+    // 1. Web Audio 사운드 신시사이저 & 온/오프
+    // ==========================================
+    class SoundFX {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      laser(dual = false) {
+        if (!this.enabled) return;
+        this.init();
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(dual ? 950 : 880, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.12);
+          gain.gain.setValueAtTime(dual ? 0.18 : 0.12, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.12);
+        } catch (e) {}
+      }
+
+      tractorBeam() {
+        if (!this.enabled) return;
+        this.init();
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(300, this.ctx.currentTime);
+          osc.frequency.linearRampToValueAtTime(600, this.ctx.currentTime + 0.3);
+          gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.3);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.3);
+        } catch (e) {}
+      }
+
+      capture() {
+        if (!this.enabled) return;
+        this.init();
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(500, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(80, this.ctx.currentTime + 0.8);
+          gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.8);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.8);
+        } catch (e) {}
+      }
+
+      rescueDual() {
+        if (!this.enabled) return;
+        this.init();
+        [523.25, 659.25, 783.99, 1046.50, 1318.5].forEach((freq, idx) => {
+          setTimeout(() => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.2);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + 0.2);
+          }, idx * 70);
+        });
+      }
+
+      enemyExplode() {
+        if (!this.enabled) return;
+        this.init();
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(260, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.2);
+          gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.2);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.2);
+        } catch (e) {}
+      }
+
+      playerHit() {
+        if (!this.enabled) return;
+        this.init();
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(150, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(30, this.ctx.currentTime + 0.35);
+          gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.35);
+        } catch (e) {}
+      }
+
+      dive() {
+        if (!this.enabled) return;
+        this.init();
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(380, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(680, this.ctx.currentTime + 0.25);
+          gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.25);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.25);
+        } catch (e) {}
+      }
+
+      stageClear() {
+        if (!this.enabled) return;
+        this.init();
+        [440, 554, 659, 880].forEach((freq, idx) => {
+          setTimeout(() => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + 0.15);
+          }, idx * 80);
+        });
+      }
+    }
+
+    const sound = new SoundFX();
+
+    // ==========================================
+    // 2. 게임 메인 시스템 & 트랙터 빔 엔진
+    // ==========================================
+    const canvas = document.getElementById('galaga');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+
+    const uiScore = document.getElementById('ui-score');
+    const uiLives = document.getElementById('ui-lives');
+    const uiStage = document.getElementById('ui-stage');
+    const btnSoundToggle = document.getElementById('btn-sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+    const btnPauseToggle = document.getElementById('btn-pause-toggle');
+    const pauseIcon = document.getElementById('pause-icon');
+    const dualAlert = document.getElementById('dual-alert');
+
+    const overlay = document.getElementById('overlay');
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayMsg = document.getElementById('overlay-msg');
+    const btnStart = document.getElementById('btn-start');
+
+    // 별 배경
+    const stars = Array.from({ length: 80 }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      speed: 0.5 + Math.random() * 2,
+      size: Math.random() > 0.8 ? 2 : 1
+    }));
+
+    // 플레이어
+    const player = {
+      x: W / 2 - 16,
+      y: H - 52,
+      w: 32,
+      h: 32,
+      speed: 4.8,
+      lives: 3,
+      score: 0,
+      stage: 1,
+      invincible: 0,
+      isDual: false, // 듀얼 파이터 합체 여부 (비행기 2대)
+      isCaptured: false, // 현재 트랙터 빔에 빨려들어가는 중
+      captureTimer: 0,
+      spinAngle: 0
+    };
+
+    let bullets = [];
+    let enemyBullets = [];
+    let enemies = [];
+    let particles = [];
+    let captiveFighters = []; // 구출 가능한 포로 비행기
+
+    let keys = { ArrowLeft: false, ArrowRight: false, Space: false };
+    let isRunning = false;
+    let isPaused = false;
+    let lastShootTime = 0;
+    let shootCooldown = 200;
+
+    const ENEMY_TYPES = {
+      BOSS: { score: 150, color: '#38bdf8', size: 28, hp: 2, isBoss: true },
+      BUTTERFLY: { score: 80, color: '#ef4444', size: 20, hp: 1 },
+      BEE: { score: 50, color: '#eab308', size: 18, hp: 1 }
+    };
+
+    // 사운드 On/Off 토글
+    function toggleSound() {
+      sound.enabled = !sound.enabled;
+      if (sound.enabled) {
+        sound.init();
+        soundIcon.innerText = "🔊";
+        btnSoundToggle.innerHTML = `<span id="sound-icon">🔊</span> ON`;
+      } else {
+        soundIcon.innerText = "🔇";
+        btnSoundToggle.innerHTML = `<span id="sound-icon">🔇</span> OFF`;
+      }
+    }
+    btnSoundToggle.addEventListener('click', toggleSound);
+
+    // 일시정지 On/Off 토글 함수
+    function togglePause() {
+      if (!isRunning) return;
+      isPaused = !isPaused;
+      if (!isPaused) {
+        lastFrameTime = performance.now();
+        overlay.style.display = 'none';
+        pauseIcon.innerText = "⏸️";
+        btnPauseToggle.innerHTML = `<span id="pause-icon">⏸️</span> 일시정지`;
+        requestAnimationFrame(loop);
+      } else {
+        overlayTitle.innerText = "PAUSE";
+        overlayMsg.innerText = "게임이 일시정지 되었습니다.";
+        btnStart.innerText = "계속하기";
+        overlay.style.display = 'flex';
+        pauseIcon.innerText = "▶️";
+        btnPauseToggle.innerHTML = `<span id="pause-icon">▶️</span> 계속하기`;
+      }
+    }
+    btnPauseToggle.addEventListener('click', togglePause);
+
+    let stageTractorUsed = false; // 스테이지 당 거미줄(트랙터 빔) 1회 제한 플래그
+    let tractorDelayTimer = 0;    // 랜덤 시점에 시도하기 위한 타이머
+    let targetTractorDelay = 0;   // 이번 스테이지에서 트랙터 빔 시도할 랜덤 딜레이
+
+    // 적 진형 초기화
+    function initFormation() {
+      enemies = [];
+      stageTractorUsed = false;
+      tractorDelayTimer = 0;
+      // 각 스테이지 시작 후 4초 ~ 10초 사이 무작위 시점에 딱 1회 트랙터 빔 기회 발동
+      targetTractorDelay = 4000 + Math.random() * 6000;
+      const rows = 4;
+      const cols = 8;
+      const startX = 45;
+      const startY = 48;
+      const spacingX = 42;
+      const spacingY = 32;
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          let type = ENEMY_TYPES.BEE;
+          if (r === 0) type = ENEMY_TYPES.BOSS;
+          else if (r === 1) type = ENEMY_TYPES.BUTTERFLY;
+
+          enemies.push({
+            origX: startX + c * spacingX,
+            origY: startY + r * spacingY,
+            x: startX + c * spacingX,
+            y: startY + r * spacingY,
+            w: type.size,
+            h: type.size,
+            type: type,
+            hp: type.hp,
+            state: 'formation', // formation, diving, tractor, returning
+            diveSpeedX: 0,
+            diveSpeedY: 0,
+            // 트랙터 빔 전용 속성
+            tractorTimer: 0,
+            tractorAngle: 0,
+            hasCaptive: false
+          });
+        }
+      }
+    }
+
+    // 적 업데이트 & 트랙터 빔 발사 로직
+    let diveTimer = 0;
+    function updateEnemies(delta) {
+      diveTimer += delta;
+      tractorDelayTimer += delta;
+
+      // 트랙터 빔 또는 급강하 공격 결정
+      if (diveTimer > 1800) {
+        diveTimer = 0;
+        const formationEnemies = enemies.filter(e => e.state === 'formation');
+        if (formationEnemies.length > 0) {
+          // 보스 거미줄(트랙터 빔): 스테이지당 딱 1번만, 랜덤 시점 도달 시 발동!
+          const bosses = formationEnemies.filter(e => e.type.isBoss && !e.hasCaptive);
+          if (!stageTractorUsed && tractorDelayTimer >= targetTractorDelay && bosses.length > 0 && !player.isCaptured && !player.isDual) {
+            stageTractorUsed = true; // 스테이지 당 1회 소모!
+            const boss = bosses[Math.floor(Math.random() * bosses.length)];
+            boss.state = 'tractor_approach';
+            boss.targetY = 160 + Math.random() * 40;
+            boss.diveSpeedY = 2.2;
+            boss.diveSpeedX = (player.x + 16 - boss.x) * 0.012;
+            sound.dive();
+          } else {
+            // 일반 급강하
+            const enemy = formationEnemies[Math.floor(Math.random() * formationEnemies.length)];
+            enemy.state = 'diving';
+            enemy.diveSpeedY = 2.4 + Math.random() * 2;
+            enemy.diveSpeedX = (player.x - enemy.x) * 0.015;
+            sound.dive();
+          }
+        }
+      }
+
+      const sway = Math.sin(Date.now() / 420) * 14;
+
+      enemies.forEach(e => {
+        if (e.state === 'formation') {
+          e.x = e.origX + sway;
+          e.y = e.origY;
+        } 
+        else if (e.state === 'diving') {
+          e.y += e.diveSpeedY;
+          e.x += e.diveSpeedX;
+
+          // 급강하 중 총알 발사
+          if (Math.random() < 0.012 && e.y < H - 100) {
+            enemyBullets.push({ x: e.x + e.w / 2, y: e.y + e.h, speed: 4.2 });
+          }
+
+          if (e.y > H + 20) {
+            e.y = -20;
+            e.x = e.origX;
+            e.state = 'returning';
+          }
+        }
+        else if (e.state === 'tractor_approach') {
+          // 트랙터 빔 쏠 위치로 이동
+          e.y += e.diveSpeedY;
+          e.x += e.diveSpeedX;
+          if (e.y >= e.targetY) {
+            e.state = 'tractor_beaming';
+            e.tractorTimer = 180; // 약 3초 동안 광선 발사
+          }
+        }
+        else if (e.state === 'tractor_beaming') {
+          e.tractorTimer--;
+          if (e.tractorTimer % 18 === 0) {
+            sound.tractorBeam();
+          }
+
+          // 트랙터 빔 범위 (삼각형 부채꼴 모양)
+          const beamTopX = e.x + e.w / 2;
+          const beamTopY = e.y + e.h;
+          const beamBottomY = H - 20;
+          const beamWidth = 110;
+
+          // 플레이어가 빔 안에 있는지 검사
+          const px = player.x + (player.isDual ? 32 : 16);
+          const py = player.y + 16;
+
+          if (!player.isCaptured && py > beamTopY && Math.abs(px - beamTopX) < beamWidth / 2) {
+            // 빨려 들어감 시작!
+            player.isCaptured = true;
+            player.captorBoss = e;
+            sound.capture();
+          }
+
+          if (e.tractorTimer <= 0) {
+            e.state = 'diving';
+            e.diveSpeedY = 3;
+            e.diveSpeedX = 0;
+          }
+        }
+        else if (e.state === 'returning') {
+          e.y += 2.5;
+          if (e.y >= e.origY) {
+            e.y = e.origY;
+            e.state = 'formation';
+          }
+        }
+      });
+    }
+
+    // 포획 및 구출 로직
+    function updateCapture(delta) {
+      if (!player.isCaptured) return;
+
+      const boss = player.captorBoss;
+      player.spinAngle += 0.25;
+
+      // 보스를 향해 회전하며 빨려 올라감
+      if (boss && enemies.includes(boss)) {
+        player.x += (boss.x + boss.w / 2 - (player.x + 16)) * 0.06;
+        player.y += (boss.y - player.y) * 0.06;
+
+        if (Math.abs(player.y - boss.y) < 20) {
+          // 완전히 포획되어 적의 포로 비행기로 전환
+          player.isCaptured = false;
+          boss.hasCaptive = true;
+          boss.state = 'returning';
+
+          // 포로 비행기 객체 등록 (보스 위쪽에 붙어서 같이 다님)
+          captiveFighters.push({
+            boss: boss,
+            x: boss.x,
+            y: boss.y - 24,
+            w: 24,
+            h: 24,
+            spinAngle: 0,
+            isRescued: false
+          });
+
+          // 플레이어 목숨 1 감소 후 새 비행기 출격
+          player.lives--;
+          updateUI();
+
+          if (player.lives <= 0) {
+            gameOver();
+          } else {
+            // 새 비행기 등장
+            player.x = W / 2 - 16;
+            player.y = H - 52;
+            player.isDual = false;
+            player.invincible = 90;
+            player.spinAngle = 0;
+          }
+        }
+      } else {
+        // 빨려 들어가는 도중 보스가 격추된 경우
+        player.isCaptured = false;
+        player.spinAngle = 0;
+      }
+    }
+
+    // 포로 비행기(적에게 잡힌 내 비행기) 업데이트
+    function updateCaptives() {
+      for (let i = captiveFighters.length - 1; i >= 0; i--) {
+        const c = captiveFighters[i];
+
+        if (!c.isRescued) {
+          // 보스가 살아있으면 보스 바로 위에서 같이 비행
+          if (enemies.includes(c.boss)) {
+            c.x = c.boss.x + (c.boss.w - c.w) / 2;
+            c.y = c.boss.y - c.h - 2;
+          } else {
+            // 보스가 격추됨 -> 이제 아군으로 구출되어 천천히 아래로 내려옴!
+            c.isRescued = true;
+            c.vy = 2;
+          }
+        } else {
+          // 구출된 비행기가 아래로 내려오며 플레이어와 도킹 합체 시도
+          c.y += c.vy;
+
+          // 플레이어와 도킹 체크
+          const pWidth = player.isDual ? 64 : 32;
+          if (c.x + c.w > player.x && c.x < player.x + pWidth &&
+              c.y + c.h > player.y && c.y < player.y + player.h) {
+            // 도킹 성공! 듀얼 파이터 합체!
+            player.isDual = true;
+            sound.rescueDual();
+            captiveFighters.splice(i, 1);
+            showDualAlert();
+            continue;
+          }
+
+          // 화면 아래로 떨어지면 소멸
+          if (c.y > H + 20) {
+            captiveFighters.splice(i, 1);
+          }
+        }
+      }
+    }
+
+    function showDualAlert() {
+      dualAlert.style.display = 'block';
+      setTimeout(() => {
+        dualAlert.style.display = 'none';
+      }, 3000);
+    }
+
+    // 미사일 발사 (듀얼 파이터면 2발 발사!)
+    function shootBullet() {
+      const now = performance.now();
+      if (now - lastShootTime < shootCooldown) return;
+      lastShootTime = now;
+
+      if (player.isDual) {
+        // 비행기 2대에서 각각 1발씩 총 2발 발사!
+        bullets.push({ x: player.x + 14, y: player.y, w: 4, h: 14, speed: 8.5 });
+        bullets.push({ x: player.x + 46, y: player.y, w: 4, h: 14, speed: 8.5 });
+        sound.laser(true);
+      } else {
+        bullets.push({ x: player.x + player.w / 2 - 2, y: player.y, w: 4, h: 14, speed: 8 });
+        sound.laser(false);
+      }
+    }
+
+    // 폭발 파티클
+    function createExplosion(x, y, color) {
+      for (let i = 0; i < 14; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 1 + Math.random() * 3.5;
+        particles.push({
+          x: x,
+          y: y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1,
+          decay: 0.03 + Math.random() * 0.03,
+          color: color
+        });
+      }
+    }
+
+    // 플레이어 피격 처리
+    function hitPlayer() {
+      if (player.invincible > 0 || player.isCaptured) return;
+      sound.playerHit();
+      createExplosion(player.x + (player.isDual ? 32 : 16), player.y + 16, '#38bdf8');
+
+      // 듀얼 파이터 상태에서 맞으면 비행기 1대만 파괴되고 싱글로 복귀!
+      if (player.isDual) {
+        player.isDual = false;
+        player.invincible = 70;
+        return;
+      }
+
+      player.lives--;
+      player.invincible = 90;
+
+      if (player.lives <= 0) {
+        gameOver();
+      } else {
+        player.x = W / 2 - 16;
+      }
+      updateUI();
+    }
+
+    function gameOver() {
+      isRunning = false;
+      overlayTitle.innerText = "GAME OVER";
+      overlayMsg.innerText = `최종 점수: ${player.score.toLocaleString()}점\n도달 스테이지: ${player.stage}`;
+      btnStart.innerText = "다시 도전하기";
+      overlay.style.display = 'flex';
+    }
+
+    function updateUI() {
+      uiScore.innerText = player.score.toLocaleString();
+      uiStage.innerText = player.stage;
+      let hearts = '';
+      for (let i = 0; i < player.lives; i++) hearts += '❤️';
+      uiLives.innerText = hearts || '💀';
+    }
+
+    // 픽셀 전투기 렌더링
+    function drawFighterUnit(x, y, w, h, isRedCaptive = false) {
+      ctx.save();
+      ctx.translate(x, y);
+
+      // 날개
+      ctx.fillStyle = isRedCaptive ? '#a855f7' : '#ef4444';
+      ctx.beginPath();
+      ctx.moveTo(0, h);
+      ctx.lineTo(w / 2, h - 8);
+      ctx.lineTo(w, h);
+      ctx.lineTo(w - 4, h - 14);
+      ctx.lineTo(4, h - 14);
+      ctx.closePath();
+      ctx.fill();
+
+      // 동체
+      ctx.fillStyle = isRedCaptive ? '#cbd5e1' : '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(w / 2, 0);
+      ctx.lineTo(w - 6, h - 6);
+      ctx.lineTo(6, h - 6);
+      ctx.closePath();
+      ctx.fill();
+
+      // 조종석
+      ctx.fillStyle = isRedCaptive ? '#eab308' : '#38bdf8';
+      ctx.fillRect(w / 2 - 3, 8, 6, 10);
+
+      // 부스터 불꽃
+      ctx.fillStyle = Math.random() > 0.5 ? '#f59e0b' : '#ef4444';
+      ctx.fillRect(w / 2 - 3, h - 4, 6, 6);
+
+      ctx.restore();
+    }
+
+    // 플레이어 그리기 (싱글 또는 듀얼 합체)
+    function drawPlayer() {
+      if (player.invincible > 0 && Math.floor(player.invincible / 6) % 2 === 0) return;
+
+      ctx.save();
+      if (player.isCaptured) {
+        // 빨려 들어갈 때의 빙글빙글 회전 효과
+        ctx.translate(player.x + 16, player.y + 16);
+        ctx.rotate(player.spinAngle);
+        drawFighterUnit(-16, -16, 32, 32, true);
+      } else if (player.isDual) {
+        // 듀얼 파이터 (나란히 붙은 2대의 비행기)
+        drawFighterUnit(player.x, player.y, 32, 32);
+        drawFighterUnit(player.x + 32, player.y, 32, 32);
+      } else {
+        drawFighterUnit(player.x, player.y, 32, 32);
+      }
+      ctx.restore();
+    }
+
+    // 트랙터 빔 (거미줄 광선그물) 시각 효과
+    function drawTractorBeam(enemy) {
+      const startX = enemy.x + enemy.w / 2;
+      const startY = enemy.y + enemy.h;
+      const bottomY = H - 20;
+      const bottomWidth = 110;
+
+      ctx.save();
+      const grad = ctx.createLinearGradient(startX, startY, startX, bottomY);
+      grad.addColorStop(0, 'rgba(168, 85, 247, 0.9)');
+      grad.addColorStop(1, 'rgba(56, 189, 248, 0.15)');
+
+      // 광선 부채꼴 영역
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(startX - bottomWidth / 2, bottomY);
+      ctx.lineTo(startX + bottomWidth / 2, bottomY);
+      ctx.closePath();
+      ctx.fill();
+
+      // 거미줄 파동 라인
+      ctx.strokeStyle = 'rgba(236, 72, 153, 0.8)';
+      ctx.lineWidth = 2;
+      const waveCount = 5;
+      const t = Date.now() / 150;
+      for (let i = 1; i <= waveCount; i++) {
+        const progress = (i / waveCount + (t % 1)) % 1;
+        const currentY = startY + (bottomY - startY) * progress;
+        const currentW = bottomWidth * progress;
+        ctx.beginPath();
+        ctx.ellipse(startX, currentY, currentW / 2, 8, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // 외계 함선 그리기
+    function drawAlien(enemy) {
+      ctx.save();
+      ctx.translate(enemy.x, enemy.y);
+      const w = enemy.w;
+      const h = enemy.h;
+
+      ctx.fillStyle = enemy.type.color;
+      if (enemy.type === ENEMY_TYPES.BOSS) {
+        ctx.beginPath();
+        ctx.moveTo(w/2, 0);
+        ctx.lineTo(w, h/3);
+        ctx.lineTo(w-4, h);
+        ctx.lineTo(w/2, h-6);
+        ctx.lineTo(4, h);
+        ctx.lineTo(0, h/3);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.fillRect(w/2 - 4, h/3, 8, 8);
+      } else if (enemy.type === ENEMY_TYPES.BUTTERFLY) {
+        ctx.beginPath();
+        ctx.moveTo(w/2, h);
+        ctx.lineTo(w, 4);
+        ctx.lineTo(w-6, 0);
+        ctx.lineTo(w/2, h/2);
+        ctx.lineTo(6, 0);
+        ctx.lineTo(0, 4);
+        ctx.closePath();
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.arc(w/2, h/2, w/2, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#000';
+        ctx.fillRect(w/2 - 4, h/2 - 2, 3, 4);
+        ctx.fillRect(w/2 + 1, h/2 - 2, 3, 4);
+      }
+      ctx.restore();
+    }
+
+    // 메인 루프
+    let lastFrameTime = performance.now();
+    function loop(now) {
+      if (!isRunning || isPaused) return;
+
+      const delta = now - lastFrameTime;
+      lastFrameTime = now;
+
+      // 1. 별 스크롤
+      stars.forEach(s => {
+        s.y += s.speed;
+        if (s.y > H) {
+          s.y = 0;
+          s.x = Math.random() * W;
+        }
+      });
+
+      // 2. 플레이어 조작 (빨려 들어갈 땐 조작 불가)
+      const pWidth = player.isDual ? 64 : 32;
+      if (!player.isCaptured) {
+        if (keys.ArrowLeft && player.x > 0) player.x -= player.speed;
+        if (keys.ArrowRight && player.x < W - pWidth) player.x += player.speed;
+        if (keys.Space) shootBullet();
+      }
+
+      if (player.invincible > 0) player.invincible--;
+
+      // 3. 포획 & 구출 업데이트
+      updateCapture(delta);
+      updateCaptives();
+
+      // 4. 아군 총알 업데이트 & 충돌 판정
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        const b = bullets[i];
+        b.y -= b.speed;
+        let hit = false;
+
+        for (let j = enemies.length - 1; j >= 0; j--) {
+          const e = enemies[j];
+          if (b.x < e.x + e.w && b.x + b.w > e.x && b.y < e.y + e.h && b.y + b.h > e.y) {
+            e.hp--;
+            hit = true;
+            if (e.hp <= 0) {
+              sound.enemyExplode();
+              createExplosion(e.x + e.w / 2, e.y + e.h / 2, e.type.color);
+              player.score += e.type.score * player.stage;
+              enemies.splice(j, 1);
+            }
+            break;
+          }
+        }
+
+        if (hit || b.y < -10) bullets.splice(i, 1);
+      }
+
+      // 5. 적 총알 업데이트
+      for (let i = enemyBullets.length - 1; i >= 0; i--) {
+        const eb = enemyBullets[i];
+        eb.y += eb.speed;
+
+        if (eb.x > player.x && eb.x < player.x + pWidth &&
+            eb.y > player.y && eb.y < player.y + player.h) {
+          hitPlayer();
+          enemyBullets.splice(i, 1);
+          continue;
+        }
+
+        if (eb.y > H + 10) enemyBullets.splice(i, 1);
+      }
+
+      // 6. 적 진형 및 트랙터 빔 업데이트
+      updateEnemies(delta);
+
+      // 플레이어와 적 몸체 충돌
+      enemies.forEach(e => {
+        if (e.x < player.x + pWidth && e.x + e.w > player.x &&
+            e.y < player.y + player.h && e.y + e.h > player.y) {
+          hitPlayer();
+        }
+      });
+
+      // 7. 스테이지 클리어
+      if (enemies.length === 0 && !player.isCaptured) {
+        sound.stageClear();
+        player.stage++;
+        updateUI();
+        initFormation();
+      }
+
+      // 8. 파티클
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+        if (p.life <= 0) particles.splice(i, 1);
+      }
+
+      // ==========================================
+      // 9. 렌더링
+      // ==========================================
+      ctx.fillStyle = '#030712';
+      ctx.fillRect(0, 0, W, H);
+
+      // 별
+      stars.forEach(s => {
+        ctx.fillStyle = s.size === 2 ? '#93c5fd' : '#475569';
+        ctx.fillRect(s.x, s.y, s.size, s.size);
+      });
+
+      // 트랙터 빔 광선 (적 뒤에 렌더링)
+      enemies.forEach(e => {
+        if (e.state === 'tractor_beaming') {
+          drawTractorBeam(e);
+        }
+      });
+
+      // 아군 총알
+      ctx.fillStyle = '#38bdf8';
+      bullets.forEach(b => ctx.fillRect(b.x, b.y, b.w, b.h));
+
+      // 적 총알
+      ctx.fillStyle = '#f87171';
+      enemyBullets.forEach(eb => {
+        ctx.beginPath();
+        ctx.arc(eb.x, eb.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // 외계선
+      enemies.forEach(e => drawAlien(e));
+
+      // 포로 비행기 (적에게 잡힌 상태 또는 천천히 내려오는 중)
+      captiveFighters.forEach(c => {
+        drawFighterUnit(c.x, c.y, c.w, c.h, true);
+      });
+
+      // 플레이어 (싱글/듀얼 파이터)
+      drawPlayer();
+
+      // 파티클
+      particles.forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, p.life);
+        ctx.fillRect(p.x, p.y, 3, 3);
+        ctx.globalAlpha = 1.0;
+      });
+
+      updateUI();
+      requestAnimationFrame(loop);
+    }
+
+    // 게임 시작 초기화
+    function startGame() {
+      sound.init();
+      player.x = W / 2 - 16;
+      player.y = H - 52;
+      player.lives = 3;
+      player.score = 0;
+      player.stage = 1;
+      player.invincible = 0;
+      player.isDual = false;
+      player.isCaptured = false;
+      player.spinAngle = 0;
+      bullets = [];
+      enemyBullets = [];
+      particles = [];
+      captiveFighters = [];
+      isRunning = true;
+      isPaused = false;
+      initFormation();
+      updateUI();
+      overlay.style.display = 'none';
+      lastFrameTime = performance.now();
+      requestAnimationFrame(loop);
+    }
+
+    btnStart.addEventListener('click', startGame);
+
+    // 키보드 이벤트
+    window.addEventListener('keydown', e => {
+      if (e.code === 'ArrowLeft') keys.ArrowLeft = true;
+      if (e.code === 'ArrowRight') keys.ArrowRight = true;
+      if (e.code === 'Space') keys.Space = true;
+      if (e.code === 'KeyM') toggleSound();
+      if (e.code === 'KeyP') {
+        togglePause();
+      }
+    });
+
+    window.addEventListener('keyup', e => {
+      if (e.code === 'ArrowLeft') keys.ArrowLeft = false;
+      if (e.code === 'ArrowRight') keys.ArrowRight = false;
+      if (e.code === 'Space') keys.Space = false;
+    });
+
+    // 모바일 터치 패드 바인딩
+    const btnLeft = document.getElementById('btn-left');
+    const btnRight = document.getElementById('btn-right');
+    const btnFire = document.getElementById('btn-fire');
+
+    const bindTouch = (el, pressAction, releaseAction) => {
+      el.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        pressAction();
+      });
+      el.addEventListener('pointerup', (e) => {
+        e.preventDefault();
+        releaseAction();
+      });
+      el.addEventListener('pointerleave', releaseAction);
+    };
+
+    bindTouch(btnLeft, () => keys.ArrowLeft = true, () => keys.ArrowLeft = false);
+    bindTouch(btnRight, () => keys.ArrowRight = true, () => keys.ArrowRight = false);
+    bindTouch(btnFire, () => keys.Space = true, () => keys.Space = false);
+
+    // 초기 화면
+    ctx.fillStyle = '#030712';
+    ctx.fillRect(0, 0, W, H);
+  </script>
+</body>
+</html>

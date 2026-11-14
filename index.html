@@ -352,7 +352,7 @@
     <!-- 좌측 목록 -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <span>플레이 가능한 게임 (5)</span>
+        <span>플레이 가능한 게임 (7)</span>
         <span>TEST PROJECTS</span>
       </div>
       <div class="game-list" id="game-list">
@@ -390,8 +390,24 @@
   </div>
 
   <script>
-    // 5가지 게임 데이터 정의
+    // 7가지 게임 데이터 정의
     const GAMES = [
+      {
+        id: 'galaga-special',
+        title: '갤러그 스페셜 에디션',
+        file: 'galaga-special.html',
+        tag: '슈팅 · 시그니처 멜로디 · 난이도 선택',
+        icon: '👑',
+        desc: '시그니처 클리어 음악과 중간 성적표(휴식 모달), 상/중/하 난이도 선택, 5스테이지 보상 아이템(보호막/2초 레이저/생명), 트랙터 빔 듀얼 파이터 2연발 합체를 모두 지원하는 갤러그 최종 결정판입니다!'
+      },
+      {
+        id: 'galaga-basic',
+        title: '갤러그 클래식 기본형',
+        file: 'galaga-basic.html',
+        tag: '슈팅 · 오리지널 클래식',
+        icon: '🚀',
+        desc: '전통 오락실 감성의 클래식 갤러그입니다! 외계 편대의 급강하 공격과 미사일 난사, 사운드 효과음과 모바일 연사 터치 패드를 제공합니다.'
+      },
       {
         id: 'tetris',
         title: '레트로 아케이드 테트리스',
