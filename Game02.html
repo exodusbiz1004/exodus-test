@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지렁이 게임 (Snake Game)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(135deg, #1e1e2f, #12121c);
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            color: #4ade80;
+            text-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
+        }
+        .scoreboard {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 8px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+        .scoreboard span strong {
+            color: #38bdf8;
+        }
+        #game-container {
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #334155;
+        }
+        canvas {
+            display: block;
+            background-color: #0f172a;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+        .overlay.hidden {
+            display: none;
+        }
+        .overlay h2 {
+            font-size: 1.8rem;
+            color: #f87171;
+        }
+        .overlay p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+        button {
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            background-color: #4ade80;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        button:hover {
+            background-color: #22c55e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
+        }
+        .controls-hint {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .mobile-controls {
+            display: none;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(3, 60px);
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .d-pad-btn {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            cursor: pointer;
+        }
+        .d-pad-btn:active {
+            background: #334155;
+        }
+        @media (max-width: 600px) {
+            .mobile-controls {
+                display: grid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🐍 지렁이 게임</h1>
+
+    <div class="scoreboard">
+        <span>현재 점수: <strong id="score">0</strong></span>
+        <span>최고 점수: <strong id="high-score">0</strong></span>
+    </div>
+
+    <div id="game-container">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div id="overlay" class="overlay">
+            <h2 id="overlay-title">지렁이 게임</h2>
+            <p id="overlay-msg">방향키(↑ ↓ ← →) 또는 W, A, S, D로 이동하세요.</p>
+            <button id="start-btn">게임 시작</button>
+        </div>
+    </div>
+
+    <div class="controls-hint">
+        조작: <strong>방향키</strong> 또는 <strong>W, A, S, D</strong><br>
+        일시정지: <strong>Space</strong>
+    </div>
+
+    <!-- 모바일/터치용 방향 컨트롤 -->
+    <div class="mobile-controls">
+        <div></div>
+        <button class="d-pad-btn" onclick="handleDirection('UP')">▲</button>
+        <div></div>
+        <button class="d-pad-btn" onclick="handleDirection('LEFT')">◀</button>
+        <div></div>
+        <button class="d-pad-btn" onclick="handleDirection('RIGHT')">▶</button>
+        <div></div>
+        <button class="d-pad-btn" onclick="handleDirection('DOWN')">▼</button>
+        <div></div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const highScoreEl = document.getElementById('high-score');
+        const overlay = document.getElementById('overlay');
+        const overlayTitle = document.getElementById('overlay-title');
+        const overlayMsg = document.getElementById('overlay-msg');
+        const startBtn = document.getElementById('start-btn');
+
+        const GRID_SIZE = 20;
+        const TILE_COUNT = canvas.width / GRID_SIZE;
+
+        let snake = [];
+        let food = { x: 0, y: 0 };
+        let dx = 0;
+        let dy = 0;
+        let score = 0;
+        let highScore = localStorage.getItem('snake_high_score') || 0;
+        let gameInterval = null;
+        let isRunning = false;
+        let isPaused = false;
+        let nextDirection = null;
+
+        highScoreEl.textContent = highScore;
+
+        function initGame() {
+            snake = [
+                { x: 10, y: 10 },
+                { x: 10, y: 11 },
+                { x: 10, y: 12 }
+            ];
+            dx = 0;
+            dy = -1;
+            nextDirection = { dx: 0, dy: -1 };
+            score = 0;
+            scoreEl.textContent = score;
+            spawnFood();
+            isRunning = true;
+            isPaused = false;
+            overlay.classList.add('hidden');
+
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(gameLoop, 110);
+        }
+
+        function spawnFood() {
+            let valid = false;
+            while (!valid) {
+                food.x = Math.floor(Math.random() * TILE_COUNT);
+                food.y = Math.floor(Math.random() * TILE_COUNT);
+                valid = !snake.some(segment => segment.x === food.x && segment.y === food.y);
+            }
+        }
+
+        function gameLoop() {
+            if (isPaused) return;
+
+            // 이동 방향 확정
+            dx = nextDirection.dx;
+            dy = nextDirection.dy;
+
+            const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+            // 벽 충돌 체크
+            if (head.x < 0 || head.x >= TILE_COUNT || head.y < 0 || head.y >= TILE_COUNT) {
+                gameOver();
+                return;
+            }
+
+            // 자기 자신 충돌 체크
+            if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                gameOver();
+                return;
+            }
+
+            snake.unshift(head);
+
+            // 먹이 먹었는지 확인
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                scoreEl.textContent = score;
+                if (score > highScore) {
+                    highScore = score;
+                    highScoreEl.textContent = highScore;
+                    localStorage.setItem('snake_high_score', highScore);
+                }
+                spawnFood();
+            } else {
+                snake.pop();
+            }
+
+            draw();
+        }
+
+        function draw() {
+            // 배경 지우기
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 그리드 선 그리기 (은은한 격자)
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= canvas.width; i += GRID_SIZE) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, canvas.height);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+                ctx.lineTo(canvas.width, i);
+                ctx.stroke();
+            }
+
+            // 먹이 그리기 (사과 느낌의 빨간색 원)
+            ctx.fillStyle = '#ef4444';
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(
+                food.x * GRID_SIZE + GRID_SIZE / 2,
+                food.y * GRID_SIZE + GRID_SIZE / 2,
+                GRID_SIZE / 2 - 2,
+                0,
+                Math.PI * 2
+            );
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // 지렁이 그리기
+            snake.forEach((segment, index) => {
+                if (index === 0) {
+                    // 머리
+                    ctx.fillStyle = '#22c55e';
+                } else {
+                    // 몸통 (그라데이션 효과 느낌)
+                    ctx.fillStyle = '#4ade80';
+                }
+
+                ctx.fillRect(
+                    segment.x * GRID_SIZE + 1,
+                    segment.y * GRID_SIZE + 1,
+                    GRID_SIZE - 2,
+                    GRID_SIZE - 2
+                );
+
+                // 머리에 눈 그리기
+                if (index === 0) {
+                    ctx.fillStyle = '#0f172a';
+                    const eyeSize = 3;
+                    let eye1 = { x: 0, y: 0 };
+                    let eye2 = { x: 0, y: 0 };
+
+                    if (dx === 1) { // 오른쪽
+                        eye1 = { x: segment.x * GRID_SIZE + 14, y: segment.y * GRID_SIZE + 5 };
+                        eye2 = { x: segment.x * GRID_SIZE + 14, y: segment.y * GRID_SIZE + 12 };
+                    } else if (dx === -1) { // 왼쪽
+                        eye1 = { x: segment.x * GRID_SIZE + 4, y: segment.y * GRID_SIZE + 5 };
+                        eye2 = { x: segment.x * GRID_SIZE + 4, y: segment.y * GRID_SIZE + 12 };
+                    } else if (dy === 1) { // 아래
+                        eye1 = { x: segment.x * GRID_SIZE + 5, y: segment.y * GRID_SIZE + 14 };
+                        eye2 = { x: segment.x * GRID_SIZE + 12, y: segment.y * GRID_SIZE + 14 };
+                    } else { // 위
+                        eye1 = { x: segment.x * GRID_SIZE + 5, y: segment.y * GRID_SIZE + 4 };
+                        eye2 = { x: segment.x * GRID_SIZE + 12, y: segment.y * GRID_SIZE + 4 };
+                    }
+
+                    ctx.fillRect(eye1.x, eye1.y, eyeSize, eyeSize);
+                    ctx.fillRect(eye2.x, eye2.y, eyeSize, eyeSize);
+                }
+            });
+        }
+
+        function gameOver() {
+            clearInterval(gameInterval);
+            isRunning = false;
+            overlayTitle.textContent = '게임 오버!';
+            overlayTitle.style.color = '#f87171';
+            overlayMsg.innerHTML = `최종 점수: <strong>${score}점</strong>`;
+            startBtn.textContent = '다시 시작';
+            overlay.classList.remove('hidden');
+        }
+
+        function handleDirection(dir) {
+            if (!isRunning) return;
+
+            if (dir === 'UP' && dy !== 1) {
+                nextDirection = { dx: 0, dy: -1 };
+            } else if (dir === 'DOWN' && dy !== -1) {
+                nextDirection = { dx: 0, dy: 1 };
+            } else if (dir === 'LEFT' && dx !== 1) {
+                nextDirection = { dx: -1, dy: 0 };
+            } else if (dir === 'RIGHT' && dx !== -1) {
+                nextDirection = { dx: 1, dy: 0 };
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                if (isRunning) {
+                    isPaused = !isPaused;
+                    if (isPaused) {
+                        overlayTitle.textContent = '일시 정지';
+                        overlayTitle.style.color = '#38bdf8';
+                        overlayMsg.textContent = 'Space 키를 눌러 계속 진행하세요.';
+                        startBtn.textContent = '계속하기';
+                        overlay.classList.remove('hidden');
+                    } else {
+                        overlay.classList.add('hidden');
+                    }
+                }
+                return;
+            }
+
+            switch (e.key) {
+                case 'ArrowUp':
+                case 'w':
+                case 'W':
+                    handleDirection('UP');
+                    e.preventDefault();
+                    break;
+                case 'ArrowDown':
+                case 's':
+                case 'S':
+                    handleDirection('DOWN');
+                    e.preventDefault();
+                    break;
+                case 'ArrowLeft':
+                case 'a':
+                case 'A':
+                    handleDirection('LEFT');
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                case 'D':
+                    handleDirection('RIGHT');
+                    e.preventDefault();
+                    break;
+            }
+        });
+
+        startBtn.addEventListener('click', () => {
+            if (isPaused) {
+                isPaused = false;
+                overlay.classList.add('hidden');
+            } else {
+                initGame();
+            }
+        });
+
+        // 초기 화면 그리기
+        draw();
+    </script>
+</body>
+</html>
