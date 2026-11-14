@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시간의 정원과 위대한 무지개 나침반 (최종화) - 판타지 동화</title>
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-light: #a7f3d0;
+      --bg: #ecfdf5;
+      --card-bg: #ffffff;
+      --text-main: #064e3b;
+      --text-body: #065f46;
+      --border: #a7f3d0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; }
+    body { background: radial-gradient(circle at 50% 0%, #d1fae5 0%, #ecfdf5 100%); color: var(--text-main); padding: 20px 14px; line-height: 1.85; font-size: 17px; }
+    .book-container { max-width: 680px; margin: 0 auto; background: var(--card-bg); border: 2px solid var(--border); border-radius: 24px; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.12); padding: 28px 22px; }
+    .book-header { text-align: center; padding-bottom: 20px; border-bottom: 2px dashed var(--border); margin-bottom: 28px; }
+    .series-badge { display: inline-block; background: #d1fae5; color: #047857; font-size: 13px; font-weight: 700; padding: 4px 14px; border-radius: 20px; margin-bottom: 10px; }
+    h1 { font-size: 24px; font-weight: 800; color: #047857; line-height: 1.35; margin-bottom: 8px; }
+    .meta-info { font-size: 13px; color: #047857; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .progress-wrap { background: #d1fae5; border-radius: 10px; height: 8px; margin: 18px 0 28px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #10b981, #059669); width: 0%; transition: width 0.3s; }
+    .page-section { margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--border); }
+    .page-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .page-num { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; color: #047857; background: #ecfdf5; padding: 4px 12px; border-radius: 12px; margin-bottom: 14px; }
+    .chapter-title { font-size: 20px; font-weight: 800; color: #064e3b; margin-bottom: 16px; }
+    .illustration-box { width: 100%; border-radius: 18px; overflow: hidden; margin: 16px 0 22px; box-shadow: 0 6px 18px rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); line-height: 0; background: #f0fdf4; }
+    .illustration-box svg { width: 100%; height: auto; display: block; }
+    .story-text { color: #022c22; line-height: 1.9; font-size: 16.5px; word-break: keep-all; }
+    .story-text p { margin-bottom: 14px; text-indent: 10px; }
+    .dialogue { font-weight: 700; color: #047857; background: #f0fdf4; padding: 2px 6px; border-radius: 6px; text-indent: 0 !important; }
+    .quiz-card { background: #f0fdf4; border: 2px dashed #10b981; border-radius: 18px; padding: 20px; margin-top: 30px; text-align: center; }
+    .quiz-card h3 { font-size: 17px; color: #047857; margin-bottom: 8px; font-weight: 800; }
+    .quiz-card p { font-size: 14.5px; color: #064e3b; line-height: 1.6; }
+    .footer-nav { margin-top: 26px; text-align: center; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .btn-nav { display: inline-block; background: linear-gradient(135deg, #10b981, #059669); color: #fff; text-decoration: none; font-size: 13.5px; font-weight: 700; padding: 10px 20px; border-radius: 20px; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3); }
+  </style>
+</head>
+<body>
+  <div class="book-container">
+    <header class="book-header">
+      <div class="series-badge">✨ 하나와 퐁퐁이의 무지개 모험 시리즈 · 제5화 (시즌 1 완결)</div>
+      <h1>시간의 정원과 위대한 무지개 나침반</h1>
+      <div class="meta-info">
+        <span>👧 등장인물: 하나, 퐁퐁이, 숲의 대정령 '가디언'</span>
+        <span>⏱️ 추천 읽기 시간: 5분 (초등 3학년 권장)</span>
+      </div>
+      <div class="progress-wrap"><div id="read-progress" class="progress-bar"></div></div>
+    </header>
+
+    <section class="page-section">
+      <div class="page-num">📖 1장 / 총 4장</div>
+      <h2 class="chapter-title">1. 네 가지 보물이 하나로 공명하다</h2>
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="320" fill="#064e3b"/>
+          <!-- 중앙의 빛나는 원형 제단 -->
+          <circle cx="300" cy="180" r="90" fill="#047857" stroke="#34d399" stroke-width="4"/>
+          <!-- 공중에 떠서 빛을 뿜는 4가지 보물들 -->
+          <circle cx="300" cy="120" r="14" fill="#38bdf8"/> <!-- 방울 -->
+          <circle cx="360" cy="180" r="14" fill="#ec4899"/> <!-- 무지개 구슬 -->
+          <circle cx="300" cy="240" r="14" fill="#facc15"/> <!-- 황금 깃털 -->
+          <circle cx="240" cy="180" r="14" fill="#ef4444"/> <!-- 루비 -->
+          <!-- 연결되는 마법 빛줄기들 -->
+          <line x1="300" y1="120" x2="360" y2="180" stroke="#a7f3d0" stroke-width="2"/>
+          <line x1="360" y1="180" x2="300" y2="240" stroke="#a7f3d0" stroke-width="2"/>
+          <line x1="300" y1="240" x2="240" y2="180" stroke="#a7f3d0" stroke-width="2"/>
+          <line x1="240" y1="180" x2="300" y2="120" stroke="#a7f3d0" stroke-width="2"/>
+          <text x="300" y="300" font-size="14" font-weight="bold" fill="#a7f3d0" text-anchor="middle">"그동안 모은 4개의 보물이 제단 위에서 공명했어요!"</text>
+        </svg>
+      </div>
+      <div class="story-text">
+        <p>그동안 모험에서 받은 네 가지 보물—푸른 방울, 무지개 구슬, 황금 깃털, 붉은 루비가 가방 속에서 동시에 눈부신 빛을 내뿜기 시작했어요. 퐁퐁이가 옷장 손잡이를 툭 치자, 이번에는 금빛 꽃가루가 눈송이처럼 흩날리며 '시간의 거대 정원'으로 연결되었지요.</p>
+        <p class="dialogue">"하나야, 퐁퐁아! 드디어 네 가지 우정의 증표를 모두 모아왔구나!"</p>
+        <p>거대한 은빛 사슴 모습을 한 숲의 대정령 '가디언'이 따스한 음성으로 둘을 맞이했어요.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-num">📖 2장 / 총 4장</div>
+      <h2 class="chapter-title">2. 멈춰버린 대시계의 위기</h2>
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="320" fill="#0f172a"/>
+          <!-- 멈춰버린 거대한 황금 시계탑 -->
+          <circle cx="300" cy="160" r="95" fill="#1e293b" stroke="#f59e0b" stroke-width="6"/>
+          <line x1="300" y1="160" x2="300" y2="90" stroke="#f59e0b" stroke-width="5"/>
+          <line x1="300" y1="160" x2="360" y2="160" stroke="#f59e0b" stroke-width="4"/>
+          <!-- 시계 주변에 자라난 잿빛 가시덩굴 -->
+          <path d="M180 280 Q220 200 240 180" stroke="#64748b" stroke-width="6" fill="none"/>
+          <path d="M420 280 Q380 200 360 180" stroke="#64748b" stroke-width="6" fill="none"/>
+          <text x="300" y="300" font-size="14" font-weight="bold" fill="#fca5a5" text-anchor="middle">"사계절의 조화를 관장하는 시간의 거대 시계가 멈춰 있었어요."</text>
+        </svg>
+      </div>
+      <div class="story-text">
+        <p>정원 한가운데 우뚝 솟은 거대한 시간의 시계탑이 잿빛 덩굴에 얽혀 멈춰 서 있었어요. 대시계가 멈추면 환상의 나라에 봄, 여름, 가을, 겨울의 꽃이 피지 못하고 영원히 얼어붙게 된다고 해요.</p>
+        <p class="dialogue">"시계를 다시 움직이려면 오직 진실한 배려와 우정을 나눈 존재만이 열 수 있는 '무지개 나침반'이 필요하단다."</p>
+        <p>가디언의 설명에 하나와 퐁퐁이는 서로를 마주 보며 굳게 고개를 끄덕였어요.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-num">📖 3장 / 총 4장</div>
+      <h2 class="chapter-title">3. 친구들의 마음이 만든 기적</h2>
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="320" fill="#ecfdf5"/>
+          <!-- 모두 모여 응원하는 친구들 (부엉이, 분홍 고래, 그리핀, 드래곤) -->
+          <circle cx="100" cy="180" r="18" fill="#ca8a04"/> <!-- 부엉이 루루 -->
+          <ellipse cx="200" cy="190" rx="36" ry="20" fill="#f472b6"/> <!-- 고래 라라 -->
+          <ellipse cx="400" cy="185" rx="28" ry="18" fill="#f59e0b"/> <!-- 그리핀 피코 -->
+          <circle cx="490" cy="180" r="20" fill="#ef4444"/> <!-- 드래곤 루비 -->
+          <!-- 중앙에서 손을 모은 하나와 앞발을 얹은 퐁퐁이 -->
+          <circle cx="300" cy="150" r="28" fill="#fed7aa"/>
+          <circle cx="300" cy="135" r="20" fill="#78350f"/>
+          <circle cx="340" cy="175" r="24" fill="#fed7aa"/>
+          <circle cx="355" cy="165" r="16" fill="#ffedd5"/>
+          <!-- 눈부신 무지개 빛기둥 -->
+          <polygon points="300,0 260,320 340,320" fill="#fef08a" opacity="0.35"/>
+          <text x="300" y="300" font-size="14" font-weight="bold" fill="#047857" text-anchor="middle">"우리가 도와주었던 모든 친구들의 마음이 한데 모였어요!"</text>
+        </svg>
+      </div>
+      <div class="story-text">
+        <p>바로 그때, 하늘에서 부엉이 루루의 맑은 울음소리가 들려왔어요! 호수 너머에서는 분홍 고래 라라가 노래를 불렀고, 그리핀 피코가 하늘을 가르며 날아왔으며, 아기 드래곤 루비가 따스한 온기를 전해주러 달려왔지요!</p>
+        <p class="dialogue">"하나야! 퐁퐁아! 우리가 도울게!"</p>
+        <p>하나와 퐁퐁이가 나눈 사랑과 배려가 친구들의 마음에 닿아 눈부신 무지개 빛기둥을 만들어냈어요. 네 가지 보물이 제단 중앙에 합쳐지자, 환상적인 **'위대한 무지개 나침반'**이 완성되었답니다!</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-num">📖 4장 / 총 4장</div>
+      <h2 class="chapter-title">4. 영원한 모험의 약속</h2>
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="rainbowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f43f5e"/>
+              <stop offset="25%" stop-color="#f59e0b"/>
+              <stop offset="50%" stop-color="#10b981"/>
+              <stop offset="75%" stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="320" fill="#f8fafc"/>
+          <!-- 활짝 꽃핀 시간의 정원 -->
+          <path d="M0 240 Q300 200 600 240 L600 320 L0 320 Z" fill="#bbf7d0"/>
+          <!-- 영롱한 무지개 나침반 메달을 품에 안은 하나와 퐁퐁이 -->
+          <circle cx="300" cy="180" r="30" fill="url(#rainbowGrad)"/>
+          <circle cx="300" cy="180" r="22" fill="#fff"/>
+          <polygon points="300,165 305,180 300,195 295,180" fill="#dc2626"/>
+          <!-- 행복한 하나와 퐁퐁이 -->
+          <circle cx="230" cy="220" r="26" fill="#fed7aa"/>
+          <circle cx="230" cy="205" r="18" fill="#78350f"/>
+          <circle cx="370" cy="230" r="28" fill="#fed7aa"/>
+          <circle cx="390" cy="220" r="18" fill="#ffedd5"/>
+          <text x="300" y="300" font-size="14" font-weight="bold" fill="#4338ca" text-anchor="middle">"시간의 시계가 다시 째깍째깍 뛰며 사계절의 꽃들이 만개했어요!"</text>
+        </svg>
+      </div>
+      <div class="story-text">
+        <p class="dialogue">"째깍— 째깍— 퐁!"</p>
+        <p>나침반이 시계탑 중심에 장착되자 잿빛 덩굴이 꽃송이로 피어나며 거대한 시계바늘이 힘차게 돌아가기 시작했어요! 정원 가득 수천 마리의 나비가 춤추고 향기로운 바람이 온 세상을 감싸 안았지요.</p>
+        <p>대정령 가디언은 하나와 퐁퐁이에게 **'명예 무지개 수호자'** 칭호와 함께 언제든 환상의 세계를 방문할 수 있는 영원한 무지개 나침반 열쇠를 주었답니다.</p>
+        <p class="dialogue">"퐁퐁아, 우리 우정이 만든 기적이야. 앞으로도 영원히 함께 모험하자!"</p>
+        <p>방으로 돌아온 하나는 퐁퐁이를 꼭 끌어안았어요. 창밖 밤하늘에서 별똥별 하나가 둘을 축복하듯 길게 반짝이며 떨어졌답니다. 하나와 퐁퐁이의 마음속 모험은 앞으로도 끝없이 이어질 거예요! (시리즈 1 완결)</p>
+      </div>
+    </section>
+
+    <div class="quiz-card">
+      <h3>🌟 함께 생각하고 이야기해 봐요! (시즌 1 완결 기념)</h3>
+      <p>1. 1화부터 5화까지 하나와 퐁퐁이가 만난 친구들은 누구누구였나요?<br>
+      2. 멈춘 시간의 시계를 다시 움직이게 한 가장 큰 힘은 무엇이었을까요?<br>
+      3. 하나와 퐁퐁이처럼 나만의 단짝 친구나 반려동물과 함께 떠나고 싶은 꿈의 여행지를 상상해 보세요.</p>
+    </div>
+
+    <div class="footer-nav">
+      <a href="story-03-04.html" class="btn-nav" style="background: #64748b;">⬅️ 제4화 보기</a>
+      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털 허브로</a>
+      <a href="story-03-01.html" class="btn-nav">처음부터 다시 읽기 (제1화) 🔄</a>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('read-progress').style.width = (winScroll / height * 100) + '%';
+    });
+  </script>
+</body>
+</html>

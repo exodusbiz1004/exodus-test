@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사탕별 동굴과 잠자는 꼬마 드래곤 - 판타지 동화</title>
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --primary-light: #fef3c7;
+      --bg: #fffbeb;
+      --card-bg: #ffffff;
+      --text-main: #78350f;
+      --text-body: #92400e;
+      --border: #fde68a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; }
+    body { background: radial-gradient(circle at 50% 0%, #fef3c7 0%, #fffbeb 100%); color: var(--text-main); padding: 20px 14px; line-height: 1.85; font-size: 17px; }
+    .book-container { max-width: 680px; margin: 0 auto; background: var(--card-bg); border: 2px solid var(--border); border-radius: 24px; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.12); padding: 28px 22px; }
+    .book-header { text-align: center; padding-bottom: 20px; border-bottom: 2px dashed var(--border); margin-bottom: 28px; }
+    .series-badge { display: inline-block; background: #fef3c7; color: #b45309; font-size: 13px; font-weight: 700; padding: 4px 14px; border-radius: 20px; margin-bottom: 10px; }
+    h1 { font-size: 24px; font-weight: 800; color: #b45309; line-height: 1.35; margin-bottom: 8px; }
+    .meta-info { font-size: 13px; color: #b45309; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .progress-wrap { background: #fef3c7; border-radius: 10px; height: 8px; margin: 18px 0 28px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #f59e0b, #ea580c); width: 0%; transition: width 0.3s; }
+    .page-section { margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--border); }
+    .page-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .page-num { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; color: #b45309; background: #fffbeb; padding: 4px 12px; border-radius: 12px; margin-bottom: 14px; }
+    .chapter-title { font-size: 20px; font-weight: 800; color: #78350f; margin-bottom: 16px; }
+    .illustration-box { width: 100%; border-radius: 18px; overflow: hidden; margin: 16px 0 22px; box-shadow: 0 6px 18px rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); line-height: 0; background: #fff7ed; }
+    .illustration-box svg { width: 100%; height: auto; display: block; }
+    .story-text { color: #451a03; line-height: 1.9; font-size: 16.5px; word-break: keep-all; }
+    .story-text p { margin-bottom: 14px; text-indent: 10px; }
+    .dialogue { font-weight: 700; color: #b45309; background: #fff7ed; padding: 2px 6px; border-radius: 6px; text-indent: 0 !important; }
+    .quiz-card { background: #fff7ed; border: 2px dashed #f59e0b; border-radius: 18px; padding: 20px; margin-top: 30px; text-align: center; }
+    .quiz-card h3 { font-size: 17px; color: #b45309; margin-bottom: 8px; font-weight: 800; }
+    .quiz-card p { font-size: 14.5px; color: #78350f; line-height: 1.6; }
+    .footer-nav { margin-top: 26px; text-align: center; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .btn-nav { display: inline-block; background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; text-decoration: none; font-size: 13.5px; font-weight: 700; padding: 10px 20px; border-radius: 20px; box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3); }
+  </style>
+</head>
+<body>
+  <div class="book-container">
+    <header class="book-header">
+      <div class="series-badge">✨ 하나와 퐁퐁이의 무지개 모험 시리즈 · 제4화</div>
+      <h1>사탕별 동굴과 잠자는 꼬마 드래곤</h1>
+      <div class="meta-info">
+        <span>👧 등장인물: 하나, 퐁퐁이, 아기 보석 드래곤 '루비'</span>
+        <span>⏱️ 추천 읽기 시간: 5분 (초등 3학년 권장)</span>
+      </div>
+      <div class="progress-wrap"><div id="read-progress" class="progress-bar"></div></div>
+    </header>
+
+    <section class="page-section">
+      <div class="page-num">📖 1장 / 총 4장</div>
+      <h2 class="chapter-title">1. 달콤한 딸기 사탕 바람</h2>
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="320" fill="#2e1065"/>
+          <!-- 동굴 속 반짝이는 크리스털 종유석들 -->
+          <polygon points="60,0 90,80 120,0" fill="#f43f5e" opacity="0.8"/>
+          <polygon points="180,0 210,120 240,0" fill="#a855f7" opacity="0.8"/>
+          <polygon points="400,0 430,90 460,0" fill="#38bdf8" opacity="0.8"/>
+          <polygon points="500,0 520,70 540,0" fill="#fbbf24" opacity="0.8"/>
+          <!-- 바닥에서 솟은 보석 결정 -->
+          <polygon points="80,320 110,240 140,320" fill="#34d399" opacity="0.8"/>
+          <polygon points="480,320 510,220 540,320" fill="#f472b6" opacity="0.8"/>
+          <!-- 동굴을 탐험하는 하나와 퐁퐁이 -->
+          <circle cx="270" cy="240" r="24" fill="#fed7aa"/>
+          <circle cx="270" cy="225" r="16" fill="#78350f"/>
+          <circle cx="340" cy="250" r="26" fill="#fed7aa"/>
+          <circle cx="360" cy="240" r="18" fill="#ffedd5"/>
+          <text x="300" y="300" font-size="14" font-weight="bold" fill="#fef08a" text-anchor="middle">"동굴 안은 알록달록 빛나는 보석 사탕으로 가득했어요!"</text>
+        </svg>
+      </div>
+      <div class="story-text">
+        <p>토요일 저녁, 방 안에서 달콤한 딸기 사탕 냄새가 솔솔 풍겨왔어요. 퐁퐁이가 벽장 문 밑으로 코를 킁킁대자, 은은한 붉은빛이 새어 나왔지요. 둘이 손을 잡고 들어선 곳은 별빛처럼 반짝이는 크리스털 동굴이었어요.</p>
+        <p class="dialogue">"와아! 벽에 붙은 보석들이 꼭 별사탕 같아, 퐁퐁아!"</p>
+        <p>어두운 동굴 벽마다 빨강, 파랑, 노랑 보석들이 아름다운 빛을 뿜어내고 있었답니다.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-num">📖 2장 / 총 4장</div>
+      <h2 class="chapter-title">2. 딸꾹질하는 아기 드래곤 루비</h2>
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="320" fill="#1e1b4b"/>
+          <!-- 둥지 속 웅크린 아기 빨간 드래곤 루비 -->
+          <ellipse cx="300" cy="220" rx="90" ry="40" fill="#fbbf24" opacity="0.3"/>
+          <ellipse cx="300" cy="190" rx="60" ry="36" fill="#ef4444"/>
+          <circle cx="350" cy="170" r="22" fill="#dc2626"/>
+          <!-- 귀여운 뿔과 꼬리 -->
+          <polygon points="340,150 350,135 360,150" fill="#f59e0b"/>
+          <path d="M240 190 Q210 180 200 200" stroke="#b91c1c" stroke-width="8" fill="none"/>
+          <!-- 딸꾹질 불꽃 방울 -->
+          <circle cx="380" cy="155" r="12" fill="#f97316" opacity="0.8"/>
+          <circle cx="410" cy="135" r="16" fill="#fbbf24" opacity="0.8"/>
+          <text x="300" y="295" font-size="14" font-weight="bold" fill="#fca5a5" text-anchor="middle">"딸꾹! 루비가 딸꾹질을 할 때마다 조그만 불꽃이 퐁퐁 튀었어요."</text>
+        </svg>
+      </div>
+      <div class="story-text">
+        <p>동굴 중앙 둥지에는 빨간 사과처럼 동글동글한 아기 드래곤 '루비'가 웅크려 있었어요. 그런데 루비는 눈물을 글썽이며 연신 딸꾹질을 하고 있었지요.</p>
+        <p class="dialogue">"딸꾹! 펑! 딸꾹! 치익-!"</p>
+        <p>루비가 딸꾹질을 할 때마다 콧구멍에서 조그만 팝콘 불꽃이 튀어나와 둥지를 태울 뻔하고 있었어요. 차가운 얼음 보석을 잘못 삼켜 딸꾹질이 멈추지 않는다는 것이었지요.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-num">📖 3장 / 총 4장</div>
+      <h2 class="chapter-title">3. 따뜻한 꿀물과 퐁퐁이의 자장가</h2>
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="320" fill="#312e81"/>
+          <!-- 따뜻한 꿀물을 건네는 하나와 곁에서 등을 토닥이는 퐁퐁이 -->
+          <ellipse cx="280" cy="200" rx="55" ry="34" fill="#ef4444"/>
+          <!-- 퐁퐁이 -->
+          <circle cx="210" cy="200" r="26" fill="#fed7aa"/>
+          <circle cx="230" cy="190" r="18" fill="#ffedd5"/>
+          <!-- 하나와 보온병 컵 -->
+          <circle cx="380" cy="180" r="24" fill="#fed7aa"/>
+          <circle cx="380" cy="165" r="16" fill="#78350f"/>
+          <!-- 김이 모락모락 나는 따뜻한 노란 컵 -->
+          <rect x="330" y="180" width="20" height="25" rx="4" fill="#facc15"/>
+          <path d="M335 170 Q340 160 338 150" stroke="#fef08a" stroke-width="2" fill="none"/>
+          <text x="300" y="295" font-size="14" font-weight="bold" fill="#fef08a" text-anchor="middle">"따뜻한 꿀물을 마시고 퐁퐁이가 배를 살살 문질러 주었어요."</text>
+        </svg>
+      </div>
+      <div class="story-text">
+        <p>하나는 모험 가방에서 항상 들고 다니던 따뜻한 보리 꿀물 텀블러를 꺼냈어요. 그리고 조심스레 컵에 따라 루비의 입에 호호 불어 먹여주었지요.</p>
+        <p>퐁퐁이는 복슬복슬하고 따뜻한 앞발로 루비의 차가워진 배를 살살 쓸어내려 주었어요. 퐁퐁이의 따뜻한 체온과 부드러운 손길에 루비의 굳었던 몸이 사르르 녹아내리기 시작했답니다.</p>
+        <p class="dialogue">"딸꾹… 꿀꺽! 어라? 딸꾹질이 멈췄어!"</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-num">📖 4장 / 총 4장</div>
+      <h2 class="chapter-title">4. 영원히 빛나는 루비 보석</h2>
+      <div class="illustration-box">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="320" fill="#431407"/>
+          <!-- 행복하게 웃는 루비와 하나, 퐁퐁이 -->
+          <ellipse cx="220" cy="180" rx="55" ry="34" fill="#ef4444"/>
+          <circle cx="360" cy="170" r="26" fill="#fed7aa"/>
+          <circle cx="430" cy="190" r="28" fill="#fed7aa"/>
+          <!-- 반짝이는 루비 보석 선물 -->
+          <polygon points="300,120 320,150 300,180 280,150" fill="#f43f5e"/>
+          <circle cx="300" cy="150" r="30" fill="#f43f5e" opacity="0.3"/>
+          <text x="300" y="295" font-size="14" font-weight="bold" fill="#fed7aa" text-anchor="middle">"루비가 감사의 마음으로 별빛 루비 보석을 선물했어요!"</text>
+        </svg>
+      </div>
+      <div class="story-text">
+        <p>딸꾹질이 멈춘 루비는 기뻐서 폴짝폴짝 뛰며 작은 날개를 퍼덕였어요. 루비는 가장 아끼는 보물인 **'별빛 붉은 루비 보석'**을 하나와 퐁퐁이에게 선물했지요. 어두운 밤에도 주위를 따스하고 밝게 비춰주는 신비로운 마법석이었답니다.</p>
+        <p>루비의 편안한 숨소리를 들으며 하나와 퐁퐁이는 마음이 훈훈해진 채 집으로 돌아왔어요. 네 번째 모험도 따뜻한 우정으로 가득 찼답니다!</p>
+      </div>
+    </section>
+
+    <div class="quiz-card">
+      <h3>🌟 함께 생각하고 이야기해 봐요!</h3>
+      <p>1. 아기 드래곤 루비는 왜 멈추지 않는 딸꾹질을 하고 있었나요?<br>
+      2. 퐁퐁이와 하나가 루비를 간호해 준 모습을 통해 무엇을 느낄 수 있나요?<br>
+      3. 아픈 친구나 가족을 정성껏 돌봐주었던 따뜻한 기억을 떠올려 보세요.</p>
+    </div>
+
+    <div class="footer-nav">
+      <a href="story-03-03.html" class="btn-nav" style="background: #64748b;">⬅️ 제3화 보기</a>
+      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털</a>
+      <a href="story-03-05.html" class="btn-nav">제5화 읽으러 가기 ➡️</a>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('read-progress').style.width = (winScroll / height * 100) + '%';
+    });
+  </script>
+</body>
+</html>
