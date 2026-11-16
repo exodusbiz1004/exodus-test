@@ -3,119 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>인싸가족 시트콤 뮤지컬 - 제11편 : 전주 한옥마을 50인분 비빔밥과 판소리 힙합 배틀</title>
+  <title>인싸가족 시트콤 뮤지컬 - 제11편 : 전주 한옥마을 50인분 비빔밥과 어울림의 미학</title>
   <style>
-    :root { --primary: #f97316; --bg: #fff7ed; --card-bg: #ffffff; --text-main: #1f2937; --border: #fed7aa; --bongja: #ec4899; --bongdu: #3b82f6; --yepd: #10b981; }
+    :root { 
+      --primary: #d97706; 
+      --bg: #fffbeb; 
+      --card-bg: #ffffff; 
+      --text-main: #1f2937; 
+      --border: #fde68a; 
+      --bongja: #ec4899; 
+      --bongdu: #3b82f6; 
+      --yepd: #10b981; 
+      --lesson: #6366f1;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; }
-    body { background: radial-gradient(circle at 50% 0%, #ffedd5 0%, #fff7ed 100%); color: var(--text-main); padding: 20px 14px; line-height: 1.85; font-size: 17px; }
-    .book-container { max-width: 720px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 28px; box-shadow: 0 12px 36px rgba(249, 115, 22, 0.15); padding: 30px 24px; }
-    .novel-cover { text-align: center; margin-bottom: 28px; }
-    .tour-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: #fff; font-size: 13px; font-weight: 800; padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; }
-    .novel-title { font-size: 26px; font-weight: 900; color: #9a3412; line-height: 1.35; margin-bottom: 6px; }
-    .novel-subtitle { font-size: 17px; font-weight: 800; color: #c2410c; margin-bottom: 18px; }
-    .cover-poster-wrap { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
+    body { background: radial-gradient(circle at 50% 0%, #fef3c7 0%, #fffbeb 100%); color: var(--text-main); padding: 24px 14px; line-height: 1.9; font-size: 17.5px; }
+    .book-container { max-width: 740px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 30px; box-shadow: 0 16px 40px rgba(217, 119, 6, 0.16); padding: 36px 28px; }
+    .novel-cover { text-align: center; margin-bottom: 30px; }
+    .tour-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: #fff; font-size: 13.5px; font-weight: 800; padding: 6px 18px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(180, 83, 9, 0.25); }
+    .novel-title { font-size: 28px; font-weight: 900; color: #78350f; line-height: 1.35; margin-bottom: 8px; }
+    .novel-subtitle { font-size: 18px; font-weight: 800; color: #b45309; margin-bottom: 20px; }
+    .cover-poster-wrap { width: 100%; border-radius: 22px; overflow: hidden; margin-bottom: 22px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
     .cover-poster-wrap svg { width: 100%; height: auto; display: block; }
-    .progress-wrap { background: #ffedd5; border-radius: 10px; height: 8px; margin-bottom: 28px; overflow: hidden; }
-    .progress-bar { height: 100%; background: linear-gradient(90deg, #f97316, #fb923c); width: 0%; transition: width 0.3s; }
-    .chapter-section { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 2px dashed var(--border); }
-    .chapter-badge { display: inline-flex; font-size: 12px; font-weight: 800; color: #c2410c; background: #ffedd5; padding: 4px 12px; border-radius: 12px; margin-bottom: 10px; }
-    .chapter-title { font-size: 20px; font-weight: 900; color: #7c2d12; margin-bottom: 16px; }
-    .story-p { margin-bottom: 16px; text-indent: 8px; word-break: keep-all; }
-    .talk-box { margin: 14px 0; padding: 12px 16px; border-radius: 14px; font-size: 16px; line-height: 1.6; border-left: 5px solid #ccc; }
+    .progress-wrap { background: #fef3c7; border-radius: 10px; height: 9px; margin-bottom: 30px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #d97706, #f59e0b); width: 0%; transition: width 0.3s; }
+    .chapter-section { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 2px dashed var(--border); }
+    .chapter-badge { display: inline-flex; font-size: 12.5px; font-weight: 800; color: #b45309; background: #fef3c7; padding: 4px 14px; border-radius: 14px; margin-bottom: 12px; border: 1px solid #fde68a; }
+    .chapter-title { font-size: 22px; font-weight: 900; color: #78350f; margin-bottom: 18px; }
+    .story-p { margin-bottom: 18px; text-indent: 10px; word-break: keep-all; }
+    .talk-box { margin: 16px 0; padding: 14px 18px; border-radius: 16px; font-size: 16.5px; line-height: 1.65; border-left: 6px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     .talk-bongja { background: #fdf2f8; border-left-color: var(--bongja); color: #831843; }
     .talk-bongdu { background: #eff6ff; border-left-color: var(--bongdu); color: #1e3a8a; }
     .talk-yepd { background: #ecfdf5; border-left-color: var(--yepd); color: #064e3b; }
-    .talk-name { font-weight: 900; font-size: 13px; margin-bottom: 4px; }
-    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 2px 8px; border-radius: 6px; font-size: 14px; margin: 0 4px; }
-    .musical-lyrics { background: linear-gradient(135deg, #fffbeb, #fef2f2); border: 2px solid #fde68a; border-radius: 16px; padding: 16px 20px; margin: 20px 0; text-align: center; font-style: italic; color: #92400e; font-weight: 700; }
-    .nav-bar { margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .btn-nav { background: linear-gradient(135deg, #f97316, #c2410c); color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 24px; }
+    .talk-guest { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+    .talk-name { font-weight: 900; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 3px 9px; border-radius: 8px; font-size: 14px; margin: 0 4px; border: 1px solid #fed7aa; }
+    .musical-lyrics { background: linear-gradient(135deg, #fffbeb, #fef2f2); border: 2px solid #fde68a; border-radius: 18px; padding: 20px 22px; margin: 24px 0; text-align: center; color: #92400e; font-weight: 700; line-height: 1.85; box-shadow: inset 0 2px 6px rgba(217, 119, 6, 0.08); }
+    .lyrics-tag { display: inline-block; background: #b45309; color: #fff; font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 10px; margin-bottom: 8px; }
+    .lesson-box { background: linear-gradient(135deg, #eef2ff, #f5f3ff); border: 2px solid #c7d2fe; border-radius: 18px; padding: 18px 22px; margin: 24px 0; }
+    .lesson-title { font-size: 16px; font-weight: 900; color: #4338ca; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .lesson-text { font-size: 15.5px; color: #312e81; line-height: 1.7; }
+    .director-cut { background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 18px; font-size: 15px; color: #475569; margin: 18px 0; }
+    .nav-bar { margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn-nav { background: linear-gradient(135deg, #d97706, #b45309); color: #fff; text-decoration: none; font-size: 14.5px; font-weight: 800; padding: 12px 24px; border-radius: 24px; box-shadow: 0 4px 12px rgba(180, 83, 9, 0.25); transition: transform 0.2s; }
+    .btn-nav:hover { transform: translateY(-2px); }
   </style>
 </head>
 <body>
   <div class="book-container">
     <header class="novel-cover">
-      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제11화 (전주 편)</div>
+      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제11화 (전주 편 - 폭소&교훈 에디션)</div>
       <h1 class="novel-title">인싸가족 : 시트콤 뮤지컬</h1>
-      <div class="novel-subtitle">제11편 : 전주 한옥마을 50인분 비빔밥과 판소리 힙합 배틀</div>
+      <div class="novel-subtitle">제11편 : 전주 한옥마을 50인분 비빔밥과 어울림의 미학</div>
       <div class="cover-poster-wrap">
-        <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="jeonjuBg" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="jeonjuSky" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#fef3c7"/>
-              <stop offset="100%" stop-color="#fed7aa"/>
+              <stop offset="60%" stop-color="#fed7aa"/>
+              <stop offset="100%" stop-color="#fde047"/>
             </linearGradient>
           </defs>
-          <rect width="680" height="360" fill="url(#jeonjuBg)"/>
-          <!-- 한옥 처마 지붕 -->
-          <path d="M120 130 Q340 70 560 130 L540 160 Q340 100 140 160 Z" fill="#334155"/>
-          <line x1="120" y1="130" x2="100" y2="110" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
-          <line x1="560" y1="130" x2="580" y2="110" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
-          <!-- 커다란 놋그릇 비빔밥 -->
-          <ellipse cx="340" cy="270" rx="140" ry="50" fill="#eab308"/>
-          <ellipse cx="340" cy="265" rx="120" ry="38" fill="#ef4444"/> <!-- 고추장과 나물 -->
-          <circle cx="340" cy="260" r="14" fill="#facc15"/> <!-- 노른자 -->
-          <!-- 한복 입은 봉자와 숟가락 든 봉두 -->
-          <circle cx="210" cy="200" r="26" fill="#fed7aa"/>
-          <path d="M190 220 Q210 190 230 220" fill="#ec4899"/>
-          <!-- 봉두 대형 주걱 들고 침 흘림 -->
-          <ellipse cx="470" cy="190" rx="40" ry="34" fill="#fed7aa"/>
-          <line x1="420" y1="210" x2="410" y2="280" stroke="#78350f" stroke-width="6"/>
-          <ellipse cx="408" cy="285" rx="14" ry="10" fill="#a16207"/>
-          <text x="340" y="345" font-size="15" font-weight="900" fill="#78350f" text-anchor="middle">🍚 오색 고명 비빔밥 주걱을 들고 펼쳐진 흥보가 힙합 배틀!</text>
+          <rect width="680" height="370" fill="url(#jeonjuSky)"/>
+          <!-- 한옥 처마 지붕 곡선 -->
+          <path d="M100 130 Q340 70 580 130 L560 165 Q340 105 120 165 Z" fill="#334155"/>
+          <line x1="100" y1="130" x2="75" y2="115" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+          <line x1="580" y1="130" x2="605" y2="115" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+          <!-- 2미터 거대 황금 놋그릇 비빔밥 -->
+          <ellipse cx="340" cy="275" rx="150" ry="55" fill="#eab308"/>
+          <ellipse cx="340" cy="270" rx="130" ry="42" fill="#ef4444"/> <!-- 빨간 고추장과 오색 고명 -->
+          <circle cx="340" cy="265" r="16" fill="#facc15"/> <!-- 노른자 -->
+          <!-- 봉자: 한복 댕기머리에 부채 춤 -->
+          <circle cx="210" cy="205" r="28" fill="#fed7aa"/>
+          <path d="M190 230 Q210 190 230 230" fill="#ec4899"/>
+          <!-- 봉두: 초대형 나무 주걱 들고 침 흘리는 포즈 -->
+          <ellipse cx="470" cy="195" rx="46" ry="40" fill="#fed7aa"/>
+          <line x1="420" y1="215" x2="400" y2="290" stroke="#78350f" stroke-width="7"/>
+          <ellipse cx="396" cy="295" rx="18" ry="12" fill="#a16207"/>
+          <!-- 타이틀 띠 -->
+          <rect x="60" y="325" width="560" height="32" rx="16" fill="rgba(120, 53, 15, 0.9)"/>
+          <text x="340" y="347" font-size="14.5" font-weight="900" fill="#fef08a" text-anchor="middle">🍚 서로 다른 나물이 모여 하나의 맛을 내듯! 전주 한옥마을의 대화합!</text>
         </svg>
       </div>
       <div class="progress-wrap"><div id="novel-progress" class="progress-bar"></div></div>
     </header>
 
+    <!-- 1장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">🏡 1장 / 총 4장</div>
-      <h2 class="chapter-title">1. 고즈넉한 한옥마을의 전통미</h2>
-      <p class="story-p">기와지붕의 아름다운 곡선이 끝없이 펼쳐진 전주 한옥마을에 들어서자, 봉자는 고운 분홍빛 개량한복을 입고 머리에 화사한 댕기를 둘렀다.</p>
-      <div class="talk-box talk-bongja"><div class="talk-name" style="color:var(--bongja)">💄 봉자</div>"한복 선 곱고 단아한 거 봐! 오늘 썸네일은 조선 왕실의 마지막 뷰티 공주 콘셉트다!"</div>
-      <p class="story-p">반면 봉두는 조선시대 마당쇠 복장을 걸친 채 거대한 나무주걱을 어깨에 메고 있었다. 경기전 돌담길을 걸으면서도 봉두의 코끝은 전주비빔밥 고소한 참기름 냄새에 격렬하게 반응하고 있었다.</p>
-    </section>
+      <div class="chapter-badge">🏡 제1장 / 총 5장</div>
+      <h2 class="chapter-title">1. 천년 고도의 기품, 전주 한옥마을에 서다</h2>
+      <p class="story-p">800여 채의 아름다운 기와집이 물결치는 전주 한옥마을 경기전 앞 광장에 인싸가족이 들어섰다. 봉자는 화사한 다홍빛 개량한복 치마에 배씨댕기를 이마에 두르고 셀카봉을 높이 들었다.</p>
 
-    <section class="chapter-section">
-      <div class="chapter-badge">🥘 2장 / 총 4장</div>
-      <h2 class="chapter-title">2. 전주 경기전 앞 50인분 대형 놋그릇</h2>
-      <p class="story-p">공연장에 도착하자 무대 중앙에 지름 2미터짜리 거대 황금 놋그릇이 놓여 있었다. 전주시 비빔밥 명인들이 준비한 50인분 오색 고명(시금치, 도라지, 고사리, 육회, 은행)이 화려하게 수놓아져 있었다.</p>
-      <div class="talk-box talk-bongdu"><div class="talk-name" style="color:var(--bongdu)">🎮 봉두</div>"우와아아! 저게 다 진짜 먹는 거라고요?! 내가 오늘 5끼 중에 점심 겸 저녁으로 다 비벼 먹어버리겠어!" <span class="sfx">꿀꺽 쩝쩝!</span></div>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"공연 중에 숟가락으로 비비면서 부르는 비빔밥 랩 뮤지컬이야! 다 먹어 치우면 엔딩 퍼포먼스가 없어진다 봉두야!"</div>
-    </section>
-
-    <section class="chapter-section">
-      <div class="chapter-badge">🥁 3장 / 총 4장</div>
-      <h2 class="chapter-title">3. 얼씨구 좋다! 비빔밥 판소리 힙합</h2>
-      <p class="story-p">북소리가 <span class="sfx">둥! 둥! 딱!</span> 울리며 뮤지컬 11막이 올랐다. 봉자가 단아한 부채춤으로 시작하더니, 이내 비트박스에 맞춰 속사포 랩을 쏟아냈고, 봉두는 대형 주걱으로 비빔밥을 쓱쓱 비비며 판소리 추임새를 넣었다.</p>
-      <div class="musical-lyrics">
-        "얼씨구 좋다 지화자 좋네 우리 가락이 울린다~ (봉자)<br>
-        빨간 고추장 쓱쓱 비벼 나물 향기 입안 가득! (봉두)<br>
-        한술 뜨니 힘이 펄펄, 두술 뜨니 댄스 머신! (봉두)<br>
-        전주 한옥마을 기와 위로 날아오르는 인싸 스웩! (합창)"
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자</div>
+        "경기전 돌담길 고즈넉한 것 좀 봐! 오늘 썸네일은 조선 왕실의 마지막 뷰티 옹주 콘셉트다! 전 세계 한류 팬들에게 K-전통의 아름다움을 제대로 전파하겠어!"
       </div>
-      <p class="story-p">관객 천여 명이 한목소리로 "얼씨구! 잘한다!"를 외쳤고, 무대 피날레에서 50인분 비빔밥은 객석의 팬들과 사이좋게 나누어 먹는 감동의 축제로 이어졌다.</p>
+
+      <p class="story-p">한편 봉두는 조선시대 마당쇠 복장을 걸친 채 거대한 나무주걱을 어깨에 메고 있었다. 광장 한가운데에는 전주 비빔밥 기능장인 명인들이 준비한 지름 2미터짜리 거대 황금 놋그릇이 위용을 뽐내고 있었다!</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (눈이 뒤집히며)</div>
+        "우와아아! 시금치, 도라지, 고사리, 황포묵, 육회, 은행까지 오색 고명이 꽉 찬 50인분 대왕 비빔밥이다! 오늘 5끼 중에 저녁은 저 놋그릇째로 끌어안고 먹으면 여한이 없겠다!"
+      </div>
     </section>
 
+    <!-- 2장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">🌟 4장 / 총 4장</div>
-      <h2 class="chapter-title">4. 마지막 종착지, 낭만의 여수로!</h2>
-      <p class="story-p">전주 시민들의 뜨거운 정을 가득 안고 놋그릇 바닥까지 싹싹 긁어먹은 인싸가족은 마지막 투어 버스에 올랐다. 서울에서 시작해 전국 11개 도시를 쉼 없이 달려온 대장정의 마지막 행선지가 코앞이었다.</p>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"봉자야, 봉두야... 정말 수고 많았다. 이제 딱 하나 남았어. 우리 전국투어의 위대한 피날레를 장식할 낭만의 바다, **여수**로 간다!"</div>
+      <div class="chapter-badge">🥬 제2장 / 총 5장</div>
+      <h2 class="chapter-title">2. 편식쟁이 봉두와 비빔밥 명인의 일침</h2>
+      <p class="story-p">리허설 도중, 봉두가 대형 주걱으로 비빔밥 위를 쑤석거리며 시금치와 고사리를 놋그릇 밖으로 몰래 튕겨내고 있었다. 편식이 심한 봉두는 육회와 달걀노른자만 쏙쏙 골라 먹으려 했던 것이다.</p>
+
+      <div class="talk-box talk-guest">
+        <div class="talk-name" style="color:#a16207">👨‍🍳 전주 비빔밥 전통 명인</div>
+        "어허! 이 도령 보게! 비빔밥에서 나물을 빼버리면 그게 어찌 비빔밥이란 말인가! 쓴 도라지의 쌉싸름함과 고사리의 쫄깃함, 시금치의 푸릇함과 고추장의 매콤함이 고소한 참기름과 함께 온전히 뒤섞여야 비로소 세상에서 가장 완벽한 한 그릇이 되는 법일세!"
+      </div>
+
+      <p class="story-p">명인의 호통에 봉두는 주걱을 쥐고 얼굴이 빨개졌다. 봉자는 팔짱을 끼며 고개를 끄덕였다. "명인님 말씀이 백번 맞아요! 밥상에서도 편식하고 성격도 자기 좋아하는 것만 하려 하더니 딱 걸렸다 박봉두!"</p>
     </section>
 
+    <!-- 3장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🥁 제3장 / 총 5장</div>
+      <h2 class="chapter-title">3. 얼씨구 좋다! 비빔밥 판소리 힙합 떼창</h2>
+      <p class="story-p">북소리가 <span class="sfx">둥! 둥! 딱!</span> 힘차게 울리고 뮤지컬 11막이 올랐다. 봉자가 나비처럼 우아한 부채춤으로 도입부를 열었고, 비트박스가 얹어지며 판소리 수궁가와 춘향가를 재해석한 신명 나는 랩이 전주 한옥마을 돌담을 타고 번졌다.</p>
+
+      <div class="musical-lyrics">
+        <span class="lyrics-tag">🎵 넘버 : 오색 고명 한마음 비빔밥 랩</span><br>
+        "도라지는 쌉싸름 시금치는 싱그럽고 (봉자)<br>
+        빨간 고추장 쓱쓱 비벼 하나의 노래가 된다!<br>
+        서로 다른 우리가 만나 만들어낸 눈부신 화음 (봉두)<br>
+        너와 나 편견 없이 손잡고 힘껏 비벼보자!<br>
+        얼씨구 좋다 지화자 좋다 온 세상이 어우러진다! (합창)"
+      </div>
+
+      <p class="story-p">봉두는 놋그릇을 돌며 50인분의 나물과 밥을 정성스레 비벼냈고, 봉자의 화려한 부채 턴과 봉두의 구수한 판소리 추임새가 절묘하게 맞물렸다. 관객 3천여 명이 한옥마을 지붕이 들썩이도록 "얼쑤! 좋다! 지화자!"를 외쳤다.</p>
+    </section>
+
+    <!-- 4장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🍲 제4장 / 총 5장</div>
+      <h2 class="chapter-title">4. 50인분을 다 함께 나누는 한옥마을 축제</h2>
+      <p class="story-p">공연의 피날레는 봉자와 봉두가 대형 주걱으로 정성껏 비빈 50인분 오색 비빔밥을 객석의 할머니, 어린이, 청소년 팬들에게 작은 친환경 용기에 골고루 나누어주는 감동의 나눔 시간이었다.</p>
+
+      <p class="story-p">평소 나물을 질색하던 봉두도 자신이 직접 정성으로 비빈 비빔밥을 한 숟가락 크게 떠먹어 보았다. "어?! 누나! 고사리랑 도라지가 이렇게 고소하고 향긋했어?! 편식하던 내 입맛이 마법처럼 싹 사라졌어!"</p>
+    </section>
+
+    <!-- 5장 & 교훈 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🌟 제5장 / 교훈과 다음 여정</div>
+      <h2 class="chapter-title">5. 어울림의 지혜, 그리고 최종 피날레 여수로!</h2>
+
+      <!-- 어린이 독자를 위한 교훈 상자 -->
+      <div class="lesson-box">
+        <div class="lesson-title">💡 [인싸가족 생각 돋보기] 다름을 존중하고 하나로 어우러지는 비빔밥의 철학</div>
+        <div class="lesson-text">
+          비빔밥 속 재료들은 색깔도, 식감도, 맛도 저마다 제각각이지만, 서로를 밀어내지 않고 하나로 비벼질 때 가장 훌륭한 맛을 냅니다.<br>
+          우리 교실과 사회에서도 성격, 외모, 취향이 다른 친구들을 차별하지 않고 서로의 개성을 인정하며 사이좋게 어우러질 때 가장 행복한 교실을 만들 수 있답니다!
+        </div>
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (지도의 마지막 12번째 도시를 가리키며 벅찬 목소리로)</div>
+        "전국 11개 도시 완주! 이제 우리 전국투어의 위대한 피날레를 장식할 단 하나의 목적지가 남았다! 밤바다의 낭만과 오색 불꽃놀이가 기다리는 마지막 종착지, **여수**로 출발한다!"
+      </div>
+
+      <div class="director-cut">
+        🎬 <b>전주 투어 비하인드 쿠키 영상 :</b><br>
+        50인분 비빔밥 나눔이 끝난 뒤, 봉두는 2미터 놋그릇 바닥에 누룽지처럼 눌어붙은 비빔밥 밥풀을 나무주걱으로 박박 긁어모아 공깃밥 3그릇 분량을 뚝딱 비우며 명인에게 "설거지 완벽하게 해드렸습니다!"라고 외쳐 폭소를 자아냈다.
+      </div>
+    </section>
+
+    <!-- 하단 내비게이션 -->
     <div class="nav-bar">
       <a href="inssa10.html" class="btn-nav" style="background: #64748b;">⬅️ 제10편 (부산 편)</a>
-      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털</a>
+      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털 허브</a>
       <a href="inssa12.html" class="btn-nav">제12편 (최종회 여수 편) ➡️</a>
     </div>
   </div>
+
   <script>
     window.addEventListener('scroll', () => {
-      const winScroll = document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById('novel-progress').style.width = scrolled + '%';
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('novel-progress').style.width = (window.scrollY / h * 100) + '%';
     });
   </script>
 </body>

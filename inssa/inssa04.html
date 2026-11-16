@@ -3,101 +3,224 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>인싸가족 시트콤 뮤지컬 - 제4편 : 빛고을 광주 충장로 댄스 배틀</title>
+  <title>인싸가족 시트콤 뮤지컬 - 제4편 : 광주 충장로 댄스 배틀과 황금 상추튀김의 비밀</title>
   <style>
-    :root { --primary: #f43f5e; --bg: #fff1f2; --card-bg: #ffffff; --text-main: #1f2937; --border: #fecdd3; --bongja: #ec4899; --bongdu: #3b82f6; --yepd: #10b981; }
+    :root { 
+      --primary: #ea580c; 
+      --bg: #fff7ed; 
+      --card-bg: #ffffff; 
+      --text-main: #1f2937; 
+      --border: #fed7aa; 
+      --bongja: #ec4899; 
+      --bongdu: #3b82f6; 
+      --yepd: #10b981; 
+      --lesson: #6366f1;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; }
-    body { background: radial-gradient(circle at 50% 0%, #ffe4e6 0%, #fff1f2 100%); color: var(--text-main); padding: 20px 14px; line-height: 1.85; font-size: 17px; }
-    .book-container { max-width: 720px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 28px; box-shadow: 0 12px 36px rgba(244, 63, 94, 0.15); padding: 30px 24px; }
-    .novel-cover { text-align: center; margin-bottom: 28px; }
-    .tour-badge { display: inline-block; background: linear-gradient(135deg, #f43f5e, #e11d48); color: #fff; font-size: 13px; font-weight: 800; padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; }
-    .novel-title { font-size: 26px; font-weight: 900; color: #9f1239; line-height: 1.35; margin-bottom: 6px; }
-    .novel-subtitle { font-size: 17px; font-weight: 800; color: #be123c; margin-bottom: 18px; }
-    .cover-poster-wrap { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 2px solid #fecdd3; line-height: 0; }
+    body { background: radial-gradient(circle at 50% 0%, #ffedd5 0%, #fff7ed 100%); color: var(--text-main); padding: 24px 14px; line-height: 1.9; font-size: 17.5px; }
+    .book-container { max-width: 740px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 30px; box-shadow: 0 16px 40px rgba(234, 88, 12, 0.16); padding: 36px 28px; }
+    .novel-cover { text-align: center; margin-bottom: 30px; }
+    .tour-badge { display: inline-block; background: linear-gradient(135deg, #ea580c, #c2410c); color: #fff; font-size: 13.5px; font-weight: 800; padding: 6px 18px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(194, 65, 12, 0.25); }
+    .novel-title { font-size: 28px; font-weight: 900; color: #9a3412; line-height: 1.35; margin-bottom: 8px; }
+    .novel-subtitle { font-size: 18px; font-weight: 800; color: #c2410c; margin-bottom: 20px; }
+    .cover-poster-wrap { width: 100%; border-radius: 22px; overflow: hidden; margin-bottom: 22px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
     .cover-poster-wrap svg { width: 100%; height: auto; display: block; }
-    .progress-wrap { background: #ffe4e6; border-radius: 10px; height: 8px; margin-bottom: 28px; overflow: hidden; }
-    .progress-bar { height: 100%; background: linear-gradient(90deg, #f43f5e, #fb7185); width: 0%; transition: width 0.3s; }
-    .chapter-section { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 2px dashed var(--border); }
-    .chapter-badge { display: inline-flex; font-size: 12px; font-weight: 800; color: #be123c; background: #ffe4e6; padding: 4px 12px; border-radius: 12px; margin-bottom: 10px; }
-    .chapter-title { font-size: 20px; font-weight: 900; color: #881337; margin-bottom: 16px; }
-    .story-p { margin-bottom: 16px; text-indent: 8px; word-break: keep-all; }
-    .talk-box { margin: 14px 0; padding: 12px 16px; border-radius: 14px; font-size: 16px; line-height: 1.6; border-left: 5px solid #ccc; }
+    .progress-wrap { background: #ffedd5; border-radius: 10px; height: 9px; margin-bottom: 30px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #ea580c, #f97316); width: 0%; transition: width 0.3s; }
+    .chapter-section { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 2px dashed var(--border); }
+    .chapter-badge { display: inline-flex; font-size: 12.5px; font-weight: 800; color: #c2410c; background: #ffedd5; padding: 4px 14px; border-radius: 14px; margin-bottom: 12px; border: 1px solid #fed7aa; }
+    .chapter-title { font-size: 22px; font-weight: 900; color: #7c2d12; margin-bottom: 18px; }
+    .story-p { margin-bottom: 18px; text-indent: 10px; word-break: keep-all; }
+    .talk-box { margin: 16px 0; padding: 14px 18px; border-radius: 16px; font-size: 16.5px; line-height: 1.65; border-left: 6px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     .talk-bongja { background: #fdf2f8; border-left-color: var(--bongja); color: #831843; }
     .talk-bongdu { background: #eff6ff; border-left-color: var(--bongdu); color: #1e3a8a; }
     .talk-yepd { background: #ecfdf5; border-left-color: var(--yepd); color: #064e3b; }
-    .talk-name { font-weight: 900; font-size: 13px; margin-bottom: 4px; }
-    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 2px 8px; border-radius: 6px; font-size: 14px; margin: 0 4px; }
-    .musical-lyrics { background: linear-gradient(135deg, #fff1f2, #fef3c7); border: 2px solid #fecdd3; border-radius: 16px; padding: 16px 20px; margin: 20px 0; text-align: center; font-style: italic; color: #881337; font-weight: 700; }
-    .nav-bar { margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .btn-nav { background: linear-gradient(135deg, #f43f5e, #be123c); color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 24px; }
+    .talk-guest { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+    .talk-name { font-weight: 900; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 3px 9px; border-radius: 8px; font-size: 14px; margin: 0 4px; border: 1px solid #fed7aa; }
+    .musical-lyrics { background: linear-gradient(135deg, #fff7ed, #fef2f2); border: 2px solid #fed7aa; border-radius: 18px; padding: 20px 22px; margin: 24px 0; text-align: center; color: #9a3412; font-weight: 700; line-height: 1.85; box-shadow: inset 0 2px 6px rgba(234, 88, 12, 0.08); }
+    .lyrics-tag { display: inline-block; background: #9a3412; color: #fff; font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 10px; margin-bottom: 8px; }
+    .lesson-box { background: linear-gradient(135deg, #eef2ff, #f5f3ff); border: 2px solid #c7d2fe; border-radius: 18px; padding: 18px 22px; margin: 24px 0; }
+    .lesson-title { font-size: 16px; font-weight: 900; color: #4338ca; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .lesson-text { font-size: 15.5px; color: #312e81; line-height: 1.7; }
+    .director-cut { background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 18px; font-size: 15px; color: #475569; margin: 18px 0; }
+    .nav-bar { margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn-nav { background: linear-gradient(135deg, #ea580c, #c2410c); color: #fff; text-decoration: none; font-size: 14.5px; font-weight: 800; padding: 12px 24px; border-radius: 24px; box-shadow: 0 4px 12px rgba(194, 65, 12, 0.25); transition: transform 0.2s; }
+    .btn-nav:hover { transform: translateY(-2px); }
   </style>
 </head>
 <body>
   <div class="book-container">
     <header class="novel-cover">
-      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제4화 (광주 편)</div>
+      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제4화 (광주 편 - 폭소&교훈 에디션)</div>
       <h1 class="novel-title">인싸가족 : 시트콤 뮤지컬</h1>
-      <div class="novel-subtitle">제4편 : 빛고을 광주 충장로 댄스 배틀</div>
+      <div class="novel-subtitle">제4편 : 광주 충장로 댄스 배틀과 황금 상추튀김의 비밀</div>
       <div class="cover-poster-wrap">
-        <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
-          <rect width="680" height="360" fill="#fff1f2"/>
-          <!-- 광주 충장로 스트리트 그래피티 배경 -->
-          <text x="340" y="90" font-size="50" font-weight="900" fill="#fecdd3" text-anchor="middle">GWANGJU STREET</text>
-          <!-- 힙합 크루와 배틀 뜨는 봉자 -->
-          <circle cx="240" cy="210" r="30" fill="#fed7aa"/>
-          <path d="M210 200 Q240 150 270 200" fill="#db2777"/>
-          <rect x="220" y="245" width="40" height="60" rx="8" fill="#ec4899"/>
-          <!-- 상추튀김 봉지 들고 락킹 추는 봉두 -->
-          <ellipse cx="440" cy="205" rx="44" ry="38" fill="#fed7aa"/>
-          <rect x="405" y="245" width="70" height="65" rx="16" fill="#3b82f6"/>
-          <rect x="480" y="210" width="28" height="35" rx="6" fill="#a7f3d0"/>
-          <text x="494" y="232" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">상추</text>
-          <text x="340" y="340" font-size="15" font-weight="900" fill="#9f1239" text-anchor="middle">🔥 충장로를 뒤흔든 스트리트 댄스 대격돌!</text>
+        <svg viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gwangjuSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fdba74"/>
+              <stop offset="60%" stop-color="#fb923c"/>
+              <stop offset="100%" stop-color="#431407"/>
+            </linearGradient>
+          </defs>
+          <rect width="680" height="370" fill="url(#gwangjuSky)"/>
+          <!-- 무등산 서석대 주상절리 실루엣 -->
+          <polygon points="120,230 140,140 170,140 180,230" fill="#78350f" opacity="0.6"/>
+          <polygon points="160,230 180,120 220,120 230,230" fill="#78350f" opacity="0.7"/>
+          <polygon points="210,230 230,130 260,130 270,230" fill="#78350f" opacity="0.6"/>
+          <!-- 광주 충장로 네온사인 무대 바닥 -->
+          <ellipse cx="340" cy="300" rx="320" ry="70" fill="#1e1b4b"/>
+          <path d="M100 290 Q340 260 580 290" stroke="#f43f5e" stroke-width="6" fill="none"/>
+          <!-- 봉자: 힙합 크롭탑 & 조거팬츠로 스트리트 댄스 락킹 자세 -->
+          <circle cx="230" cy="210" r="28" fill="#fed7aa"/>
+          <path d="M205 200 Q230 160 255 200" fill="#db2777"/>
+          <rect x="210" y="240" width="40" height="25" rx="5" fill="#ec4899"/>
+          <!-- 봉두: 싱싱한 초록 상추에 바삭한 튀김을 한가득 쌈 싸서 씹는 모습 -->
+          <ellipse cx="460" cy="220" rx="54" ry="46" fill="#fed7aa"/>
+          <!-- 상추 쌈 -->
+          <path d="M400 240 Q410 210 440 220 Q460 205 480 225 Q500 215 510 245 Z" fill="#22c55e"/>
+          <circle cx="455" cy="235" r="12" fill="#eab308"/> <!-- 바삭한 튀김 -->
+          <text x="525" y="195" font-size="22">🤤</text>
+          <!-- 중앙 예PD: 마이크와 전광판 들고 있는 모습 -->
+          <circle cx="340" cy="215" r="22" fill="#fed7aa"/>
+          <circle cx="340" cy="198" r="15" fill="#10b981"/>
+          <!-- 타이틀 띠 -->
+          <rect x="60" y="325" width="560" height="32" rx="16" fill="rgba(124, 45, 18, 0.9)"/>
+          <text x="340" y="347" font-size="14.5" font-weight="900" fill="#fef08a" text-anchor="middle">🥬 "상추를 튀긴 게 아니라 튀김을 상추에 싸 먹는 거랑께!" 광주 댄스 대첩!</text>
         </svg>
       </div>
       <div class="progress-wrap"><div id="novel-progress" class="progress-bar"></div></div>
     </header>
 
+    <!-- 1장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">👟 1장 / 총 4장</div>
-      <h2 class="chapter-title">1. 충장로 패션의 거리, 라이벌 댄스 크루의 도발</h2>
-      <p class="story-p">광주의 심장 충장로에 도착하자마자 봉자의 눈이 뒤집혔다. 최신 스트리트 패션 편집숍이 즐비한 거리를 걸으며 셀카를 찍던 중, 광주 청소년 댄스 챔피언 크루가 길을 막아섰다.</p>
-      <div class="talk-box talk-bongja"><div class="talk-name" style="color:var(--bongja)">💄 봉자</div>"너희가 인싸가족이라고? 서울에서 좀 떴다고 여기까지 와서 뻐기면 곤란하지!"</div>
-      <p class="story-p">라이벌 크루의 리더가 현란한 힙합 프리스타일을 선보이며 도발했다. 봉자의 승부욕 게이지가 100%를 돌파했다.</p>
-    </section>
+      <div class="chapter-badge">✨ 제1장 / 총 5장</div>
+      <h2 class="chapter-title">1. 빛고을 광주 입성! "상추를 튀겨 먹는다고?!"</h2>
+      <p class="story-p">아침 햇살이 무등산 서석대 주상절리를 눈부시게 비추는 빛고을 광주광역시에 인싸가족 투어 버스가 들어섰다. 패션과 젊음의 거리 충장로에 도착하자마자 봉두는 눈을 동그랗게 뜨고 간판들을 훑었다.</p>
 
-    <section class="chapter-section">
-      <div class="chapter-badge">🥬 2장 / 총 4장</div>
-      <h2 class="chapter-title">2. 광주 명물 상추튀김의 기적</h2>
-      <p class="story-p">그 사이 봉두는 광주 명물 '상추튀김' 분식집을 찾아냈다. 바삭한 오징어 튀김을 양파 간장 고추 절임과 함께 상추에 싸서 한입 가득 우겨넣은 봉두의 눈이 커졌다.</p>
-      <div class="talk-box talk-bongdu"><div class="talk-name" style="color:var(--bongdu)">🍗 봉두</div>"이… 이것은 천상의 맛?! 튀김의 느끼함을 상추가 싹 잡아주잖아! 에너지 풀충전 완료!"</div>
-    </section>
-
-    <section class="chapter-section">
-      <div class="chapter-badge">⚡ 3장 / 총 4장</div>
-      <h2 class="chapter-title">3. 길거리 댄스 버스킹 배틀</h2>
-      <p class="story-p">공연 전 버스킹 무대에서 봉자와 상대 크루의 1:1 댄스 배틀이 성사되었다. 봉자의 파워풀한 걸스힙합에 수백 명의 인파가 모여들었다. 마지막 순간, 상추튀김을 먹고 힘이 솟은 봉두가 돌진했다!</p>
-      <div class="musical-lyrics">
-        "비트에 맞춰 발을 굴러 쿵쿵타~ (봉자)<br>
-        상추튀김 먹고 파워 웨이브 발사! (봉두)<br>
-        빛고을의 열정으로 다 함께 점프!"
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (군침을 꼴깍 삼키며)</div>
+        "누나 누나! 저기 봐봐! **‘원조 상추튀김’**이래! 세상에... 텃밭에서 딴 초록 상추를 기름에 바삭하게 튀겨 먹는 거야?! 기름기 가득한 야채 튀김인가?!"
       </div>
-      <p class="story-p">봉두는 특유의 거대한 머리를 활용한 '헤드 슬라이딩 윈드밀'을 선보였고, 상대 크루 리더마저 "대단한 헤드 무게중심이다!"라며 엄지를 치켜세웠다. <span class="sfx">환호성 뿜뿜!</span></p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (한심하다는 듯 혀를 차며)</div>
+        "어휴, 무식하기는! 상추를 튀긴 게 아니라, 바삭한 오징어 채소 튀김을 싱싱한 상추에 얹고 청양고추 양파간장을 곁들여 고기 쌈처럼 싸 먹는 광주만의 소울푸드거든? 뷰티 인싸는 전국 먹거리 트렌드도 꿰뚫고 있어야 하는 법이야!"
+      </div>
+
+      <p class="story-p">예PD가 버스에서 큐시트를 챙기며 두 사람을 불렀다. 충장로 야외 특설무대에서는 오늘 광주 청소년 댄스 크루와의 **‘1:1 스트리트 댄스 배틀 컬래버레이션’**이 예정되어 있었다.</p>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>
+        "광주는 방탄소년단 제이홉을 배출한 전설적인 댄스의 성지야! 오늘 관객들은 웬만한 웨이브나 팝핀엔 꿈쩍도 안 해. 서로 질투하지 말고 완벽한 팀워크를 보여줘야 한다!"
+      </div>
     </section>
 
+    <!-- 2장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">🚅 4장 / 총 4장</div>
-      <h2 class="chapter-title">4. 광주 본공연 매진과 다음 행선지</h2>
-      <p class="story-p">광주예술의전당 본무대는 버스킹 배틀의 열기 덕에 전석 매진 신화를 썼다. 라이벌 크루와 함께한 합동 피날레 댄스로 관객들은 열광의 도가니에 빠졌다.</p>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"완벽했어! 이제 과학과 빵의 도시 **대전**으로 간다! 튀김소보로 빵 축제가 우리를 부르고 있어!"</div>
+      <div class="chapter-badge">🥊 제2장 / 총 5장</div>
+      <h2 class="chapter-title">2. 봉자의 센터 욕심과 삐걱거리는 남매</h2>
+      <p class="story-p">하지만 대기실에 들어서자마자 남매의 고질병인 **'센터 쟁탈전'**이 터졌다. 봉자는 오늘 광주 공연에서 자신의 춤 실력을 독보적으로 보여주겠다며, 엔딩 포즈에서 봉두를 무대 구석으로 밀어내는 안무 수정을 일방적으로 통보한 것이다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자</div>
+        "봉두 너는 머리가 너무 커서 센터에 서면 조명이 네 머리에 다 가려져! 게다가 넌 춤도 뻣뻣하잖아. 넌 옆에서 상추쌈이나 먹는 코믹 연기만 해. 엔딩 솔로는 이 봉자님이 장식한다!"
+      </div>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (입술을 삐죽이며 토라진 목소리로)</div>
+        "치... 나도 14년 동안 방구석에서 리듬 게임 퍼펙트 콤보 친 경력이 있거든? 나도 멋있게 팝핀 꺾고 싶단 말이야! 맨날 나보고만 바보 몸개그 하라 그러고... 나 공연 안 해!"
+      </div>
+
+      <p class="story-p">삐친 봉두는 연습실 구석에 주저앉아 입을 꾹 닫아버렸다. 손발이 전혀 맞지 않는 상태로 리허설 시간이 닥쳐왔다.</p>
     </section>
 
+    <!-- 3장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🥬 제3장 / 총 5장</div>
+      <h2 class="chapter-title">3. 상추튀김 할머니의 한마디 "어울려야 제맛이랑께!"</h2>
+      <p class="story-p">분위기가 냉랭해지자, 공연장 앞 노포 '충장 상추튀김' 사장님인 순덕 할머니가 갓 튀긴 바삭한 튀김 한 바구니와 싱싱한 상추, 매콤한 양파장을 들고 찾아왔다.</p>
+
+      <div class="talk-box talk-guest">
+        <div class="talk-name" style="color:#a16207">👵 상추튀김 순덕 할머니 (푸근한 사투리로)</div>
+        "아따 아그들아, 왜 그리 볼때기가 퉁퉁 부어있냐? 싸우지 말고 이것 좀 묵어봐라. 자, 봉두 너는 상추 손바닥에 쫙 펴고, 봉자 너는 그 위에 노릇노릇한 오징어 튀김 하나 얹어봐야."
+      </div>
+
+      <p class="story-p">할머니는 투닥거리는 두 남매의 손을 맞잡게 한 뒤, 상추 위에 튀김과 청양고추 간장 한 조각을 올려 함께 쌈을 싸서 둘의 입에 쏙 넣어주었다. <span class="sfx">아삭- 바사사삭!</span></p>
+
+      <div class="talk-box talk-guest">
+        <div class="talk-name" style="color:#a16207">👵 상추튀김 순덕 할머니</div>
+        "맛이 어떠냐? 기가 막히제? 상추만 먹으면 심심하고, 튀김만 먹으면 기름져서 느끼해. 근디 상추의 싱그러운 풋내랑 튀김의 고소함, 양파장의 톡 쏘는 매운맛이 한데 어우러져야 비로소 명품 상추튀김이 되는 법이여. 사람 사는 것도, 춤추는 무대도 똑같제. 혼자 잘났다고 튀면 오래 못 간다 아가."
+      </div>
+
+      <p class="story-p">입안 가득 번지는 고소하고 상큼한 풍미 속에서 봉자는 가슴 한구석이 찌릿해졌다. 봉두의 묵직한 베이스 댄스와 유머러스한 리듬감이 없었다면, 지금까지 서울, 성남, 안동 공연의 폭발적인 반응도 없었을 터였다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (머리를 긁적이며)</div>
+        "봉두야... 미안해. 내가 너무 돋보이고 싶어서 네 역할을 무시했어. 네 묵직한 박자감에 맞춰서 같이 춤추자. 상추랑 튀김처럼!"
+      </div>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (상추쌈 세 개를 한입에 우겨넣으며 감동의 눈물)</div>
+        "누나... 우물우물... 나 용서해 주는 거야? 그럼 엔딩 때 내가 누나를 번쩍 들어 올리는 리프팅 댄스 보여줄게!"
+      </div>
+    </section>
+
+    <!-- 4장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🔥 제4장 / 총 5장</div>
+      <h2 class="chapter-title">4. 충장로 댄스 배틀 대폭발! 상추쌈 칼군무</h2>
+      <p class="story-p">충장로 차 없는 거리 야외무대. 광주의 내로라하는 청소년 힙합 크루들이 현란한 헤드스핀과 윈드밀을 선보인 뒤 마이크를 인싸가족에게 넘겼다. <span class="sfx">두둥 둥- 딱!</span> 빠른 브레이크비트가 울려 퍼졌다.</p>
+
+      <p class="story-p">무대에 오른 봉자는 유려하고 날렵한 걸스힙합 웨이브로 무대를 열었고, 그 곁을 받치는 봉두는 마치 쿵푸 팬더처럼 묵직하면서도 정확한 박자의 락킹을 꽂아 넣었다. 둘의 호흡은 마치 물 만난 물고기 같았다!</p>
+
+      <div class="musical-lyrics">
+        <span class="lyrics-tag">🎵 넘버 : 충장로 상추튀김 댄스 하모니</span><br>
+        "상추처럼 싱그럽게 감싸 안아주고~ (봉자)<br>
+        튀김처럼 바삭하고 고소하게 힘을 실어줘! (봉두)<br>
+        혼자 서면 외로운 작은 점이지만,<br>
+        함께 추면 온 세상을 밝히는 별빛이 된다!<br>
+        빛고을 광주여 우리의 뜨거운 화음을 받아라! (합창)"
+      </div>
+
+      <p class="story-p">하이라이트 순간, 봉두가 두 발로 무대를 단단히 디디며 봉자의 허리를 안정적으로 받쳐 번쩍 들어 올렸다! 봉자는 공중에서 완벽한 스플릿(다리 찢기)을 펼치며 엔딩 포즈를 완성했다. 관객 5천여 명이 동시에 환호성을 지르며 엄지를 치켜세웠다. <span class="sfx">와아아아- 앙코르!!</span></p>
+    </section>
+
+    <!-- 5장 & 교훈 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🌱 제5장 / 교훈과 다음 여정</div>
+      <h2 class="chapter-title">5. 빛고을이 가르쳐준 지혜, 그리고 과학 도시 대전으로!</h2>
+      <p class="story-p">상대 크루 댄서들도 무대로 뛰어올라 봉자와 봉두에게 악수를 청했다. "최고의 배틀이었습니다! 서로를 믿고 받쳐주는 남매의 호흡이 충장로를 뒤집어 놓았어요!"</p>
+
+      <!-- 어린이 독자를 위한 교훈 상자 -->
+      <div class="lesson-box">
+        <div class="lesson-title">💡 [인싸가족 생각 돋보기] 상추튀김이 알려주는 협동의 지혜</div>
+        <div class="lesson-text">
+          광주의 명물 상추튀김은 상추의 아삭함과 튀김의 고소함이 서로를 보완할 때 가장 훌륭한 맛을 냅니다.<br>
+          학교나 가정에서도 나 혼자만 주인공이 되려고 고집하기보다, 친구나 형제자매의 장점을 인정하고 서로를 배려하며 힘을 합칠 때 훨씬 더 눈부신 결과를 만들어낼 수 있답니다!
+        </div>
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (지도의 4번째 깃발을 꽂으며)</div>
+        "광주 시민들의 뜨거운 에너지를 듬뿍 받았다! 다음 행선지는 대한민국 과학과 빵의 수도, **대전 엑스포**다! 성심당 튀김소보로와 꿈돌이가 우릴 기다린다!"
+      </div>
+
+      <div class="director-cut">
+        🎬 <b>광주 투어 비하인드 쿠키 영상 :</b><br>
+        공연이 끝난 뒤 순덕 할머니가 싸주신 상추튀김 10인분을 투어 버스 안에서 봉두 혼자 8인분 해치웠다. 배가 터질 듯 부풀어 오른 봉두는 "상추는 채소니까 살 안 쪄!"라고 주장하다가 봉자에게 등짝을 사정없이 맞았다.
+      </div>
+    </section>
+
+    <!-- 하단 내비게이션 -->
     <div class="nav-bar">
       <a href="inssa03.html" class="btn-nav" style="background: #64748b;">⬅️ 제3편 (안동 편)</a>
-      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털</a>
+      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털 허브</a>
       <a href="inssa05.html" class="btn-nav">제5편 (대전 편) ➡️</a>
     </div>
   </div>
+
   <script>
     window.addEventListener('scroll', () => {
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;

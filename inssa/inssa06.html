@@ -3,101 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>인싸가족 시트콤 뮤지컬 - 제6편 : 푸른 섬 제주도 감귤 농장과 돌하르방 댄스</title>
+  <title>인싸가족 시트콤 뮤지컬 - 제6편 : 제주도 푸른 바다의 감귤 농장과 돌하르방의 가르침</title>
   <style>
-    :root { --primary: #f97316; --bg: #fff7ed; --card-bg: #ffffff; --text-main: #1f2937; --border: #fed7aa; --bongja: #ec4899; --bongdu: #3b82f6; --yepd: #10b981; }
+    :root { 
+      --primary: #f97316; 
+      --bg: #fff7ed; 
+      --card-bg: #ffffff; 
+      --text-main: #1f2937; 
+      --border: #fed7aa; 
+      --bongja: #ec4899; 
+      --bongdu: #3b82f6; 
+      --yepd: #10b981; 
+      --lesson: #6366f1;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; }
-    body { background: radial-gradient(circle at 50% 0%, #ffedd5 0%, #fff7ed 100%); color: var(--text-main); padding: 20px 14px; line-height: 1.85; font-size: 17px; }
-    .book-container { max-width: 720px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 28px; box-shadow: 0 12px 36px rgba(249, 115, 22, 0.15); padding: 30px 24px; }
-    .novel-cover { text-align: center; margin-bottom: 28px; }
-    .tour-badge { display: inline-block; background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; font-size: 13px; font-weight: 800; padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; }
-    .novel-title { font-size: 26px; font-weight: 900; color: #9a3412; line-height: 1.35; margin-bottom: 6px; }
-    .novel-subtitle { font-size: 17px; font-weight: 800; color: #c2410c; margin-bottom: 18px; }
-    .cover-poster-wrap { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
+    body { background: radial-gradient(circle at 50% 0%, #ffedd5 0%, #fff7ed 100%); color: var(--text-main); padding: 24px 14px; line-height: 1.9; font-size: 17.5px; }
+    .book-container { max-width: 740px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 30px; box-shadow: 0 16px 40px rgba(249, 115, 22, 0.16); padding: 36px 28px; }
+    .novel-cover { text-align: center; margin-bottom: 30px; }
+    .tour-badge { display: inline-block; background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; font-size: 13.5px; font-weight: 800; padding: 6px 18px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(234, 88, 12, 0.25); }
+    .novel-title { font-size: 28px; font-weight: 900; color: #9a3412; line-height: 1.35; margin-bottom: 8px; }
+    .novel-subtitle { font-size: 18px; font-weight: 800; color: #c2410c; margin-bottom: 20px; }
+    .cover-poster-wrap { width: 100%; border-radius: 22px; overflow: hidden; margin-bottom: 22px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
     .cover-poster-wrap svg { width: 100%; height: auto; display: block; }
-    .progress-wrap { background: #ffedd5; border-radius: 10px; height: 8px; margin-bottom: 28px; overflow: hidden; }
+    .progress-wrap { background: #ffedd5; border-radius: 10px; height: 9px; margin-bottom: 30px; overflow: hidden; }
     .progress-bar { height: 100%; background: linear-gradient(90deg, #f97316, #fb923c); width: 0%; transition: width 0.3s; }
-    .chapter-section { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 2px dashed var(--border); }
-    .chapter-badge { display: inline-flex; font-size: 12px; font-weight: 800; color: #c2410c; background: #ffedd5; padding: 4px 12px; border-radius: 12px; margin-bottom: 10px; }
-    .chapter-title { font-size: 20px; font-weight: 900; color: #7c2d12; margin-bottom: 16px; }
-    .story-p { margin-bottom: 16px; text-indent: 8px; word-break: keep-all; }
-    .talk-box { margin: 14px 0; padding: 12px 16px; border-radius: 14px; font-size: 16px; line-height: 1.6; border-left: 5px solid #ccc; }
+    .chapter-section { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 2px dashed var(--border); }
+    .chapter-badge { display: inline-flex; font-size: 12.5px; font-weight: 800; color: #c2410c; background: #ffedd5; padding: 4px 14px; border-radius: 14px; margin-bottom: 12px; border: 1px solid #fed7aa; }
+    .chapter-title { font-size: 22px; font-weight: 900; color: #7c2d12; margin-bottom: 18px; }
+    .story-p { margin-bottom: 18px; text-indent: 10px; word-break: keep-all; }
+    .talk-box { margin: 16px 0; padding: 14px 18px; border-radius: 16px; font-size: 16.5px; line-height: 1.65; border-left: 6px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     .talk-bongja { background: #fdf2f8; border-left-color: var(--bongja); color: #831843; }
     .talk-bongdu { background: #eff6ff; border-left-color: var(--bongdu); color: #1e3a8a; }
     .talk-yepd { background: #ecfdf5; border-left-color: var(--yepd); color: #064e3b; }
-    .talk-name { font-weight: 900; font-size: 13px; margin-bottom: 4px; }
-    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 2px 8px; border-radius: 6px; font-size: 14px; margin: 0 4px; }
-    .musical-lyrics { background: linear-gradient(135deg, #fff7ed, #fdf2f8); border: 2px solid #fed7aa; border-radius: 16px; padding: 16px 20px; margin: 20px 0; text-align: center; font-style: italic; color: #7c2d12; font-weight: 700; }
-    .nav-bar { margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .btn-nav { background: linear-gradient(135deg, #f97316, #c2410c); color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 24px; }
+    .talk-guest { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+    .talk-name { font-weight: 900; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 3px 9px; border-radius: 8px; font-size: 14px; margin: 0 4px; border: 1px solid #fed7aa; }
+    .musical-lyrics { background: linear-gradient(135deg, #fff7ed, #ecfdf5); border: 2px solid #fed7aa; border-radius: 18px; padding: 20px 22px; margin: 24px 0; text-align: center; color: #9a3412; font-weight: 700; line-height: 1.85; box-shadow: inset 0 2px 6px rgba(249, 115, 22, 0.08); }
+    .lyrics-tag { display: inline-block; background: #ea580c; color: #fff; font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 10px; margin-bottom: 8px; }
+    .lesson-box { background: linear-gradient(135deg, #eef2ff, #f5f3ff); border: 2px solid #c7d2fe; border-radius: 18px; padding: 18px 22px; margin: 24px 0; }
+    .lesson-title { font-size: 16px; font-weight: 900; color: #4338ca; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .lesson-text { font-size: 15.5px; color: #312e81; line-height: 1.7; }
+    .director-cut { background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 18px; font-size: 15px; color: #475569; margin: 18px 0; }
+    .nav-bar { margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn-nav { background: linear-gradient(135deg, #f97316, #c2410c); color: #fff; text-decoration: none; font-size: 14.5px; font-weight: 800; padding: 12px 24px; border-radius: 24px; box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25); transition: transform 0.2s; }
+    .btn-nav:hover { transform: translateY(-2px); }
   </style>
 </head>
 <body>
   <div class="book-container">
     <header class="novel-cover">
-      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제6화 (제주도 편)</div>
+      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제6화 (제주도 편 - 폭소&교훈 에디션)</div>
       <h1 class="novel-title">인싸가족 : 시트콤 뮤지컬</h1>
-      <div class="novel-subtitle">제6편 : 푸른 섬 제주도 감귤 농장과 돌하르방 댄스</div>
+      <div class="novel-subtitle">제6편 : 제주도 푸른 바다의 감귤 농장과 돌하르방의 가르침</div>
       <div class="cover-poster-wrap">
-        <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
-          <rect width="680" height="360" fill="#bae6fd"/>
-          <!-- 제주 한라산과 야자수 -->
-          <polygon points="340,80 180,240 500,240" fill="#10b981"/>
-          <path d="M0 240 Q340 210 680 240 L680 360 L0 360 Z" fill="#fde047"/>
-          <!-- 귤 모자를 쓴 봉자 -->
+        <svg viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="jejuSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="60%" stop-color="#bae6fd"/>
+              <stop offset="100%" stop-color="#fed7aa"/>
+            </linearGradient>
+          </defs>
+          <rect width="680" height="370" fill="url(#jejuSky)"/>
+          <!-- 한라산 능선 -->
+          <polygon points="340,70 120,260 560,260" fill="#10b981" opacity="0.8"/>
+          <!-- 에메랄드빛 해변 모래사장 -->
+          <ellipse cx="340" cy="330" rx="340" ry="70" fill="#fde047"/>
+          <!-- 야자수 -->
+          <path d="M90 280 Q105 180 85 130" stroke="#78350f" stroke-width="8" fill="none"/>
+          <path d="M85 130 Q40 110 20 140 M85 130 Q90 90 120 120 M85 130 Q130 110 150 140" stroke="#15803d" stroke-width="6" fill="none"/>
+          <!-- 돌하르방 -->
+          <rect x="480" y="150" width="70" height="130" rx="25" fill="#475569"/>
+          <circle cx="515" cy="185" r="14" fill="#334155"/> <!-- 코 -->
+          <ellipse cx="498" cy="175" rx="5" ry="8" fill="#1e293b"/>
+          <ellipse cx="532" cy="175" rx="5" ry="8" fill="#1e293b"/>
+          <!-- 봉자: 훌라 치마 입고 감귤 모자 날아가는 모습 -->
           <circle cx="230" cy="210" r="28" fill="#fed7aa"/>
-          <circle cx="230" cy="180" r="16" fill="#f97316"/>
-          <line x1="230" y1="164" x2="230" y2="158" stroke="#15803d" stroke-width="3"/>
-          <!-- 돌하르방 코를 만지며 소원 비는 봉두 -->
-          <rect x="420" y="160" width="60" height="110" rx="20" fill="#475569"/>
-          <circle cx="450" cy="190" r="12" fill="#334155"/>
-          <ellipse cx="360" cy="220" rx="42" ry="36" fill="#fed7aa"/>
-          <text x="340" y="340" font-size="15" font-weight="900" fill="#9a3412" text-anchor="middle">🍊 낭만 가득 제주 바다에서 펼쳐진 하와이안 훌라 댄스!</text>
+          <circle cx="200" cy="150" r="14" fill="#f97316"/> <!-- 날아가는 귤 모자 -->
+          <path d="M195 245 L265 245 L280 320 L180 320 Z" fill="#22c55e"/> <!-- 풀잎 훌라 치마 -->
+          <!-- 봉두: 야자수 잎 머리에 두르고 훌라 댄스 -->
+          <ellipse cx="360" cy="230" rx="50" ry="44" fill="#fed7aa"/>
+          <path d="M330 185 Q360 170 390 185" stroke="#16a34a" stroke-width="8" fill="none"/>
+          <!-- 타이틀 띠 -->
+          <rect x="60" y="325" width="560" height="32" rx="16" fill="rgba(154, 52, 18, 0.9)"/>
+          <text x="340" y="347" font-size="14.5" font-weight="900" fill="#fef08a" text-anchor="middle">🍊 거센 바닷바람에 날아간 가발! 돌하르방도 웃게 만든 자연인 훌라쇼!</text>
         </svg>
       </div>
       <div class="progress-wrap"><div id="novel-progress" class="progress-bar"></div></div>
     </header>
 
+    <!-- 1장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">🌴 1장 / 총 4장</div>
-      <h2 class="chapter-title">1. 바람과 돌과 인싸의 섬 제주</h2>
-      <p class="story-p">제주공항에 내리자 이국적인 야자수와 시원한 바닷바람이 셋을 반겼다. 봉자는 주황색 감귤 니트 모자를 쓰고 인스타 감성 숏폼 영상 촬영에 열을 올렸다.</p>
-      <div class="talk-box talk-bongja"><div class="talk-name" style="color:var(--bongja)">💄 봉자</div>"제주 감성 완전 미쳤잖아! 한라봉 들고 챌린지 찍으면 조회수 200만 각이다!"</div>
-      <p class="story-p">그 사이 봉두는 공항 돌하르방의 커다란 코를 만지며 간절하게 빌고 있었다. "돌하르방님, 오늘 저녁 흑돼지 무한리필 10인분 먹게 해주세요!"</p>
-    </section>
+      <div class="chapter-badge">🌴 제1장 / 총 5장</div>
+      <h2 class="chapter-title">1. 바람, 돌, 그리고 감귤의 파라다이스 제주</h2>
+      <p class="story-p">김포공항에서 비행기를 타고 푸른 바다를 건너 제주국제공항에 도착하자, 야자수 사이로 불어오는 시원한 갯내음과 따사로운 햇살이 인싸가족을 품에 안았다. 전국투어 12개 도시 중 정확히 반환점인 6번째 도시였다.</p>
 
-    <section class="chapter-section">
-      <div class="chapter-badge">🌊 2장 / 총 4장</div>
-      <h2 class="chapter-title">2. 서귀포 야외 해변 특설무대</h2>
-      <p class="story-p">이번 무대는 실내 극장이 아닌 서귀포 중문 해변의 파도 소리가 들리는 야외 특설무대였다. 예PD는 트로피컬 하와이안 셔츠를 입고 흥겨운 우쿨렐레 반주를 준비했다.</p>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"제주 바다를 배경으로 한 훌라 댄스 뮤지컬이야! 바람이 좀 강하니까 가발이랑 소품 안 날아가게 조심해!"</div>
-    </section>
-
-    <section class="chapter-section">
-      <div class="chapter-badge">🌺 3장 / 총 4장</div>
-      <h2 class="chapter-title">3. 돌풍에 날아간 봉자의 감귤 모자</h2>
-      <p class="story-p">공연이 시작되고 파도 소리와 함께 경쾌한 음악이 울려 퍼졌다. 그런데 제주 특유의 거센 바닷바람이 불어닥치며 봉자의 감귤 모자가 객석으로 휙 날아가 버렸다!</p>
-      <div class="musical-lyrics">
-        "푸른 바다 위로 은빛 파도가 부서질 때~ (봉자)<br>
-        바람아 멈추어다오, 내 머리 스타일 망가진다! (봉자)<br>
-        흑돼지 냄새가 바람 타고 날아오네~ (봉두)"
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (주황색 귤 모자를 쓰고 선글라스를 올리며)</div>
+        "와아! 서귀포 중문 앞바다 에메랄드빛 실화냐?! 오늘 무대는 서핑 보드 위에서 추는 하와이안 훌라 댄스야! 사진 1만 장 찍어서 피드에 도배할 거야!"
       </div>
-      <p class="story-p">모자가 날아가 당황한 봉자를 위해, 봉두가 무대 옆 야자수 잎사귀를 머리에 두르고 나와 '자연인 훌라 댄스'를 추며 관객들을 폭소의 도가니로 몰아넣었다. <span class="sfx">꺄르륵 빵빵!</span></p>
+
+      <p class="story-p">한편 봉두는 공항 입구의 거대한 돌하르방을 보자마자 양손으로 하르방의 뭉툭한 코를 꽉 쥐고 간절하게 기도를 올리고 있었다.</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (눈을 꼭 감고 중얼거리며)</div>
+        "돌하르방 삼촌님! 돌하르방 코를 만지면 소원이 이루어진다면서요? 오늘 저녁 제주 흑돼지 오겹살 무한리필 12인분 먹게 해주시고, 귤 따기 체험장 가서 나무째로 다 먹게 해주세요!"
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (한숨을 푹 쉬며)</div>
+        "돌하르방 코는 아들 낳게 해달라는 전설이지 돼지고기 무한리필 쿠폰 발급기가 아니란다... 얘들아, 오늘은 실내 극장이 아니라 파도가 치는 해변 야외 특설무대야. 바람이 거세니까 소품 간수에 목숨 걸어야 해!"
+      </div>
     </section>
 
+    <!-- 2장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">🚢 4장 / 총 4장</div>
-      <h2 class="chapter-title">4. 반환점을 돌다, 서해안 관문 인천으로!</h2>
-      <p class="story-p">노을 지는 제주 바다를 뒤로하고 관객 전원이 일어나 함께 춤추는 감동의 커튼콜이 펼쳐졌다. 12개 도시 중 벌써 절반인 6번째 도시를 성공적으로 마친 것이었다.</p>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"투어 6회 차 완벽 성공! 자, 이제 다시 비행기 타고 수도권 관문 항구 도시, **인천**으로 직행한다! 차이나타운 짜장면이 기다린다!"</div>
+      <div class="chapter-badge">💨 제2장 / 총 5장</div>
+      <h2 class="chapter-title">2. 삼다도(三多島)의 돌풍! 날아간 가발과 멘붕의 봉자</h2>
+      <p class="story-p">제주는 예로부터 돌, 바람, 여자가 많다고 하여 삼다도라 불렸다. 리허설이 시작되고 야외무대에 앰프가 켜지자마자, 갑자기 서귀포 앞바다에서 태풍급 돌풍이 휘몰아쳤다! <span class="sfx">슈우우우웅- 휘이잉!</span></p>
+
+      <p class="story-p">"어어? 내 귤 모자!" 봉자가 비명을 지르는 순간, 봉자의 애장품 귤 모자는 물론, 화려하게 세팅했던 붙임머리 가발 피스까지 바람을 타고 바다 쪽 객석으로 포물선을 그리며 날아가 버렸다!</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (헝클어진 산발 머리를 감싸 쥐며 울먹임)</div>
+        "으앙! 망했어! 내 풀 세팅 헤어스타일 어떡해?! 앞머리 다 까지고 꼴이 엉망진창이야! 나 창피해서 무대 못 나가!!"
+      </div>
+
+      <p class="story-p">완벽주의 뷰티 인싸인 봉자에게 머리 스타일이 망가진 채 수천 명 관객 앞에 서는 것은 세상이 무너지는 일이었다. 관객들은 이미 백사장에 가득 차 환호하고 있었고, 오프닝 음악은 카운트다운을 시작했다.</p>
     </section>
 
+    <!-- 3장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🌿 제3장 / 총 5장</div>
+      <h2 class="chapter-title">3. 야자수 잎을 꺾어 든 봉두의 자연인 구원 투수</h2>
+      <p class="story-p">무대 뒤에서 멘붕에 빠져 주저앉은 누나를 본 봉두. 평소에는 매일 치고받고 싸우던 동생이었지만, 누나가 울먹이는 모습을 보자 14세 상남자 봉두의 눈빛이 달라졌다.</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두</div>
+        "누나! 머리 좀 헝클어지면 어때? 제주 바다 바람맞으면서 춤추는 게 진짜 자연산 인싸지! 내가 도와줄게!"
+      </div>
+
+      <p class="story-p">봉두는 무대 옆 조경용 야자수 잎사귀를 덥석 꺾어 자신의 커다란 대두에 화관처럼 둘렀다. 그리고 귤 농장 아저씨가 간식으로 준 귤 두 개를 귀마개처럼 양 귀에 꽂고는 무대 중앙으로 당당하게 뛰어나갔다!</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (우쿨렐레 반주에 맞춰 파격 훌라 댄스 개시)</div>
+        "혼저옵서예! 제주 바다의 수호신, 야자수 대두 하르방이 나가신다!!"
+      </div>
+
+      <p class="story-p">봉두가 뱃살을 출렁이며 파도 타듯 선보인 '자연인 야자수 훌라 댄스'에 객석의 5천 관객들이 배를 잡고 뒤집어졌다. <span class="sfx">푸하하하- 꺄르륵!!</span> 봉두의 살신성인 몸개그 덕분에 무대 위의 어색한 침묵이 순식간에 뜨거운 폭소로 바뀌었다.</p>
+    </section>
+
+    <!-- 4장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🌺 제4장 / 총 5장</div>
+      <h2 class="chapter-title">4. 있는 그대로의 당당함! 노을빛 해변 피날레</h2>
+      <p class="story-p">동생의 용기 있는 무대에 감동한 봉자는 눈물을 닦았다. 봉자는 거울 속 망가진 머리를 털어내고, 무대 옆 동백꽃 한 송이를 머리에 꽂은 채 맨발로 모래사장을 밟으며 무대로 뛰어나왔다.</p>
+
+      <div class="musical-lyrics">
+        <span class="lyrics-tag">🎵 넘버 : 바람 부는 제주 바다의 자연인 훌라</span><br>
+        "바람아 불어라, 내 화장을 지워도 좋아~ (봉자)<br>
+        있는 그대로의 내 모습이 가장 눈부시니까!<br>
+        야자수 잎 머리에 두르고 파도와 함께 흔들어~ (봉두)<br>
+        흑돼지보다 쫄깃하고 한라봉보다 상큼한 우리 남매!<br>
+        푸른 섬 제주에서 근심 걱정 모두 날려 보내자! (합창)"
+      </div>
+
+      <p class="story-p">바람에 머리칼이 휘날렸지만 봉자의 미소는 그 어느 때보다 찬란했다. 서귀포 앞바다가 붉은 노을로 물들고, 관객 전원이 손을 잡고 훌라 댄스를 추며 감동의 파도타기를 완성했다.</p>
+    </section>
+
+    <!-- 5장 & 교훈 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🍊 제5장 / 교훈과 다음 여정</div>
+      <h2 class="chapter-title">5. 반환점을 돌며, 이제 서해 관문 인천으로!</h2>
+
+      <!-- 어린이 독자를 위한 교훈 상자 -->
+      <div class="lesson-box">
+        <div class="lesson-title">💡 [인싸가족 생각 돋보기] 겉모습보다 더 빛나는 마음의 당당함</div>
+        <div class="lesson-text">
+          우리는 종종 옷차림이나 겉모습이 조금만 흐트러져도 다른 사람들의 시선이 두려워 움츠러들곤 합니다.<br>
+          하지만 진짜 아름다움은 완벽하게 꾸며진 가발이나 화장이 아니라, 위기 앞에서도 웃음을 잃지 않고 서로를 감싸주는 따뜻한 마음과 당당한 자신감에서 나온답니다!
+        </div>
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (감격에 젖어)</div>
+        "전국 12개 도시 중 벌써 절반인 6개 도시 완주 성공이다! 자, 감동을 뒤로하고 비행기 타고 수도권의 서해안 관문 항구 도시, **인천**으로 날아간다! 월미도 디스코팡팡과 차이나타운 짜장면이 기다린다!"
+      </div>
+
+      <div class="director-cut">
+        🎬 <b>제주 투어 비하인드 쿠키 영상 :</b><br>
+        공연 후 감귤 농장에서 귤 따기 알바를 돕던 봉두. 귤 10개를 따면 8개를 그 자리에서 까먹어 농장 사장님이 "도련님... 귤 따러 온 거요, 농장 털러 온 거요?"라며 혀를 내둘렀다.
+      </div>
+    </section>
+
+    <!-- 하단 내비게이션 -->
     <div class="nav-bar">
       <a href="inssa05.html" class="btn-nav" style="background: #64748b;">⬅️ 제5편 (대전 편)</a>
-      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털</a>
+      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털 허브</a>
       <a href="inssa07.html" class="btn-nav">제7편 (인천 편) ➡️</a>
     </div>
   </div>
+
   <script>
     window.addEventListener('scroll', () => {
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;

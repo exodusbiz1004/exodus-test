@@ -3,117 +3,197 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>인싸가족 시트콤 뮤지컬 - 제8편 : 고양 일산 호수공원과 냥이탈 댄스 페스티벌</title>
+  <title>인싸가족 시트콤 뮤지컬 - 제8편 : 고양 일산 호수공원과 끼어버린 냥이탈의 교훈</title>
   <style>
-    :root { --primary: #f97316; --bg: #fff7ed; --card-bg: #ffffff; --text-main: #1f2937; --border: #fed7aa; --bongja: #ec4899; --bongdu: #3b82f6; --yepd: #10b981; }
+    :root { 
+      --primary: #10b981; 
+      --bg: #f0fdf4; 
+      --card-bg: #ffffff; 
+      --text-main: #1f2937; 
+      --border: #bbf7d0; 
+      --bongja: #ec4899; 
+      --bongdu: #3b82f6; 
+      --yepd: #10b981; 
+      --lesson: #6366f1;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; }
-    body { background: radial-gradient(circle at 50% 0%, #ffedd5 0%, #fff7ed 100%); color: var(--text-main); padding: 20px 14px; line-height: 1.85; font-size: 17px; }
-    .book-container { max-width: 720px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 28px; box-shadow: 0 12px 36px rgba(249, 115, 22, 0.15); padding: 30px 24px; }
-    .novel-cover { text-align: center; margin-bottom: 28px; }
-    .tour-badge { display: inline-block; background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-size: 13px; font-weight: 800; padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; }
-    .novel-title { font-size: 26px; font-weight: 900; color: #9a3412; line-height: 1.35; margin-bottom: 6px; }
-    .novel-subtitle { font-size: 17px; font-weight: 800; color: #c2410c; margin-bottom: 18px; }
-    .cover-poster-wrap { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
+    body { background: radial-gradient(circle at 50% 0%, #dcfce7 0%, #f0fdf4 100%); color: var(--text-main); padding: 24px 14px; line-height: 1.9; font-size: 17.5px; }
+    .book-container { max-width: 740px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 30px; box-shadow: 0 16px 40px rgba(16, 185, 129, 0.16); padding: 36px 28px; }
+    .novel-cover { text-align: center; margin-bottom: 30px; }
+    .tour-badge { display: inline-block; background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-size: 13.5px; font-weight: 800; padding: 6px 18px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(5, 150, 105, 0.25); }
+    .novel-title { font-size: 28px; font-weight: 900; color: #065f46; line-height: 1.35; margin-bottom: 8px; }
+    .novel-subtitle { font-size: 18px; font-weight: 800; color: #047857; margin-bottom: 20px; }
+    .cover-poster-wrap { width: 100%; border-radius: 22px; overflow: hidden; margin-bottom: 22px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
     .cover-poster-wrap svg { width: 100%; height: auto; display: block; }
-    .progress-wrap { background: #ffedd5; border-radius: 10px; height: 8px; margin-bottom: 28px; overflow: hidden; }
-    .progress-bar { height: 100%; background: linear-gradient(90deg, #f97316, #fb923c); width: 0%; transition: width 0.3s; }
-    .chapter-section { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 2px dashed var(--border); }
-    .chapter-badge { display: inline-flex; font-size: 12px; font-weight: 800; color: #c2410c; background: #ffedd5; padding: 4px 12px; border-radius: 12px; margin-bottom: 10px; }
-    .chapter-title { font-size: 20px; font-weight: 900; color: #7c2d12; margin-bottom: 16px; }
-    .story-p { margin-bottom: 16px; text-indent: 8px; word-break: keep-all; }
-    .talk-box { margin: 14px 0; padding: 12px 16px; border-radius: 14px; font-size: 16px; line-height: 1.6; border-left: 5px solid #ccc; }
+    .progress-wrap { background: #dcfce7; border-radius: 10px; height: 9px; margin-bottom: 30px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #10b981, #34d399); width: 0%; transition: width 0.3s; }
+    .chapter-section { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 2px dashed var(--border); }
+    .chapter-badge { display: inline-flex; font-size: 12.5px; font-weight: 800; color: #047857; background: #dcfce7; padding: 4px 14px; border-radius: 14px; margin-bottom: 12px; border: 1px solid #86efac; }
+    .chapter-title { font-size: 22px; font-weight: 900; color: #064e3b; margin-bottom: 18px; }
+    .story-p { margin-bottom: 18px; text-indent: 10px; word-break: keep-all; }
+    .talk-box { margin: 16px 0; padding: 14px 18px; border-radius: 16px; font-size: 16.5px; line-height: 1.65; border-left: 6px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     .talk-bongja { background: #fdf2f8; border-left-color: var(--bongja); color: #831843; }
     .talk-bongdu { background: #eff6ff; border-left-color: var(--bongdu); color: #1e3a8a; }
     .talk-yepd { background: #ecfdf5; border-left-color: var(--yepd); color: #064e3b; }
-    .talk-name { font-weight: 900; font-size: 13px; margin-bottom: 4px; }
-    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 2px 8px; border-radius: 6px; font-size: 14px; margin: 0 4px; }
-    .musical-lyrics { background: linear-gradient(135deg, #f0fdf4, #fefce8); border: 2px solid #86efac; border-radius: 16px; padding: 16px 20px; margin: 20px 0; text-align: center; font-style: italic; color: #166534; font-weight: 700; }
-    .nav-bar { margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .btn-nav { background: linear-gradient(135deg, #f97316, #c2410c); color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 24px; }
+    .talk-name { font-weight: 900; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .sfx { font-weight: 900; color: #059669; background: #dcfce7; padding: 3px 9px; border-radius: 8px; font-size: 14px; margin: 0 4px; border: 1px solid #86efac; }
+    .musical-lyrics { background: linear-gradient(135deg, #f0fdf4, #fefce8); border: 2px solid #86efac; border-radius: 18px; padding: 20px 22px; margin: 24px 0; text-align: center; color: #065f46; font-weight: 700; line-height: 1.85; box-shadow: inset 0 2px 6px rgba(16, 185, 129, 0.08); }
+    .lyrics-tag { display: inline-block; background: #059669; color: #fff; font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 10px; margin-bottom: 8px; }
+    .lesson-box { background: linear-gradient(135deg, #eef2ff, #f5f3ff); border: 2px solid #c7d2fe; border-radius: 18px; padding: 18px 22px; margin: 24px 0; }
+    .lesson-title { font-size: 16px; font-weight: 900; color: #4338ca; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .lesson-text { font-size: 15.5px; color: #312e81; line-height: 1.7; }
+    .director-cut { background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 18px; font-size: 15px; color: #475569; margin: 18px 0; }
+    .nav-bar { margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn-nav { background: linear-gradient(135deg, #10b981, #059669); color: #fff; text-decoration: none; font-size: 14.5px; font-weight: 800; padding: 12px 24px; border-radius: 24px; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25); transition: transform 0.2s; }
+    .btn-nav:hover { transform: translateY(-2px); }
   </style>
 </head>
 <body>
   <div class="book-container">
     <header class="novel-cover">
-      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제8화 (고양 편)</div>
+      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제8화 (고양 편 - 폭소&교훈 에디션)</div>
       <h1 class="novel-title">인싸가족 : 시트콤 뮤지컬</h1>
-      <div class="novel-subtitle">제8편 : 고양 일산 호수공원과 냥이탈 댄스 페스티벌</div>
+      <div class="novel-subtitle">제8편 : 고양 일산 호수공원과 끼어버린 냥이탈의 교훈</div>
       <div class="cover-poster-wrap">
-        <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="goyangBg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#dbeafe"/>
-              <stop offset="100%" stop-color="#bbf7d0"/>
+            <linearGradient id="goyangSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#bae6fd"/>
+              <stop offset="60%" stop-color="#dcfce7"/>
+              <stop offset="100%" stop-color="#fef08a"/>
             </linearGradient>
           </defs>
-          <rect width="680" height="360" fill="url(#goyangBg)"/>
-          <!-- 일산 호수공원 수면과 분수 -->
-          <ellipse cx="340" cy="300" rx="300" ry="60" fill="#38bdf8"/>
-          <path d="M340 300 Q310 160 300 120 M340 300 Q340 130 340 90 M340 300 Q370 160 380 120" stroke="#fff" stroke-width="6" fill="none" opacity="0.8"/>
+          <rect width="680" height="370" fill="url(#goyangSky)"/>
+          <!-- 일산 호수공원 수면과 노래하는 분수대 -->
+          <ellipse cx="340" cy="310" rx="320" ry="60" fill="#38bdf8"/>
+          <path d="M340 310 Q300 160 280 110 M340 310 Q340 140 340 90 M340 310 Q380 160 400 110" stroke="#fff" stroke-width="6" fill="none" opacity="0.8"/>
           <!-- 고양이 귀 머리띠를 쓴 봉자 -->
-          <circle cx="240" cy="210" r="30" fill="#fed7aa"/>
-          <polygon points="215,190 225,160 235,190" fill="#ec4899"/>
-          <polygon points="245,190 255,160 265,190" fill="#ec4899"/>
-          <!-- 커다란 고양이 인형탈이 머리에 꽉 낀 봉두 -->
-          <ellipse cx="440" cy="200" rx="55" ry="50" fill="#f59e0b"/>
-          <polygon points="400,165 410,130 430,165" fill="#f59e0b"/>
-          <polygon points="450,165 470,130 480,165" fill="#f59e0b"/>
-          <circle cx="425" cy="195" r="8" fill="#1e293b"/>
-          <circle cx="455" cy="195" r="8" fill="#1e293b"/>
-          <text x="340" y="340" font-size="15" font-weight="900" fill="#14532d" text-anchor="middle">🐱 고양시 고양이 캐릭터 탈을 쓴 봉두의 귀염뽀짝 댄스 대소동!</text>
+          <circle cx="230" cy="210" r="28" fill="#fed7aa"/>
+          <polygon points="205,190 215,160 225,190" fill="#ec4899"/>
+          <polygon points="235,190 245,160 255,190" fill="#ec4899"/>
+          <!-- 머리에 꽉 끼어버린 대형 고양이 탈 봉두 -->
+          <ellipse cx="460" cy="205" rx="58" ry="52" fill="#f59e0b"/>
+          <polygon points="415,165 425,130 445,165" fill="#f59e0b"/>
+          <polygon points="475,165 495,130 505,165" fill="#f59e0b"/>
+          <circle cx="440" cy="200" r="8" fill="#1e293b"/>
+          <circle cx="480" cy="200" r="8" fill="#1e293b"/>
+          <text x="535" y="180" font-size="20">💦</text>
+          <!-- 타이틀 띠 -->
+          <rect x="60" y="325" width="560" height="32" rx="16" fill="rgba(6, 95, 70, 0.9)"/>
+          <text x="340" y="347" font-size="14.5" font-weight="900" fill="#fef08a" text-anchor="middle">🐱 일산 호수공원에 나타난 대왕 뚱냥이 봉두의 살신성인 냥냥 펀치!</text>
         </svg>
       </div>
       <div class="progress-wrap"><div id="novel-progress" class="progress-bar"></div></div>
     </header>
 
+    <!-- 1장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">🌸 1장 / 총 4장</div>
-      <h2 class="chapter-title">1. 호수와 꽃이 넘치는 고양시</h2>
-      <p class="story-p">화사한 꽃내음이 퍼지는 일산 호수공원에 도착하자, 봉자는 고양시의 상징인 '고양이 귀 머리띠'와 핑크빛 원피스로 멋을 냈다. 15세 뷰티 인싸의 비주얼이 물오르는 순간이었다.</p>
-      <div class="talk-box talk-bongja"><div class="talk-name" style="color:var(--bongja)">💄 봉자</div>"역시 고양시에서는 러블리 캣 콘셉트지! 오늘 무대에서 고양이 애교 댄스 챌린지 추면 무조건 떡상이야!"</div>
-      <p class="story-p">반면 봉두는 호수공원 매점에서 산 닭꼬치 세 개를 한입에 우겨넣으며 예PD가 건넨 무대 소품 상자를 뒤적거렸다.</p>
-    </section>
+      <div class="chapter-badge">🌸 제1장 / 총 5장</div>
+      <h2 class="chapter-title">1. 호수와 꽃의 도시, 고양시 입성!</h2>
+      <p class="story-p">국내 최대의 인공호수를 품은 일산 호수공원에 도착하자, 수변을 따라 만개한 장미꽃과 노래하는 분수대의 시원한 물줄기가 인싸가족을 맞이했다. 고양시의 트레이드마크인 '고양이(고양시) 캐릭터'를 살린 뮤지컬이 준비되어 있었다.</p>
 
-    <section class="chapter-section">
-      <div class="chapter-badge">🎭 2장 / 총 4장</div>
-      <h2 class="chapter-title">2. 머리에 꽉 낀 고양이 인형탈</h2>
-      <p class="story-p">예PD가 준비한 이번 뮤지컬의 비장의 카드는 바로 '거대 고양이 인형탈'이었다. 봉두가 이 탈을 쓰고 고양이 악동 역할을 맡는 시나리오였다.</p>
-      <div class="talk-box talk-bongdu"><div class="talk-name" style="color:var(--bongdu)">🎮 봉두</div>"어? 으아악! 예PD님! 이거 왜 이렇게 좁아요?! 머리가... 귀 부분에서 꽉 꼈어요! 안 빠져요!!" <span class="sfx">우드득 끙끙!</span></div>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"그거 프리사이즈인데?! 네 머리가 너무 거대해서 끼인 거야! 지금 뺄 시간 없어, 그냥 그 상태로 올라가야 해!"</div>
-    </section>
-
-    <section class="chapter-section">
-      <div class="chapter-badge">🐾 3장 / 총 4장</div>
-      <h2 class="chapter-title">3. 어기적 뚱냥이 힙합 브레이크다운</h2>
-      <p class="story-p">탈이 얼굴에 꽉 낀 채 눈구멍으로 겨우 시야를 확보한 봉두는 무대에 뒤뚱뒤뚱 걸어 나왔다. 하지만 봉두는 포기하지 않고 오히려 몸을 뒤뚱거리며 비보잉 락킹 동작을 응용한 '뚱냥이 댄스'를 시전했다!</p>
-      <div class="musical-lyrics">
-        "야옹야옹 호수 위에 비친 꽃잎처럼~ (봉자)<br>
-        탈이 끼어서 눈앞이 안 보이지만! (봉두)<br>
-        냄새로 느낀다, 관객들의 뜨거운 박수 소리! (봉두)<br>
-        고양 고양 고양시에서 다 함께 냥냥 펀치! (합창)"
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (앙증맞은 핑크 고양이 귀를 쫑긋거리며)</div>
+        "호수 뷰에 꽃향기까지 완벽해! 오늘 챌린지 댄스는 전 세계 집사들을 사로잡을 '냥냥 애교 댄스'야! 내 깜찍한 비주얼로 조회수 300만 찍는다!"
       </div>
-      <p class="story-p">봉두의 몸개그와 봉자의 화려한 웨이브가 절묘하게 어우러지자 일산 호수공원 잔디밭에 모인 만여 명의 가족 관객들이 "고양이 봉두! 고양이 봉두!"를 연호했다.</p>
+
+      <p class="story-p">예PD가 대형 소품 박스에서 꺼낸 것은 이번 뮤지컬의 비장의 무기, 거대한 주황색 뚱냥이 전신 인형탈이었다. 봉두가 이 탈을 쓰고 무대에서 익살스러운 악동 고양이 역할을 맡을 예정이었다.</p>
     </section>
 
+    <!-- 2장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">🌊 4장 / 총 4장</div>
-      <h2 class="chapter-title">4. 산업 수도 동해안, 울산으로!</h2>
-      <p class="story-p">공연이 끝나고 무대 뒤에서 식용유와 비누칠을 동원한 끝에 간신히 탈을 벗겨낸 봉두의 얼굴은 벌겋게 상기되어 있었다. 봉두는 땀을 닦으며 외쳤다. "누나! 나 오늘 5끼 중에 4번째 끼니는 고기국수로 줘!"</p>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"정말 대성공이다! 자, 다음은 푸른 동해바다와 거대한 고래가 기다리는 산업 수도, **울산**이다! 고래바다로 출발!"</div>
+      <div class="chapter-badge">🚨 제2장 / 총 5장</div>
+      <h2 class="chapter-title">2. "안 들어가요! 머리가 꼈어요!!"</h2>
+      <p class="story-p">그런데 무대 뒤 탈의실에서 봉두의 처절한 비명 소리가 울려 퍼졌다. <span class="sfx">우드득 뚝딱!</span></p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (탈 속에 얼굴이 파묻혀 웅얼거리며)</div>
+        "으아악! 살려주세요! 탈 목구멍이 너무 좁아요! 귀 부분에서 꽉 끼어서 들어가도 안 하고 빠지지도 않아요!! 숨이... 숨이 턱 끝까지 찼어요!"
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (탈 양쪽 귀를 붙잡고 안간힘을 쓰며 당기다 뒤로 자빠짐)</div>
+        "으라차차차! 아니 이게 성인 남성 프리사이즈인데 왜 네 머리통만 들어가면 진공포장이 되는 거냐?! 공연 시작 1분 전이야!"
+      </div>
+
+      <p class="story-p">봉두의 머리에 낀 고양이 인형탈은 이제 앞이 보이지 않는 상태였다. 코와 입은 짓눌렸고, 겨우 탈의 입 틈새로 한쪽 눈만 보였다. 무대 감독이 큐사인을 보냈다. 지금 탈을 벗길 방법은 없었다!</p>
     </section>
 
+    <!-- 3장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🐾 제3장 / 총 5장</div>
+      <h2 class="chapter-title">3. 어기적 뚱냥이의 전설적 힙합 브레이크</h2>
+      <p class="story-p">결국 봉두는 탈이 얼굴에 꽉 낀 채 앞도 잘 보이지 않는 상태로 뒤뚱거리며 무대로 걸어 나왔다. <span class="sfx">뒤뚱- 쿵!</span></p>
+
+      <p class="story-p">하지만 봉두는 당황하지 않았다. 오히려 앞이 보이지 않는 약점을 역이용해, 양손을 호랑이 발톱처럼 쥐고 바닥을 짚으며 브레이크댄스 풋워크와 엉덩이 털기 댄스를 시전했다!</p>
+
+      <div class="musical-lyrics">
+        <span class="lyrics-tag">🎵 넘버 : 호수공원 뚱냥이의 냥냥 펀치</span><br>
+        "살랑살랑 봄바람 부는 호숫가에~ (봉자)<br>
+        머리가 커서 탈이 끼었지만 굴하지 않아! (봉두)<br>
+        눈앞이 캄캄해도 박자는 냄새로 느낀다!<br>
+        고양 고양 고양시에서 세상에서 제일 귀여운 뚱냥이 댄스! (합창)"
+      </div>
+
+      <p class="story-p">거대한 인형 머리를 뒤뚱거리며 리듬을 타는 봉두의 모습은 그야말로 살아있는 게으른 집고양이의 완벽한 묘사였다! 일산 호수공원 잔디마당에 돗자리를 펴고 앉아있던 2만여 명의 가족 관객들이 배를 잡고 구르며 "고양이 봉두! 고양이 봉두!"를 연호했다.</p>
+    </section>
+
+    <!-- 4장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🧼 제4장 / 총 5장</div>
+      <h2 class="chapter-title">4. 비눗물 구출 작전과 땀방울의 가치</h2>
+      <p class="story-p">공연이 끝나고 무대 뒤. 봉두를 구출하기 위해 예PD와 봉자는 물론 무대 크루들이 주방 세제와 베이비오일을 총동원했다. 머리와 탈 틈새로 비눗물을 붓고 <span class="sfx">뽁-!</span> 소리와 함께 마침내 탈이 벗겨졌다.</p>
+
+      <p class="story-p">탈에서 나온 봉두의 얼굴은 마치 사우나에 3시간 들어갔다 나온 것처럼 땀으로 범벅이 되어 있었고, 양 볼은 벌겋게 부어올라 있었다. 하지만 봉두는 해맑게 웃으며 말했다.</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (수건으로 땀을 닦으며)</div>
+        "누나! 아까 관객 친구들이 내 춤 보고 엄청 깔깔 웃는 거 들었어? 숨은 좀 막혔지만... 친구들이 그렇게 즐거워하니까 진짜 보람찼어!"
+      </div>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (가슴이 뭉클해져 얼음주머니를 대주며)</div>
+        "박봉두... 너 오늘 진짜 멋있었다. 겉으로 예쁜 척만 하려던 내가 부끄러울 정도로 네 무대가 최고였어."
+      </div>
+    </section>
+
+    <!-- 5장 & 교훈 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">💡 제5장 / 교훈과 다음 여정</div>
+      <h2 class="chapter-title">5. 땀방울이 만든 감동, 이제 산업 수도 울산으로!</h2>
+
+      <!-- 어린이 독자를 위한 교훈 상자 -->
+      <div class="lesson-box">
+        <div class="lesson-title">💡 [인싸가족 생각 돋보기] 불편함과 위기를 유쾌함으로 바꾸는 태도</div>
+        <div class="lesson-text">
+          생활하다 보면 예상치 못한 실수나 곤란한 상황(탈이 끼거나, 넘어지거나, 준비물이 부족할 때)에 부딪힐 수 있습니다.<br>
+          그때 짜증을 내거나 포기하기보다 긍정적인 마음으로 상황을 유쾌하게 받아들이고 끝까지 최선을 다할 때, 위기는 오히려 더 큰 감동과 박수로 돌아온답니다!
+        </div>
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (지도의 8번째 깃발을 힘차게 꽂으며)</div>
+        "이제 4개 도시 남았다! 다음은 대한민국 산업의 심장이자 거대한 고래가 헤엄치는 동해안, **울산 간절곶**이다! 파워풀한 메카 비트를 장전하라!"
+      </div>
+
+      <div class="director-cut">
+        🎬 <b>고양 투어 비하인드 쿠키 영상 :</b><br>
+        호수공원 매점 사장님이 봉두의 투혼에 감동하여 고양시 쌀로 만든 쌀호두과자 5박스를 건넸다. 봉두는 땀을 닦다 말고 "역시 흘린 땀은 당분으로 보충해야 제맛"이라며 10분 만에 두 박스를 흡입했다.
+      </div>
+    </section>
+
+    <!-- 하단 내비게이션 -->
     <div class="nav-bar">
       <a href="inssa07.html" class="btn-nav" style="background: #64748b;">⬅️ 제7편 (인천 편)</a>
-      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털</a>
+      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털 허브</a>
       <a href="inssa09.html" class="btn-nav">제9편 (울산 편) ➡️</a>
     </div>
   </div>
+
   <script>
     window.addEventListener('scroll', () => {
-      const winScroll = document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById('novel-progress').style.width = scrolled + '%';
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('novel-progress').style.width = (window.scrollY / h * 100) + '%';
     });
   </script>
 </body>
