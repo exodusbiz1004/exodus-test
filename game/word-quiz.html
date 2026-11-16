@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반짝반짝 낱말 퀴즈 왕국 - 재미있는 우리말 퍼즐 퀴즈</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-hover: #7c3aed;
+      --secondary: #3b82f6;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --bg-dark: #0f172a;
+      --panel-bg: rgba(30, 41, 59, 0.9);
+      --card-bg: #1e293b;
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
+    body {
+      background: radial-gradient(circle at 50% 15%, #2e1065 0%, #0f172a 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    /* 상단 헤더 */
+    header {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 12px 20px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      font-size: 28px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
+    }
+    .brand-text h1 { font-size: 20px; font-weight: 900; background: linear-gradient(135deg, #f472b6, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-text p { font-size: 12px; color: var(--text-dim); }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-top {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-top:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    /* 카테고리 선택 바 */
+    .category-bar {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .cat-btn {
+      flex: 1;
+      min-width: 130px;
+      padding: 12px 14px;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      color: var(--text-dim);
+      font-size: 14.5px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .cat-btn:hover { color: #fff; border-color: rgba(168, 85, 247, 0.5); }
+    .cat-btn.active {
+      color: #fff;
+      border-color: #a855f7;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(59, 130, 246, 0.25));
+      box-shadow: 0 0 16px rgba(168, 85, 247, 0.35);
+    }
+
+    /* 메인 퀴즈 보드 */
+    .quiz-container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px 24px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    /* 상단 상태 바 (스코어, 라이프, 라운드, 타이머) */
+    .status-hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hud-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hud-badge {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hud-badge-title { font-size: 11px; color: var(--text-dim); font-weight: 700; text-transform: uppercase; }
+    .hud-badge-val { font-size: 18px; font-weight: 900; color: #facc15; }
+
+    .time-bar-wrap {
+      width: 100%;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .time-bar-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #10b981, #facc15, #ef4444);
+      transition: width 0.1s linear;
+    }
+
+    /* 퀴즈 힌트 & 설명 카드 */
+    .clue-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+      border: 2px solid rgba(168, 85, 247, 0.4);
+      border-radius: 20px;
+      padding: 24px 20px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .clue-category-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+    }
+    .clue-desc {
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.6;
+      color: #fff;
+      word-break: keep-all;
+      margin-bottom: 10px;
+    }
+    .sub-hint-text {
+      font-size: 14px;
+      color: #38bdf8;
+      font-weight: 700;
+      display: none;
+    }
+    .sub-hint-text.show { display: block; }
+
+    /* 정답 글자 블록 칸 */
+    .answer-slots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+    }
+    .slot-box {
+      width: 58px;
+      height: 64px;
+      background: #090d16;
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.5);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .slot-box.filled {
+      border: 2px solid #a855f7;
+      background: linear-gradient(135deg, #4c1d95, #3b82f6);
+      color: #fef08a;
+      box-shadow: 0 4px 16px rgba(168, 85, 247, 0.4);
+      transform: translateY(-2px);
+    }
+    .slot-box.hinted {
+      border: 2px solid #facc15;
+      background: rgba(250, 204, 21, 0.15);
+      color: #fde047;
+    }
+    .slot-box.correct-anim {
+      border-color: #10b981;
+      background: #10b981;
+      color: #fff;
+      transform: scale(1.08);
+    }
+    .slot-box.wrong-anim {
+      border-color: #ef4444;
+      background: #ef4444;
+      color: #fff;
+      animation: shake 0.4s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    /* 낱말 조각 클릭 선택기 (Scrambled Letter Tiles) */
+    .letter-tiles-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      min-height: 54px;
+    }
+    .letter-tile {
+      background: linear-gradient(135deg, #334155, #1e293b);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .letter-tile:hover {
+      background: #475569;
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+    }
+    .letter-tile:active { transform: translateY(1px); }
+    .letter-tile.used {
+      opacity: 0.25;
+      pointer-events: none;
+      transform: scale(0.92);
+      border-color: transparent;
+    }
+
+    /* 직접 입력 인풋창 및 액션 버튼들 */
+    .input-control-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .quiz-input {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.95);
+      border: 2px solid #a855f7;
+      border-radius: 16px;
+      padding: 14px 20px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      outline: none;
+      box-shadow: 0 0 16px rgba(168, 85, 247, 0.25);
+    }
+    .quiz-input:focus {
+      border-color: #c084fc;
+      box-shadow: 0 0 24px rgba(168, 85, 247, 0.45);
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, #a855f7, #7c3aed);
+      border: none;
+      color: #fff;
+      padding: 0 26px;
+      border-radius: 16px;
+      font-size: 16.5px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-submit:hover { transform: translateY(-2px); }
+
+    /* 보조 기능 바 (초성 힌트, 지우기, 패스) */
+    .helper-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-helper {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 10px 18px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-helper:hover { color: #fff; background: rgba(255, 255, 255, 0.16); }
+
+    /* 게임 오버 / 클리어 모달 */
+    .modal-overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      padding: 24px;
+      text-align: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-title { font-size: 38px; font-weight: 900; margin-bottom: 12px; }
+    .modal-desc { font-size: 17px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.6; }
+    .modal-stats-box {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 24px;
+    }
+    .modal-stat-item div:first-child { font-size: 12px; color: var(--text-dim); margin-bottom: 4px; }
+    .modal-stat-item div:last-child { font-size: 24px; font-weight: 900; color: #facc15; }
+    .btn-modal-action {
+      background: linear-gradient(135deg, #a855f7, #3b82f6);
+      border: none;
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 24px;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(168, 85, 247, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-modal-action:hover { transform: scale(1.05); }
+
+    @media (max-width: 640px) {
+      .slot-box { width: 46px; height: 52px; font-size: 22px; }
+      .letter-tile { font-size: 18px; padding: 8px 14px; }
+      .clue-desc { font-size: 18px; }
+      .quiz-input { font-size: 17px; padding: 12px 14px; }
+      .btn-submit { padding: 0 18px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 헤더 -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🧩</div>
+      <div class="brand-text">
+        <h1>낱말 퀴즈 왕국 (Word Quest)</h1>
+        <p>초성 힌트와 낱말 조각으로 맞히는 어휘 탐험</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <button id="btn-sound-toggle" class="btn-top">
+        <span id="sound-icon">🔊</span> 사운드 ON
+      </button>
+      <a href="../index.html" class="btn-top">
+        🏠 메인 허브
+      </a>
+    </div>
+  </header>
+
+  <!-- 주제별 카테고리 탭 (동물/자연, 일상/음식, 사자성어/속담, 과학/상식, 인싸가족/동화) -->
+  <div class="category-bar">
+    <button class="cat-btn active" data-cat="all">🌟 전체 섞기</button>
+    <button class="cat-btn" data-cat="nature">🐾 동물 & 자연</button>
+    <button class="cat-btn" data-cat="food">🍎 음식 & 일상</button>
+    <button class="cat-btn" data-cat="idiom">📜 사자성어 & 지혜</button>
+    <button class="cat-btn" data-cat="science">🚀 과학 & 상식</button>
+    <button class="cat-btn" data-cat="inssa">🎪 인싸가족 & 동화</button>
+  </div>
+
+  <!-- 메인 퀴즈 보드 컨테이너 -->
+  <main class="quiz-container">
+    <!-- 상단 게임 HUD -->
+    <div class="status-hud">
+      <div class="hud-group">
+        <div class="hud-badge">
+          <span class="hud-badge-title">STAGE</span>
+          <span class="hud-badge-val" id="hud-round">1 / 10</span>
+        </div>
+        <div class="hud-badge">
+          <span class="hud-badge-title">SCORE</span>
+          <span class="hud-badge-val" id="hud-score">0</span>
+        </div>
+        <div class="hud-badge">
+          <span class="hud-badge-title">COMBO</span>
+          <span class="hud-badge-val" id="hud-combo" style="color:#38bdf8;">0</span>
+        </div>
+      </div>
+      <div class="hud-group">
+        <div id="hud-hearts" style="font-size: 22px;">
+          ❤️ ❤️ ❤️ ❤️ ❤️
+        </div>
+      </div>
+    </div>
+
+    <!-- 제한시간 진행 바 -->
+    <div class="time-bar-wrap">
+      <div id="time-bar-fill" class="time-bar-fill"></div>
+    </div>
+
+    <!-- 문제 제시 카드 (설명 및 힌트) -->
+    <div class="clue-card">
+      <span class="clue-category-pill" id="clue-category">동물 & 자연</span>
+      <div class="clue-desc" id="clue-question">문제 설명이 로딩 중입니다...</div>
+      <div class="sub-hint-text" id="sub-hint-text">💡 초성 힌트: ㄱㄹ</div>
+    </div>
+
+    <!-- 정답 글자 슬롯 칸 -->
+    <div class="answer-slots" id="answer-slots">
+      <!-- JS로 글자 수만큼 동적 생성 -->
+    </div>
+
+    <!-- 낱말 조각 타일들 (스크램블 버튼 클릭으로 맞히기 가능) -->
+    <div class="letter-tiles-container" id="letter-tiles">
+      <!-- JS로 정답 글자 + 방해 글자 타일 동적 생성 -->
+    </div>
+
+    <!-- 직접 타이핑 입력창 & 확인 버튼 -->
+    <div class="input-control-row">
+      <input type="text" id="quiz-input" class="quiz-input" placeholder="정답 낱말을 입력하거나 위의 글자 타일을 클릭하세요!" autocomplete="off" autofocus>
+      <button id="btn-submit" class="btn-submit">정답 확인 ✔</button>
+    </div>
+
+    <!-- 보조 도구 버튼들 -->
+    <div class="helper-bar">
+      <button id="btn-hint" class="btn-helper">
+        💡 초성 힌트 보기 (-20점)
+      </button>
+      <button id="btn-clear-input" class="btn-helper">
+        🔄 한 글자 지우기
+      </button>
+      <button id="btn-pass" class="btn-helper">
+        ⏭️ 다음 문제로 패스 (목숨 1개 소모)
+      </button>
+    </div>
+
+    <!-- 게임 결과/클리어 모달 -->
+    <div class="modal-overlay" id="result-modal">
+      <div class="modal-title" id="modal-title">🎉 스테이지 클리어!</div>
+      <div class="modal-desc" id="modal-desc">축하합니다! 훌륭한 우리말 낱말 박사님이시네요!</div>
+      <div class="modal-stats-box">
+        <div class="modal-stat-item">
+          <div>최종 점수</div>
+          <div id="modal-final-score">0점</div>
+        </div>
+        <div class="modal-stat-item">
+          <div>최대 콤보</div>
+          <div id="modal-max-combo">0회</div>
+        </div>
+        <div class="modal-stat-item">
+          <div>맞힌 낱말</div>
+          <div id="modal-correct-count">0개</div>
+        </div>
+      </div>
+      <button class="btn-modal-action" id="btn-modal-restart">다시 도전하기 🔄</button>
+    </div>
+  </main>
+
+  <script>
+    /* ========================================================
+       1. Web Audio API 신시사이저 사운드 엔진
+       ======================================================== */
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.muted = false;
+      }
+      init() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioCtx();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+      playPop() {
+        if (this.muted) return;
+        this.init();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(400 + Math.random() * 200, this.ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.06);
+      }
+      playCorrect() {
+        if (this.muted) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+        notes.forEach((freq, i) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + i * 0.08);
+          gain.gain.setValueAtTime(0.12, now + i * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.2);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now + i * 0.08);
+          osc.stop(now + i * 0.08 + 0.2);
+        });
+      }
+      playWrong() {
+        if (this.muted) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.setValueAtTime(140, now + 0.1);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.3);
+      }
+      playFanfare() {
+        if (this.muted) return;
+        this.init();
+        const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+        notes.forEach((freq, i) => {
+          const now = this.ctx.currentTime + i * 0.09;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        });
+      }
+      playGameOver() {
+        if (this.muted) return;
+        this.init();
+        const notes = [440, 392, 349.23, 261.63];
+        notes.forEach((freq, i) => {
+          const now = this.ctx.currentTime + i * 0.15;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        });
+      }
+    }
+    const sound = new SoundEngine();
+
+    /* ========================================================
+       2. 풍부한 낱말 퀴즈 데이터베이스 (5대 카테고리)
+       ======================================================== */
+    const QUIZ_DATABASE = [
+      // 1. 동물 & 자연 (nature)
+      { cat: 'nature', catName: '🐾 동물 & 자연', word: '기린', clue: '목이 아주 길어서 높은 나뭇가지의 잎을 잘 뜯어 먹는 아프리카 초원의 동물은?', chosung: 'ㄱㄹ' },
+      { cat: 'nature', catName: '🐾 동물 & 자연', word: '해바라기', clue: '여름에 노란 큰 꽃을 피우며 해가 비추는 방향을 바라보는 꽃은?', chosung: 'ㅎㅂㄹㄱ' },
+      { cat: 'nature', catName: '🐾 동물 & 자연', word: '무지개', clue: '비가 온 뒤 맑게 갠 하늘에 빨주노초파남보 일곱 색깔로 뜨는 둥근 다리는?', chosung: 'ㅁㅈㄱ' },
+      { cat: 'nature', catName: '🐾 동물 & 자연', word: '호랑이', clue: '용맹한 호피 무늬를 가졌으며 ‘어흥’ 하고 포효하는 숲속의 맹수는?', chosung: 'ㅎㄹㅇ' },
+      { cat: 'nature', catName: '🐾 동물 & 자연', word: '북극곰', clue: '하얀 털로 뒤덮여 있으며 빙하 위에서 물개를 사냥하는 거대한 곰은?', chosung: 'ㅂㄱㄱ' },
+      { cat: 'nature', catName: '🐾 동물 & 자연', word: '반딧불이', clue: '여름밤 꽁무니에서 반짝반짝 아름다운 초록색 형광 불빛을 내뿜는 곤충은?', chosung: 'ㅂㄷㅂㅇ' },
+      { cat: 'nature', catName: '🐾 동물 & 자연', word: '단풍나무', clue: '가을이 되면 손바닥 모양의 잎이 붉고 노랗게 물드는 대표적인 가을 나무는?', chosung: 'ㄷㅍㄴㅁ' },
+      { cat: 'nature', catName: '🐾 동물 & 자연', word: '돌고래', clue: '초음파로 대화하며 바다 위로 높이 뛰어오르는 지능이 높은 해양 포유류는?', chosung: 'ㄷㄱㄹ' },
+
+      // 2. 음식 & 일상 (food)
+      { cat: 'food', catName: '🍎 음식 & 일상', word: '비빔밥', clue: '밥 위에 시금치, 도라지, 고사리 등 오색 나물과 고추장을 넣어 쓱쓱 비벼 먹는 전통 음식은?', chosung: 'ㅂㅂㅂ' },
+      { cat: 'food', catName: '🍎 음식 & 일상', word: '떡볶이', clue: '쫄깃한 가래떡을 매콤달콤한 고추장 양념과 어묵에 볶아 만든 국민 분식은?', chosung: 'ㄸㅂㅇ' },
+      { cat: 'food', catName: '🍎 음식 & 일상', word: '선풍기', clue: '전기로 날개를 빠르게 돌려 무더운 여름철 시원한 바람을 일으키는 가전제품은?', chosung: 'ㅅㅍㄱ' },
+      { cat: 'food', catName: '🍎 음식 & 일상', word: '냉장고', clue: '음식이 상하지 않도록 차가운 온도를 유지해 주는 부엌의 필수 보관 가전제품은?', chosung: 'ㄴㅈㄱ' },
+      { cat: 'food', catName: '🍎 음식 & 일상', word: '김치찌개', clue: '잘 익은 묵은지와 돼지고기, 두부를 넣고 얼큰하고 칼칼하게 끓여낸 찌개는?', chosung: 'ㄱㅊㅉㄱ' },
+      { cat: 'food', catName: '🍎 음식 & 일상', word: '도서관', clue: '수많은 책과 학습 공간이 마련되어 조용히 독서와 공부를 할 수 있는 문화 공간은?', chosung: 'ㄷㅅㄱ' },
+      { cat: 'food', catName: '🍎 음식 & 일상', word: '자전거', clue: '두 개의 바퀴와 페달을 발로 밟아 바퀴를 굴리며 타는 친환경 이동 수단은?', chosung: 'ㅈㅈㄱ' },
+      { cat: 'food', catName: '🍎 음식 & 일상', word: '신호등', clue: '빨간불(정지), 노란불(주의), 초록불(출발)로 도로의 안전을 안내하는 신호 장치는?', chosung: 'ㅅㅎㄷ' },
+
+      // 3. 사자성어 & 지혜 (idiom)
+      { cat: 'idiom', catName: '📜 사자성어 & 지혜', word: '고진감래', clue: '‘고생 끝에 낙이 온다’는 뜻으로, 어려운 일을 끈기 있게 참아내면 좋은 일이 생긴다는 사자성어는?', chosung: 'ㄱㅈㄱㄹ' },
+      { cat: 'idiom', catName: '📜 사자성어 & 지혜', word: '동고동락', clue: '‘괴로움도 즐거움도 함께한다’는 뜻으로, 정다운 친구나 가족이 삶을 함께한다는 사자성어는?', chosung: 'ㄷㄱㄷㄹ' },
+      { cat: 'idiom', catName: '📜 사자성어 & 지혜', word: '일석이조', clue: '돌 하나를 던져 새 두 마리를 잡는다는 뜻으로, 한 가지 일로 두 가지 이익을 얻음을 이르는 말은?', chosung: 'ㅇㅅㅇㅈ' },
+      { cat: 'idiom', catName: '📜 사자성어 & 지혜', word: '대기만성', clue: '‘큰 그릇은 늦게 완성된다’는 뜻으로, 위대한 인물은 오랜 노력 끝에 늦게 빛을 본다는 사자성어는?', chosung: 'ㄷㄱㅁㅅ' },
+      { cat: 'idiom', catName: '📜 사자성어 & 지혜', word: '유비무환', clue: '‘미리 준비해 두면 근심과 걱정이 없다’는 뜻으로, 평소 철저한 대비의 중요성을 이르는 말은?', chosung: 'ㅇㅂㅁㅎ' },
+      { cat: 'idiom', catName: '📜 사자성어 & 지혜', word: '온고지신', clue: '옛것을 익히고 복습하여 그것을 미루어 새로운 지식과 도리를 안다는 뜻의 사자성어는?', chosung: 'ㅇㄱㅈㅅ' },
+      { cat: 'idiom', catName: '📜 사자성어 & 지혜', word: '천고마비', clue: '‘하늘은 높고 푸르며 말은 살찐다’는 뜻으로, 곡식이 풍성하게 익어가는 아름다운 가을철을 이르는 말은?', chosung: 'ㅊㄱㅁㅂ' },
+
+      // 4. 과학 & 상식 (science)
+      { cat: 'science', catName: '🚀 과학 & 상식', word: '인공위성', clue: '지구 주위의 궤도를 돌며 기상 관측, GPS 통신, 방송 전파를 전달하는 첨단 우주 비행체는?', chosung: 'ㅇㄱㅇㅅ' },
+      { cat: 'science', catName: '🚀 과학 & 상식', word: '광합성', clue: '초록 식물이 엽록소에서 햇빛과 물, 이산화탄소를 이용해 양분과 산소를 만드는 작용은?', chosung: 'ㄱㅎㅅ' },
+      { cat: 'science', catName: '🚀 과학 & 상식', word: '나침반', clue: '자석 바늘이 항상 북쪽(N극)을 가리켜 바다나 숲속에서 방향을 찾게 해주는 도구는?', chosung: 'ㄴㅊㅂ' },
+      { cat: 'science', catName: '🚀 과학 & 상식', word: '현미경', clue: '렌즈를 통해 사람의 눈으로 볼 수 없는 미생물이나 미세한 세포를 크게 확대해 관찰하는 과학 기구는?', chosung: 'ㅎㅁㄱ' },
+      { cat: 'science', catName: '🚀 과학 & 상식', word: '공룡', clue: '중생대 쥐라기와 백악기 지구를 지배하다가 운석 충돌로 멸종한 거대한 파충류 동물은?', chosung: 'ㄱㄹ' },
+      { cat: 'science', catName: '🚀 과학 & 상식', word: '화산', clue: '지하 깊은 곳의 마그마와 뜨거운 용암, 화산재가 지표면을 뚫고 뿜어져 나오는 산은?', chosung: 'ㅎㅅ' },
+      { cat: 'science', catName: '🚀 과학 & 상식', word: '지진계', clue: '지각의 흔들림과 진동을 감지하여 지진의 세기와 발생 위치를 기록하는 측정 장비는?', chosung: 'ㅈㅈㄱ' },
+
+      // 5. 인싸가족 & 창작 동화 (inssa)
+      { cat: 'inssa', catName: '🎪 인싸가족 & 동화', word: '상추튀김', clue: '광주 충장로에서 봉자와 봉두가 먹었던 음식으로, 바삭한 튀김을 싱싱한 상추에 싸 먹는 명물은?', chosung: 'ㅅㅊㅌㄱ' },
+      { cat: 'inssa', catName: '🎪 인싸가족 & 동화', word: '돌하르방', clue: '제주도 중문 해변에서 봉두가 코를 만지며 무한리필 흑돼지를 빌었던 제주의 현무암 석상은?', chosung: 'ㄷㅎㄹㅂ' },
+      { cat: 'inssa', catName: '🎪 인싸가족 & 동화', word: '한빛탑', clue: '대전 엑스포 과학공원에 우뚝 솟아 있으며 귀여운 꿈돌이와 함께 춤을 추었던 거대한 탑은?', chosung: 'ㅎㅂㅌ' },
+      { cat: 'inssa', catName: '🎪 인싸가족 & 동화', word: '간절곶', clue: '울산의 명소로 한반도에서 아침 해가 가장 먼저 뜨며 커다란 소망우체통이 있는 곳은?', chosung: 'ㄱㅈㄱ' },
+      { cat: 'inssa', catName: '🎪 인싸가족 & 동화', word: '퐁퐁이', clue: '창작동화 5부작에서 별빛 재채기를 하며 주인공 하나와 함께 신비로운 모험을 떠난 귀여운 강아지는?', chosung: 'ㅍㅍㅇ' },
+      { cat: 'inssa', catName: '🎪 인싸가족 & 동화', word: '하회탈', clue: '선비의 고장 안동에서 봉두가 갓 대신 머리에 쓰고 취발이 춤을 추었던 전통 나무 탈은?', chosung: 'ㅎㅎㅌ' }
+    ];
+
+    /* ========================================================
+       3. 게임 진행 상태 변수
+       ======================================================== */
+    let currentCategory = 'all';
+    let quizQueue = [];
+    let currentQuestionIndex = 0;
+    let currentQuiz = null;
+
+    let score = 0;
+    let combo = 0;
+    let maxCombo = 0;
+    let correctCount = 0;
+    let lives = 5;
+
+    // 타일 및 입력 상태
+    let selectedTiles = []; // 조각 클릭으로 선택된 타일 인덱스
+    let isHintShown = false;
+
+    // 타이머 (문제당 30초)
+    const MAX_TIME = 30;
+    let timeLeft = MAX_TIME;
+    let timerInterval = null;
+
+    /* ========================================================
+       4. UI 요소 참조
+       ======================================================== */
+    const catBtns = document.querySelectorAll('.cat-btn');
+    const hudRound = document.getElementById('hud-round');
+    const hudScore = document.getElementById('hud-score');
+    const hudCombo = document.getElementById('hud-combo');
+    const hudHearts = document.getElementById('hud-hearts');
+    const timeBarFill = document.getElementById('time-bar-fill');
+
+    const clueCategory = document.getElementById('clue-category');
+    const clueQuestion = document.getElementById('clue-question');
+    const subHintText = document.getElementById('sub-hint-text');
+    const answerSlots = document.getElementById('answer-slots');
+    const letterTilesContainer = document.getElementById('letter-tiles');
+    const quizInput = document.getElementById('quiz-input');
+    const btnSubmit = document.getElementById('btn-submit');
+
+    const btnHint = document.getElementById('btn-hint');
+    const btnClearInput = document.getElementById('btn-clear-input');
+    const btnPass = document.getElementById('btn-pass');
+
+    const resultModal = document.getElementById('result-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalFinalScore = document.getElementById('modal-final-score');
+    const modalMaxCombo = document.getElementById('modal-max-combo');
+    const modalCorrectCount = document.getElementById('modal-correct-count');
+    const btnModalRestart = document.getElementById('btn-modal-restart');
+    const btnSoundToggle = document.getElementById('btn-sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+
+    /* ========================================================
+       5. 사운드 및 카테고리 이벤트
+       ======================================================== */
+    btnSoundToggle.addEventListener('click', () => {
+      sound.muted = !sound.muted;
+      soundIcon.textContent = sound.muted ? '🔇' : '🔊';
+      btnSoundToggle.innerHTML = `${soundIcon.outerHTML} 사운드 ${sound.muted ? 'OFF' : 'ON'}`;
+      if (!sound.muted) sound.playCorrect();
+    });
+
+    catBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.dataset.cat;
+        sound.playCorrect();
+        startQuizGame();
+      });
+    });
+
+    /* ========================================================
+       6. 퀴즈 게임 초기화 및 흐름 제어
+       ======================================================== */
+    function startQuizGame() {
+      // 카테고리 필터링
+      let pool = currentCategory === 'all' 
+        ? [...QUIZ_DATABASE] 
+        : QUIZ_DATABASE.filter(q => q.cat === currentCategory);
+
+      // 무작위 셔플
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      // 최대 10문제 선정
+      quizQueue = pool.slice(0, 10);
+      currentQuestionIndex = 0;
+      score = 0;
+      combo = 0;
+      maxCombo = 0;
+      correctCount = 0;
+      lives = 5;
+
+      resultModal.classList.remove('active');
+      updateHUD();
+      loadNextQuestion();
+    }
+
+    function updateHUD() {
+      hudRound.textContent = `${currentQuestionIndex + 1} / ${quizQueue.length}`;
+      hudScore.textContent = score;
+      hudCombo.textContent = combo;
+
+      let hearts = '';
+      for (let i = 0; i < 5; i++) {
+        hearts += i < lives ? '❤️ ' : '🤍 ';
+      }
+      hudHearts.textContent = hearts.trim();
+    }
+
+    function loadNextQuestion() {
+      if (currentQuestionIndex >= quizQueue.length) {
+        finishGame(true);
+        return;
+      }
+
+      currentQuiz = quizQueue[currentQuestionIndex];
+      isHintShown = false;
+      selectedTiles = [];
+      quizInput.value = '';
+
+      updateHUD();
+
+      // 문제 카드 표시
+      clueCategory.textContent = currentQuiz.catName;
+      clueQuestion.textContent = currentQuiz.clue;
+      subHintText.textContent = `💡 초성 힌트: ${currentQuiz.chosung}`;
+      subHintText.classList.remove('show');
+
+      // 정답 슬롯 생성
+      renderAnswerSlots();
+
+      // 낱말 조각 타일 생성 (정답 글자 + 랜덤 방해 글자)
+      renderLetterTiles();
+
+      // 타이머 시작 (30초)
+      startTimer();
+      quizInput.focus();
+    }
+
+    function renderAnswerSlots() {
+      answerSlots.innerHTML = '';
+      for (let i = 0; i < currentQuiz.word.length; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'slot-box';
+        slot.id = `slot-${i}`;
+        slot.textContent = '';
+        answerSlots.appendChild(slot);
+      }
+    }
+
+    // 낱말 타일 생성 (정답 글자들 + 랜덤 초성/글자 4~6개 섞기)
+    function renderLetterTiles() {
+      letterTilesContainer.innerHTML = '';
+      const dummyChars = ['바', '다', '별', '솔', '나', '무', '꽃', '봄', '강', '돌', '하', '늘', '구', '름'];
+      
+      let tiles = currentQuiz.word.split('');
+      // 추가 방해 글자 3~4개 추가
+      const addCount = Math.max(3, 8 - tiles.length);
+      for (let i = 0; i < addCount; i++) {
+        const randDummy = dummyChars[Math.floor(Math.random() * dummyChars.length)];
+        tiles.push(randDummy);
+      }
+
+      // 무작위 셔플
+      for (let i = tiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+      }
+
+      tiles.forEach((char, idx) => {
+        const tile = document.createElement('div');
+        tile.className = 'letter-tile';
+        tile.textContent = char;
+        tile.dataset.index = idx;
+        tile.dataset.char = char;
+
+        tile.addEventListener('click', () => {
+          handleTileClick(tile, char, idx);
+        });
+
+        letterTilesContainer.appendChild(tile);
+      });
+    }
+
+    // 타일 클릭 시 처리
+    function handleTileClick(tileElem, char, idx) {
+      if (tileElem.classList.contains('used')) return;
+
+      const currentVal = quizInput.value;
+      if (currentVal.length >= currentQuiz.word.length) return; // 글자 수 초과 방지
+
+      sound.playPop();
+      tileElem.classList.add('used');
+      selectedTiles.push({ idx, char });
+
+      quizInput.value = currentVal + char;
+      updateSlotsWithInput(quizInput.value);
+
+      // 글자 수가 모두 찼으면 자동 확인
+      if (quizInput.value.length === currentQuiz.word.length) {
+        checkAnswer();
+      }
+    }
+
+    // 인풋 입력 시 슬롯 연동
+    quizInput.addEventListener('input', () => {
+      sound.playPop();
+      updateSlotsWithInput(quizInput.value);
+      if (quizInput.value.length === currentQuiz.word.length) {
+        setTimeout(checkAnswer, 150);
+      }
+    });
+
+    function updateSlotsWithInput(val) {
+      for (let i = 0; i < currentQuiz.word.length; i++) {
+        const slot = document.getElementById(`slot-${i}`);
+        if (!slot) continue;
+        if (i < val.length) {
+          slot.textContent = val[i];
+          slot.classList.add('filled');
+        } else {
+          slot.textContent = '';
+          slot.classList.remove('filled');
+        }
+      }
+    }
+
+    // 타이머 관리
+    function startTimer() {
+      clearInterval(timerInterval);
+      timeLeft = MAX_TIME;
+      timeBarFill.style.width = '100%';
+
+      timerInterval = setInterval(() => {
+        timeLeft -= 0.1;
+        const pct = Math.max(0, (timeLeft / MAX_TIME) * 100);
+        timeBarFill.style.width = `${pct}%`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          handleTimeOut();
+        }
+      }, 100);
+    }
+
+    function handleTimeOut() {
+      sound.playWrong();
+      lives--;
+      combo = 0;
+      animateSlotsWrong();
+      alert(`⏰ 시간 초과! 아쉽네요. 정답은 [${currentQuiz.word}] 이었습니다!`);
+
+      if (lives <= 0) {
+        finishGame(false);
+      } else {
+        currentQuestionIndex++;
+        loadNextQuestion();
+      }
+    }
+
+    /* ========================================================
+       7. 정답 검증 및 피드백 애니메이션
+       ======================================================== */
+    function checkAnswer() {
+      const userText = quizInput.value.trim();
+      if (!userText) return;
+
+      if (userText === currentQuiz.word) {
+        // 정답!
+        clearInterval(timerInterval);
+        sound.playCorrect();
+        animateSlotsCorrect();
+
+        combo++;
+        if (combo > maxCombo) maxCombo = combo;
+        correctCount++;
+
+        // 남은 시간 보너스 + 콤보 보너스
+        const timeBonus = Math.round(timeLeft * 3);
+        const comboBonus = (combo - 1) * 20;
+        const earned = 100 + timeBonus + comboBonus;
+        score += earned;
+
+        updateHUD();
+
+        setTimeout(() => {
+          currentQuestionIndex++;
+          loadNextQuestion();
+        }, 800);
+      } else {
+        // 오답
+        sound.playWrong();
+        animateSlotsWrong();
+        combo = 0;
+        updateHUD();
+      }
+    }
+
+    function animateSlotsCorrect() {
+      for (let i = 0; i < currentQuiz.word.length; i++) {
+        const slot = document.getElementById(`slot-${i}`);
+        if (slot) slot.classList.add('correct-anim');
+      }
+    }
+
+    function animateSlotsWrong() {
+      for (let i = 0; i < currentQuiz.word.length; i++) {
+        const slot = document.getElementById(`slot-${i}`);
+        if (slot) {
+          slot.classList.add('wrong-anim');
+          setTimeout(() => slot.classList.remove('wrong-anim'), 400);
+        }
+      }
+    }
+
+    // 엔터 키 제출
+    quizInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        checkAnswer();
+      }
+    });
+    btnSubmit.addEventListener('click', checkAnswer);
+
+    // 보조 버튼들
+    btnHint.addEventListener('click', () => {
+      if (!isHintShown) {
+        isHintShown = true;
+        subHintText.classList.add('show');
+        score = Math.max(0, score - 20);
+        updateHUD();
+        sound.playPop();
+      }
+    });
+
+    btnClearInput.addEventListener('click', () => {
+      sound.playPop();
+      const currentVal = quizInput.value;
+      if (currentVal.length > 0) {
+        quizInput.value = currentVal.slice(0, -1);
+        updateSlotsWithInput(quizInput.value);
+
+        // 마지막 타일 복구
+        if (selectedTiles.length > 0) {
+          const last = selectedTiles.pop();
+          const tile = document.querySelector(`.letter-tile[data-index="${last.idx}"]`);
+          if (tile) tile.classList.remove('used');
+        }
+      }
+    });
+
+    btnPass.addEventListener('click', () => {
+      if (confirm("목숨 1개를 소모하고 다음 문제로 넘어가시겠습니까?")) {
+        clearInterval(timerInterval);
+        sound.playWrong();
+        lives--;
+        combo = 0;
+        alert(`정답은 [${currentQuiz.word}] 였습니다!`);
+
+        if (lives <= 0) {
+          finishGame(false);
+        } else {
+          currentQuestionIndex++;
+          loadNextQuestion();
+        }
+      }
+    });
+
+    /* ========================================================
+       8. 게임 종료 및 결과 모달
+       ======================================================== */
+    function finishGame(isClear) {
+      clearInterval(timerInterval);
+
+      if (isClear) {
+        sound.playFanfare();
+        modalTitle.textContent = '🏆 낱말 퀴즈 정복 완료!';
+        modalTitle.style.color = '#facc15';
+        modalDesc.innerHTML = `대단합니다! 풍부한 어휘력으로 모든 관문을 통과하셨습니다.<br>당신을 <b>진정한 우리말 낱말 박사</b>로 임명합니다!`;
+      } else {
+        sound.playGameOver();
+        modalTitle.textContent = '💥 GAME OVER';
+        modalTitle.style.color = '#ef4444';
+        modalDesc.innerHTML = `하트가 모두 소진되었습니다.<br>포기하지 말고 다시 도전하여 어휘력을 키워보세요!`;
+      }
+
+      modalFinalScore.textContent = `${score}점`;
+      modalMaxCombo.textContent = `${maxCombo}회`;
+      modalCorrectCount.textContent = `${correctCount}개`;
+
+      resultModal.classList.add('active');
+    }
+
+    btnModalRestart.addEventListener('click', () => {
+      startQuizGame();
+    });
+
+    // 시작
+    startQuizGame();
+  </script>
+</body>
+</html>
