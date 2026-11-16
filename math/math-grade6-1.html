@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>초등 6학년 1학기 수학 마스터 - 단원별 핵심 개념 & 예제 & 족집게 포인트</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --bg: #0f172a;
+      --sidebar-bg: #1e293b;
+      --card-bg: #1e293b;
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
+    body {
+      background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, #0f172a 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* 상단 헤더 */
+    header {
+      width: 100%;
+      background: rgba(30, 41, 59, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      font-size: 26px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+    .brand-title { font-size: 19px; font-weight: 900; background: linear-gradient(135deg, #60a5fa, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-sub { font-size: 12px; color: var(--text-dim); }
+
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-portal {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-portal:hover { background: rgba(255, 255, 255, 0.16); transform: translateY(-1px); }
+
+    /* 메인 2열 레이아웃 */
+    .math-wrapper {
+      flex: 1;
+      display: flex;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      gap: 24px;
+    }
+
+    /* 좌측 단원 사이드바 */
+    .sidebar {
+      width: 320px;
+      flex-shrink: 0;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 20px 16px;
+      height: fit-content;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 90px;
+    }
+    .sidebar-header {
+      padding: 0 8px 14px 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+    .sidebar-title { font-size: 16px; font-weight: 900; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .sidebar-desc { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+    .unit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .unit-btn {
+      width: 100%;
+      text-align: left;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--text-dim);
+      font-size: 14.5px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    .unit-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(96, 165, 250, 0.4);
+      transform: translateX(4px);
+    }
+    .unit-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.35), rgba(139, 92, 246, 0.35));
+      border-color: #3b82f6;
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.35);
+    }
+    .unit-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: #60a5fa;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-weight: 900;
+    }
+    .unit-btn.active .unit-badge { background: #3b82f6; color: #fff; }
+
+    /* 우측 상세 콘텐츠 영역 */
+    .content-panel {
+      flex: 1;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 30px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+      line-height: 1.8;
+    }
+
+    .unit-hero {
+      border-bottom: 2px dashed var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+    .unit-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .unit-heading {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .unit-summary {
+      font-size: 15.5px;
+      color: var(--text-dim);
+    }
+
+    /* 섹션 공통 스타일 */
+    .section-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 32px 0 16px 0;
+    }
+
+    /* 개념 정리 박스 */
+    .concept-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+    }
+    .concept-card-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #facc15;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .concept-body {
+      font-size: 15.5px;
+      color: #e2e8f0;
+      word-break: keep-all;
+    }
+    .concept-body ul { margin-left: 20px; margin-top: 8px; }
+    .concept-body li { margin-bottom: 6px; }
+
+    .formula-box {
+      background: #090d16;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: 800;
+      color: #93c5fd;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 족집게 핵심 포인트 박스 */
+    .point-box {
+      background: linear-gradient(135deg, rgba(234, 88, 12, 0.15), rgba(245, 158, 11, 0.15));
+      border: 2px solid #f97316;
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin: 24px 0;
+    }
+    .point-box-title {
+      font-size: 16.5px;
+      font-weight: 900;
+      color: #fb923c;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .point-list {
+      list-style: none;
+      padding: 0;
+    }
+    .point-list li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 15px;
+      color: #ffedd5;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .point-list li::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      color: #f97316;
+      font-weight: 900;
+    }
+
+    /* 개념별 예제 문제 박스 */
+    .example-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+    .example-q-badge {
+      display: inline-block;
+      background: #10b981;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .example-q-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .toggle-solution-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: #38bdf8;
+      font-size: 13.5px;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .toggle-solution-btn:hover { background: rgba(56, 189, 248, 0.15); }
+
+    .solution-box {
+      display: none;
+      background: #090d16;
+      border: 1px solid #10b981;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-top: 14px;
+      font-size: 14.5px;
+      color: #a7f3d0;
+      line-height: 1.7;
+    }
+    .solution-box.show { display: block; }
+    .solution-ans {
+      font-weight: 900;
+      font-size: 15.5px;
+      color: #fde047;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .math-wrapper { flex-direction: column; }
+      .sidebar { width: 100%; position: static; }
+      .content-panel { padding: 20px; }
+      .unit-heading { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 공통 네비게이션 헤더 -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">📐</div>
+      <div>
+        <div class="brand-title">초등 6학년 1학기 수학 마스터</div>
+        <div class="brand-sub">교과서 6개 전 단원 개념정리 · 대표 예제 · 족집게 핵심 포인트</div>
+      </div>
+    </div>
+    <div class="header-links">
+      <a href="../index.html" class="btn-portal">
+        🏠 메인 포털 허브
+      </a>
+    </div>
+  </header>
+
+  <!-- 2열 메인 레이아웃 -->
+  <div class="math-wrapper">
+    <!-- 좌측 단원 사이드바 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">📚 6학년 1학기 단원 목록</div>
+        <div class="sidebar-desc">학습하고 싶은 단원을 클릭하세요!</div>
+      </div>
+      <nav class="unit-list" id="unit-nav">
+        <!-- JS 동적 생성 -->
+      </nav>
+    </aside>
+
+    <!-- 우측 상세 콘텐츠 패널 -->
+    <main class="content-panel" id="content-display">
+      <!-- JS로 선택된 단원 상세 동적 렌더링 -->
+    </main>
+  </div>
+
+  <script>
+    /* ========================================================
+       초등학교 6학년 1학기 수학 6대 단원 완벽 데이터베이스
+       1단원: 분수의 나눗셈
+       2단원: 각기둥과 각뿔
+       3단원: 소수의 나눗셈
+       4단원: 비와 비율
+       5단원: 여러 가지 그래프
+       6단원: 직육면체의 겉넓이와 부피
+       ======================================================== */
+    const MATH_UNITS = [
+      {
+        id: 'unit1',
+        num: '1단원',
+        title: '분수의 나눗셈',
+        icon: '➗',
+        summary: '(자연수)÷(자연수), (분수)÷(자연수)의 몫을 분수로 나타내고 역수의 곱셈 원리를 완벽하게 이해합니다.',
+        concepts: [
+          {
+            title: '1. (자연수) ÷ (자연수)의 몫을 분수로 나타내기',
+            desc: '나누어지는 수는 분자, 나누는 수는 분모가 됩니다.',
+            formula: '▲ ÷ ■ = ▲ / ■   (예: 3 ÷ 4 = 3/4, 7 ÷ 5 = 7/5 = 1과 2/5)'
+          },
+          {
+            title: '2. (분수) ÷ (자연수) 계산 원리 (분자 나누기)',
+            desc: '분자가 자연수의 배수일 때는 분자를 자연수로 직접 나눕니다.',
+            formula: '(6/7) ÷ 2 = (6 ÷ 2) / 7 = 3/7'
+          },
+          {
+            title: '3. (분수) ÷ (자연수)를 곱셈으로 바꾸어 계산하기',
+            desc: '나누는 자연수를 분수 (1 / 자연수)로 바꾸어 곱셈으로 계산합니다.',
+            formula: '(분수) ÷ (자연수) = (분수) × (1 / 자연수)   (예: 3/5 ÷ 4 = 3/5 × 1/4 = 3/20)'
+          },
+          {
+            title: '4. 대분수 ÷ 자연수의 계산 방법',
+            desc: '대분수를 먼저 **가분수**로 고친 뒤, 역수의 곱셈으로 바꾸어 약분하여 계산합니다.',
+            formula: '2와 1/3 ÷ 5 = 7/3 ÷ 5 = 7/3 × 1/5 = 7/15'
+          }
+        ],
+        points: [
+          '대분수는 무조건 가분수로 먼저 바꾼 뒤 계산해야 실수를 방지할 수 있습니다.',
+          '나눗셈 기호(÷) 뒤의 자연수가 분모로 내려가는 곱셈 변환(× 1/자연수)을 숙달하세요.',
+          '계산 중간에 분자와 분모를 미리 약분하면 큰 수 계산 실수를 획기적으로 줄일 수 있습니다.',
+          '최종 정답이 가분수인 경우 대분수로 고쳐 쓰는 습관을 들이세요.'
+        ],
+        examples: [
+          {
+            q: '피자 5판을 6명이 똑같이 나누어 먹으려고 합니다. 한 사람이 먹을 수 있는 피자는 몇 판인지 분수로 나타내세요.',
+            ans: '5/6 판',
+            sol: '(자연수) ÷ (자연수) = (분자) / (분모) 공식에 따라 5 ÷ 6 = 5/6 (판)이 됩니다.'
+          },
+          {
+            q: '길이가 4와 2/3 m인 리본을 7도막으로 똑같이 자르려고 합니다. 한 도막의 길이는 몇 m인가요?',
+            ans: '2/3 m',
+            sol: '① 대분수를 가분수로 변환: 4와 2/3 = 14/3\n② 나눗셈을 곱셈으로 변환: (14/3) ÷ 7 = (14/3) × (1/7)\n③ 약분 후 계산: (14와 7을 약분하면 분자에 2가 남음) → (2/3) × 1 = 2/3 m'
+          }
+        ]
+      },
+      {
+        id: 'unit2',
+        num: '2단원',
+        title: '각기둥과 각뿔',
+        icon: '🏛️',
+        summary: '입체도형의 대표적인 각기둥과 각뿔의 밑면, 옆면, 꼭짓점, 모서리, 높이의 특징과 전개도를 탐구합니다.',
+        concepts: [
+          {
+            title: '1. 각기둥의 정의와 특징',
+            desc: '위와 아래의 두 면이 서로 평행하고 합동인 다각형이며, 옆면이 모두 **직사각형**인 입체도형입니다. 밑면의 모양에 따라 삼각기둥, 사각기둥, 오각기둥이라고 부릅니다.',
+            formula: 'n각기둥 공식 : 꼭짓점 = n × 2 | 면 = n + 2 | 모서리 = n × 3'
+          },
+          {
+            title: '2. 각뿔의 정의와 특징',
+            desc: '밑면은 다각형이고, 옆면은 모두 **삼각형**이며 한 꼭짓점(각뿔의 꼭짓점)에서 만나는 입체도형입니다.',
+            formula: 'n각뿔 공식 : 꼭짓점 = n + 1 | 면 = n + 1 | 모서리 = n × 2'
+          },
+          {
+            title: '3. 각기둥의 전개도 접기 규칙',
+            desc: '각기둥의 모서리를 잘라 평면 위에 펼쳐놓은 그림입니다. 접었을 때 마주 보는 두 밑면은 평행·합동이어야 하며, 서로 맞닿는 모서리의 길이는 같아야 합니다.',
+            formula: '핵심 : 두 밑면이 같은 쪽에 붙어있거나, 옆면의 개수가 밑면의 변의 수와 다르면 접을 수 없습니다.'
+          }
+        ],
+        points: [
+          '각기둥의 옆면은 언제나 **직사각형**, 각뿔의 옆면은 언제나 **삼각형**입니다.',
+          '밑면의 변의 수가 n일 때, 꼭짓점·면·모서리의 개수 공식(n×2, n+2, n×3)을 반드시 기억하세요.',
+          '각기둥의 높이는 두 밑면 사이의 거리이며, 각뿔의 높이는 각뿔의 꼭짓점에서 밑면에 내린 수직인 선분의 길이입니다.'
+        ],
+        examples: [
+          {
+            q: '밑면이 육각형인 각기둥(육각기둥)의 꼭짓점, 면, 모서리의 개수는 각각 몇 개일까요?',
+            ans: '꼭짓점 12개, 면 8개, 모서리 18개',
+            sol: '육각기둥(n = 6):\n- 꼭짓점 = 6 × 2 = 12개\n- 면 = 6 + 2 = 8개\n- 모서리 = 6 × 3 = 18개'
+          },
+          {
+            q: '모서리가 모두 14개인 각뿔이 있습니다. 이 각뿔의 밑면 모양과 이름은 무엇일까요?',
+            ans: '밑면 모양: 칠각형, 각뿔의 이름: 칠각뿔',
+            sol: 'n각뿔의 모서리 개수는 n × 2 = 14이므로, n = 7입니다. 따라서 밑면은 칠각형이며 이름은 칠각뿔입니다.'
+          }
+        ]
+      },
+      {
+        id: 'unit3',
+        num: '3단원',
+        title: '소수의 나눗셈',
+        icon: '🔢',
+        summary: '(소수)÷(자연수) 계산에서 자릿수를 맞추고, 몫의 소수점 위치와 내림(0을 내리는 계산)을 마스터합니다.',
+        concepts: [
+          {
+            title: '1. 자연수의 나눗셈을 이용한 계산',
+            desc: '나누어지는 수가 1/10배, 1/100배가 되면 몫도 똑같이 1/10배, 1/100배가 됩니다.',
+            formula: '364 ÷ 4 = 91 이면, 36.4 ÷ 4 = 9.1 이고 3.64 ÷ 4 = 0.91 입니다.'
+          },
+          {
+            title: '2. 소수점 아래 0을 내려서 계산하는 경우',
+            desc: '나누어떨어지지 않을 때는 나누어지는 수의 맨 끝자리 뒤에 0이 계속 있는 것으로 생각하고 0을 내려서 계산합니다.',
+            formula: '3 ÷ 4 → 3.0 ÷ 4 로 생각하여 계산하면 몫은 0.75'
+          },
+          {
+            title: '3. 몫이 1보다 작은 소수의 나눗셈',
+            desc: '나누어지는 수가 나누는 수보다 작을 때는 몫의 자연수 자리에 반드시 **0**을 쓰고 소수점을 찍습니다.',
+            formula: '2.4 ÷ 3 → 2 안에 3이 0번 들어가므로 몫은 0.8'
+          }
+        ],
+        points: [
+          '세로셈으로 계산할 때, 몫의 소수점은 나누어지는 수의 소수점 바로 위에 똑바로 찍어야 합니다.',
+          '나누어지는 수의 자릿수에서 나누어지지 않을 때는 몫의 자리에 반드시 **0**을 채워 넣어야 자릿수 오류를 막을 수 있습니다.',
+          '계산 후 검산식: (나누는 수) × (몫) = (나누어지는 수)로 맞는지 빠르게 확인하세요.'
+        ],
+        examples: [
+          {
+            q: '페인트 4.8 L를 3통에 똑같이 나누어 담으려고 합니다. 한 통에 담기는 페인트는 몇 L일까요?',
+            ans: '1.6 L',
+            sol: '48 ÷ 3 = 16 이므로, 1/10배인 4.8 ÷ 3 = 1.6 L가 됩니다.'
+          },
+          {
+            q: '밀가루 1.2 kg을 5봉지에 똑같이 나누어 담을 때, 한 봉지에 들어가는 밀가루는 몇 kg일까요?',
+            ans: '0.24 kg',
+            sol: '1.2를 5로 나눌 때 1 안에 5가 들어가지 않으므로 몫의 일의 자리에 0을 씁니다. 1.2 뒤에 0을 내려 1.20 ÷ 5 = 0.24 kg이 됩니다.'
+          }
+        ]
+      },
+      {
+        id: 'unit4',
+        num: '4단원',
+        title: '비와 비율',
+        icon: '⚖️',
+        summary: '두 수의 양을 비교하는 비(A:B), 기준량과 비교하는 양, 비율, 백분율(%)의 개념을 확실히 잡습니다.',
+        concepts: [
+          {
+            title: '1. 비(Ratio)의 정의와 읽는 법',
+            desc: '두 수를 나눗셈으로 비교하기 위해 기호 :를 사용하여 나타낸 것을 비라고 합니다.',
+            formula: 'A : B  (A는 비교하는 양, B는 기준량)\n읽는 법: A 대 B | B에 대한 A의 비 | A의 B에 대한 비 | A와 B의 비'
+          },
+          {
+            title: '2. 비율(Rate)의 계산',
+            desc: '기준량에 대한 비교하는 양의 크기를 비율이라고 하며, 분수나 소수로 나타냅니다.',
+            formula: '비율 = (비교하는 양) / (기준량)  =  A / B'
+          },
+          {
+            title: '3. 백분율(Percentage, %)',
+            desc: '기준량을 100으로 볼 때의 비율을 백분율이라 하고 기호 %를 사용합니다.',
+            formula: '백분율(%) = (비율) × 100   (예: 비율이 1/4이면 백분율은 1/4 × 100 = 25%)'
+          }
+        ],
+        points: [
+          '‘~에 대한’이라는 말이 붙은 수가 바로 분모로 들어가는 **기준량**입니다! (예: 5에 대한 3의 비 → 3 : 5, 기준량은 5)',
+          '비교하는 양 = (기준량) × (비율)',
+          '기준량 = (비교하는 양) ÷ (비율)',
+          '할인율, 소금물의 농도, 타율, 야구 승률 등 일상생활 문제에 단골로 출제됩니다.'
+        ],
+        examples: [
+          {
+            q: '어느 축구 선수가 페널티킥을 20번 차서 17번 골을 넣었습니다. 전체 찬 횟수에 대한 골 성공 횟수의 비와 비율을 각각 구하세요.',
+            ans: '비: 17 : 20 , 비율: 17/20 (또는 0.85)',
+            sol: '- 기준량(전체 찬 횟수) = 20\n- 비교하는 양(골 성공 횟수) = 17\n- 비 = 17 : 20\n- 비율 = 17 / 20 = 0.85'
+          },
+          {
+            q: '정가가 25,000원인 옷을 20% 할인하여 판매합니다. 할인받는 금액은 얼마일까요?',
+            ans: '5,000원',
+            sol: '20%를 소수 비율로 바꾸면 20/100 = 0.2입니다.\n할인 금액 = 25,000 × 0.2 = 5,000원'
+          }
+        ]
+      },
+      {
+        id: 'unit5',
+        num: '5단원',
+        title: '여러 가지 그래프',
+        icon: '📊',
+        summary: '전체에 대한 각 항목의 비율을 한눈에 알기 쉽게 나타내는 띠그래프와 원그래프의 특징을 파악합니다.',
+        concepts: [
+          {
+            title: '1. 띠그래프(Strip Graph)',
+            desc: '전체에 대한 각 부분의 비율을 띠 모양에 백분율(%) 길이로 나타낸 그래프입니다.',
+            formula: '각 항목의 백분율(%) = (그 항목의 수) / (전체 수) × 100'
+          },
+          {
+            title: '2. 원그래프(Circle Graph)',
+            desc: '전체에 대한 각 부분의 비율을 원 모양의 부채꼴 각도/백분율로 나타낸 그래프입니다.',
+            formula: '원 전체의 백분율 합은 항상 100% 입니다.'
+          },
+          {
+            title: '3. 띠그래프와 원그래프의 장점',
+            desc: '전체에서 각 항목이 차지하는 비중(크기)을 한눈에 비교하기 가장 편리합니다. 항목의 수가 적거나 큰 비중 순서대로 정리할 때 유용합니다.'
+          }
+        ],
+        points: [
+          '각 항목의 백분율을 모두 더했을 때 반드시 **100%**가 되어야 합니다.',
+          '합계가 100%가 되지 않을 때는 반올림 오차 때문이므로, 가장 비율이 높은 항목에서 1%를 가감하여 100%로 맞춥니다.',
+          '막대그래프는 수량의 절대적인 많고 적음을 비교할 때 좋고, 띠/원그래프는 **전체에 대한 비율(점유율)**을 비교할 때 탁월합니다.'
+        ],
+        examples: [
+          {
+            q: '우리 반 전체 학생 25명 중 축구를 좋아하는 학생이 10명입니다. 띠그래프에 나타낼 때 축구의 백분율은 몇 %일까요?',
+            ans: '40%',
+            sol: '(축구를 좋아하는 학생 수) / (전체 학생 수) × 100 = (10 / 25) × 100 = 40%'
+          },
+          {
+            q: '어느 과수원의 사과 생산량이 원그래프에서 35%를 차지하고, 전체 과일 생산량이 400 kg일 때 사과 생산량은 몇 kg일까요?',
+            ans: '140 kg',
+            sol: '400 × (35 / 100) = 400 × 0.35 = 140 kg'
+          }
+        ]
+      },
+      {
+        id: 'unit6',
+        num: '6단원',
+        title: '직육면체의 겉넓이와 부피',
+        icon: '📦',
+        summary: '직육면체와 정육면체의 6개 면의 겉넓이 공식과 1 cm³, 1 m³ 부피 단위 변환을 완벽 정복합니다.',
+        concepts: [
+          {
+            title: '1. 직육면체의 겉넓이 구하는 방법',
+            desc: '직육면체는 마주 보는 세 쌍의 면의 넓이가 각각 같습니다.',
+            formula: '방법 1: (한 밑면의 넓이 × 2) + (옆면 전체의 넓이)\n방법 2: (가로×세로 + 세로×높이 + 가로×높이) × 2\n정육면체 겉넓이: (한 모서리 × 한 모서리) × 6'
+          },
+          {
+            title: '2. 부피의 단위 (1 cm³ 와 1 m³)',
+            desc: '한 모서리가 1 cm인 정육면체의 부피를 1 cm³(세제곱센티미터), 한 모서리가 1 m인 정육면체의 부피를 1 m³(세제곱미터)라고 합니다.',
+            formula: '1 m = 100 cm 이므로, 1 m³ = 100 × 100 × 100 = 1,000,000 cm³ (백만 cm³)'
+          },
+          {
+            title: '3. 직육면체와 정육면체의 부피 공식',
+            desc: '밑면의 넓이에 높이를 곱하여 구합니다.',
+            formula: '직육면체의 부피 = (가로) × (세로) × (높이) = (밑넓이) × (높이)\n정육면체의 부피 = (한 모서리) × (한 모서리) × (한 모서리)'
+          }
+        ],
+        points: [
+          '겉넓이는 면의 넓이이므로 단위가 **cm²**, 부피는 공간의 크기이므로 단위가 **cm³** 입니다. 단위 구분에 주의하세요!',
+          '1 m³ = 1,000,000 cm³ (0이 6개 붙음) 단위 환산 문제는 단원 평가 1순위 함정 문제입니다.',
+          '직육면체 옆면 전체의 넓이 = (밑면의 둘레) × (높이) 공식으로 빠르게 구할 수도 있습니다.'
+        ],
+        examples: [
+          {
+            q: '가로 5 cm, 세로 4 cm, 높이 6 cm인 직육면체의 겉넓이와 부피를 각각 구하세요.',
+            ans: '겉넓이: 148 cm² , 부피: 120 cm³',
+            sol: '- 겉넓이 = (5×4 + 4×6 + 5×6) × 2 = (20 + 24 + 30) × 2 = 74 × 2 = 148 cm²\n- 부피 = 5 × 4 × 6 = 120 cm³'
+          },
+          {
+            q: '한 모서리의 길이가 8 cm인 정육면체의 겉넓이와 부피는 각각 얼마일까요?',
+            ans: '겉넓이: 384 cm² , 부피: 512 cm³',
+            sol: '- 겉넓이 = (8 × 8) × 6 = 64 × 6 = 384 cm²\n- 부피 = 8 × 8 × 8 = 512 cm³'
+          }
+        ]
+      }
+    ];
+
+    /* ========================================================
+       인터랙션 및 동적 렌더링 스크립트
+       ======================================================== */
+    const unitNav = document.getElementById('unit-nav');
+    const contentDisplay = document.getElementById('content-display');
+    let currentUnitIndex = 0;
+
+    // 사이드바 단원 메뉴 생성
+    function renderSidebar() {
+      unitNav.innerHTML = '';
+      MATH_UNITS.forEach((unit, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `unit-btn ${idx === currentUnitIndex ? 'active' : ''}`;
+        btn.innerHTML = `
+          <span class="unit-badge">${unit.num}</span>
+          <span>${unit.icon} ${unit.title}</span>
+        `;
+        btn.addEventListener('click', () => {
+          selectUnit(idx);
+        });
+        unitNav.appendChild(btn);
+      });
+    }
+
+    // 단원 선택 및 우측 상세 표시
+    function selectUnit(idx) {
+      currentUnitIndex = idx;
+      document.querySelectorAll('.unit-btn').forEach((b, i) => {
+        b.classList.toggle('active', i === idx);
+      });
+
+      const unit = MATH_UNITS[idx];
+      renderUnitDetail(unit);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderUnitDetail(unit) {
+      // 1. 헤더 영역
+      let html = `
+        <div class="unit-hero">
+          <div class="unit-tag">${unit.num} 핵심 총정리</div>
+          <h1 class="unit-heading">${unit.icon} ${unit.title}</h1>
+          <p class="unit-summary">${unit.summary}</p>
+        </div>
+      `;
+
+      // 2. 핵심 개념 정리
+      html += `<div class="section-title">💡 핵심 개념 정리 (Concept Summary)</div>`;
+      unit.concepts.forEach(c => {
+        html += `
+          <div class="concept-card">
+            <div class="concept-card-title">${c.title}</div>
+            <div class="concept-body">
+              ${c.desc}
+              ${c.formula ? `<div class="formula-box">📝 ${c.formula.replace(/\n/g, '<br>')}</div>` : ''}
+            </div>
+          </div>
+        `;
+      });
+
+      // 3. 족집게 핵심 포인트 (주의할 점)
+      html += `
+        <div class="point-box">
+          <div class="point-box-title">⚡ 시험 대비 족집게 핵심 포인트 (Key Points)</div>
+          <ul class="point-list">
+            ${unit.points.map(p => `<li>${p}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+
+      // 4. 개념별 대표 예제 문제 & 정답/해설 토글
+      html += `<div class="section-title">✍️ 개념별 대표 예제 문제 (Practice Examples)</div>`;
+      unit.examples.forEach((ex, exIdx) => {
+        html += `
+          <div class="example-card">
+            <span class="example-q-badge">예제 ${exIdx + 1}</span>
+            <div class="example-q-text">${ex.q}</div>
+            <button class="toggle-solution-btn" onclick="toggleSolution('sol-${exIdx}')">
+              <span>🔍 풀이 및 정답 확인하기</span>
+            </button>
+            <div class="solution-box" id="sol-${exIdx}">
+              <div class="solution-ans">정답: ${ex.ans}</div>
+              <div style="white-space: pre-line;">${ex.sol}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      contentDisplay.innerHTML = html;
+    }
+
+    // 풀이 토글 함수 전역 등록
+    window.toggleSolution = function(solId) {
+      const box = document.getElementById(solId);
+      if (box) {
+        box.classList.toggle('show');
+      }
+    };
+
+    // 초기 실행
+    renderSidebar();
+    selectUnit(0);
+  </script>
+</body>
+</html>

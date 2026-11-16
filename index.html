@@ -408,16 +408,19 @@
         </div>
       </div>
 
-      <!-- 상단 카테고리 메뉴 (Game, Story, Web Novel) -->
+      <!-- 상단 카테고리 메뉴 (Game, Story, Web Novel, Math) -->
       <nav class="nav-tabs">
         <button class="nav-tab-btn active" data-category="game">
-          🎮 Game <span class="badge-count" id="count-game">6</span>
+          🎮 Game <span class="badge-count" id="count-game">8</span>
         </button>
         <button class="nav-tab-btn" data-category="story">
           📖 Story <span class="badge-count" id="count-story">5</span>
         </button>
         <button class="nav-tab-btn" data-category="novel">
           📚 시트콤 소설 <span class="badge-count" id="count-novel">12</span>
+        </button>
+        <button class="nav-tab-btn" data-category="math">
+          📐 수학 마스터 <span class="badge-count" id="count-math">1</span>
         </button>
       </nav>
     </div>
@@ -711,6 +714,17 @@
         tag: '여수 밤바다 · 전국투어 완결',
         icon: '🎆',
         desc: '12개 도시 전석 매진 신화! 오색 불꽃놀이가 수놓인 여수 밤바다 낭만포차에서 펼쳐진 감동의 대피날레!'
+      },
+
+      // 4. MATH 카테고리 (math/ 폴더) - 초등 6학년 1학기 수학
+      {
+        id: 'math-grade6-1',
+        category: 'math',
+        title: '초등 6학년 1학기 수학 마스터',
+        file: 'math/math-grade6-1.html',
+        tag: '초등 6-1 수학 · 전 단원 개념 & 족집게 예제',
+        icon: '📐',
+        desc: '분수의 나눗셈, 각기둥과 각뿔, 소수의 나눗셈, 비와 비율, 여러 가지 그래프, 직육면체의 겉넓이와 부피까지 6개 단원 전체의 핵심 개념 정리, 대표 예제 문제, 시험 대비 족집게 포인트를 제공합니다.'
       }
     ];
 
@@ -730,6 +744,7 @@
     document.getElementById('count-game').innerText = CONTENTS.filter(c => c.category === 'game').length;
     document.getElementById('count-story').innerText = CONTENTS.filter(c => c.category === 'story').length;
     document.getElementById('count-novel').innerText = CONTENTS.filter(c => c.category === 'novel').length;
+    document.getElementById('count-math').innerText = CONTENTS.filter(c => c.category === 'math').length;
 
     // 카테고리별 리스트 렌더링
     function renderList() {
@@ -740,8 +755,10 @@
         categoryTitle.innerText = `플레이 가능한 게임 (${filtered.length})`;
       } else if (currentCategory === 'story') {
         categoryTitle.innerText = `함께 읽는 동화 이야기 (${filtered.length})`;
-      } else {
+      } else if (currentCategory === 'novel') {
         categoryTitle.innerText = `인싸가족 시트콤 소설 (${filtered.length})`;
+      } else {
+        categoryTitle.innerText = `초등 수학 마스터 (${filtered.length})`;
       }
 
       filtered.forEach((item, index) => {
@@ -782,7 +799,9 @@
       previewFrame.src = encodedFile;
       previewUrlLabel.innerText = `샘플 미리보기: ${item.file}`;
 
-      btnRun.innerText = currentCategory === 'game' ? '🚀 새창에서 게임 실행' : '📖 새창에서 동화 읽기';
+      btnRun.innerText = currentCategory === 'game' 
+        ? '🚀 새창에서 게임 실행' 
+        : (currentCategory === 'math' ? '📐 새창에서 전체 수학 학습하기' : '📖 새창에서 읽기');
       btnRun.onclick = () => {
         window.open(encodedFile, '_blank');
       };
