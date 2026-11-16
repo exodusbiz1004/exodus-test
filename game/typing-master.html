@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타자 마스터 - 한글/영문 타자 연습 & 낙하 산성비 타자 게임</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent: #10b981;
+      --danger: #ef4444;
+      --bg-dark: #0f172a;
+      --panel-bg: rgba(30, 41, 59, 0.85);
+      --card-bg: #1e293b;
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
+    body {
+      background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #0f172a 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    /* 상단 네비게이션 & 헤더 */
+    header {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 12px 20px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      font-size: 28px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+    .brand-text h1 { font-size: 20px; font-weight: 900; background: linear-gradient(135deg, #60a5fa, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand-text p { font-size: 12px; color: var(--text-dim); }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-top {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-top:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    /* 메인 탭 선택 바 (타자 연습 vs 타자 게임) */
+    .mode-bar {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .mode-tab-btn {
+      flex: 1;
+      padding: 16px 20px;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      color: var(--text-dim);
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .mode-tab-btn:hover {
+      color: #fff;
+      border-color: rgba(96, 165, 250, 0.5);
+    }
+    .mode-tab-btn.active {
+      color: #fff;
+      border-color: #3b82f6;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
+    }
+
+    /* 서브 컨트롤 (언어 선택, 난이도 등) */
+    .sub-bar {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding: 12px 20px;
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .lang-selector, .level-selector {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dim);
+    }
+
+    .chip-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    .chip-btn:hover { color: #fff; background: rgba(255,255,255,0.14); }
+    .chip-btn.active {
+      background: #3b82f6;
+      color: #fff;
+      border-color: #60a5fa;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    }
+
+    /* 메인 컨테이너 */
+    .main-stage {
+      width: 100%;
+      max-width: 960px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .view-panel {
+      display: none;
+      width: 100%;
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+      position: relative;
+    }
+    .view-panel.active { display: block; }
+
+    /* ========================================================
+       1. 타자 연습 모드 (Practice Mode)
+       ======================================================== */
+    .practice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-badge-group {
+      display: flex;
+      gap: 14px;
+    }
+    .stat-badge {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+    }
+    .stat-val { font-size: 22px; font-weight: 900; color: #38bdf8; }
+    .stat-lbl { font-size: 11px; color: var(--text-dim); text-transform: uppercase; }
+
+    .sentence-display {
+      background: rgba(15, 23, 42, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 24px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .target-text {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 0.5px;
+      word-break: keep-all;
+      user-select: none;
+    }
+    .char-item {
+      display: inline-block;
+      transition: color 0.1s;
+    }
+    .char-correct { color: #34d399; }
+    .char-wrong { color: #f87171; background: rgba(239, 68, 68, 0.2); border-radius: 3px; }
+    .char-current {
+      border-bottom: 3px solid #38bdf8;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    .practice-input-wrap {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .typing-input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      border: 2px solid #3b82f6;
+      border-radius: 16px;
+      padding: 16px 20px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      outline: none;
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.25);
+    }
+    .typing-input:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      transition: width 0.2s ease;
+    }
+
+    .keyboard-guide {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    /* ========================================================
+       2. 산성비 타자 게임 모드 (Raindrop Falling Game)
+       ======================================================== */
+    .game-hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hud-hearts {
+      display: flex;
+      gap: 6px;
+      font-size: 22px;
+    }
+    .hud-score-wrap {
+      display: flex;
+      gap: 20px;
+    }
+    .hud-score-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .hud-val { font-size: 22px; font-weight: 900; color: #f59e0b; }
+    .hud-lbl { font-size: 11px; color: var(--text-dim); }
+
+    .game-canvas-area {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, #090d16 100%);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+    }
+
+    .word-drop {
+      position: absolute;
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+      border: 1px solid #38bdf8;
+      border-radius: 12px;
+      padding: 8px 16px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+      user-select: none;
+      white-space: nowrap;
+      transition: transform 0.1s;
+    }
+    .word-drop.highlight {
+      border-color: #facc15;
+      color: #fef08a;
+      box-shadow: 0 0 16px rgba(250, 204, 21, 0.5);
+      transform: scale(1.08);
+    }
+    .word-drop.danger-low {
+      border-color: #ef4444;
+      color: #fca5a5;
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.6);
+      animation: pulse-danger 0.5s infinite alternate;
+    }
+    @keyframes pulse-danger {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    .danger-line {
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: dashed 2px #ef4444;
+      opacity: 0.6;
+    }
+    .danger-label {
+      position: absolute;
+      bottom: 6px;
+      right: 16px;
+      font-size: 11px;
+      color: #f87171;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .game-input-wrap {
+      display: flex;
+      gap: 12px;
+    }
+    .game-input {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.95);
+      border: 2px solid #10b981;
+      border-radius: 16px;
+      padding: 14px 20px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      outline: none;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
+    }
+    .game-input:focus {
+      border-color: #34d399;
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.45);
+    }
+
+    .btn-game-action {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border: none;
+      color: #fff;
+      padding: 0 28px;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-game-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+    }
+
+    /* 게임 오버 / 승리 오버레이 */
+    .game-overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(8px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      z-index: 10;
+    }
+    .game-overlay.active { display: flex; }
+    .overlay-title { font-size: 36px; font-weight: 900; margin-bottom: 12px; }
+    .overlay-desc { font-size: 16px; color: var(--text-dim); margin-bottom: 24px; text-align: center; }
+    .btn-restart {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      border: none;
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 24px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-restart:hover { transform: scale(1.05); }
+
+    /* 반응형 모바일 */
+    @media (max-width: 640px) {
+      .mode-tab-btn { font-size: 15px; padding: 12px; }
+      .target-text { font-size: 18px; }
+      .typing-input { font-size: 18px; padding: 12px 16px; }
+      .game-canvas-area { height: 380px; }
+      .header-controls { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 헤더 -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">⌨️</div>
+      <div class="brand-text">
+        <h1>타자 마스터 (Typing Master)</h1>
+        <p>한글 · 영문 타자 연습 & 산성비 타자 게임</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <button id="btn-sound-toggle" class="btn-top">
+        <span id="sound-icon">🔊</span> 사운드 ON
+      </button>
+      <a href="../index.html" class="btn-top">
+        🏠 메인 허브
+      </a>
+    </div>
+  </header>
+
+  <!-- 대모드 선택 탭 (타자 연습 vs 타자 게임) -->
+  <div class="mode-bar">
+    <button class="mode-tab-btn active" data-tab="practice">
+      📝 문장 타자 연습 (Practice)
+    </button>
+    <button class="mode-tab-btn" data-tab="game">
+      🎮 낙하 산성비 타자 게임 (Game)
+    </button>
+  </div>
+
+  <!-- 공통 서브 컨트롤 바 (언어 선택 & 난이도) -->
+  <div class="sub-bar">
+    <div class="lang-selector">
+      <span>언어 선택:</span>
+      <button class="chip-btn active" data-lang="ko">🇰🇷 한글 (Korean)</button>
+      <button class="chip-btn" data-lang="en">🇺🇸 영문 (English)</button>
+    </div>
+    <div class="level-selector" id="level-group">
+      <span>연습/게임 단계:</span>
+      <button class="chip-btn active" data-level="easy">기초</button>
+      <button class="chip-btn" data-level="normal">보통</button>
+      <button class="chip-btn" data-level="hard">도전</button>
+    </div>
+  </div>
+
+  <!-- 메인 작업 영역 -->
+  <div class="main-stage">
+
+    <!-- 1. 문장 타자 연습 패널 -->
+    <section id="panel-practice" class="view-panel active">
+      <div class="practice-header">
+        <div class="stat-badge-group">
+          <div class="stat-badge">
+            <span class="stat-val" id="prac-wpm">0</span>
+            <span class="stat-lbl">타수 (CPM)</span>
+          </div>
+          <div class="stat-badge">
+            <span class="stat-val" id="prac-acc">100%</span>
+            <span class="stat-lbl">정확도</span>
+          </div>
+          <div class="stat-badge">
+            <span class="stat-val" id="prac-index">1/10</span>
+            <span class="stat-lbl">진행 문장</span>
+          </div>
+        </div>
+        <button id="btn-next-sentence" class="btn-top">
+          다음 문장 ⏭️
+        </button>
+      </div>
+
+      <!-- 진행률 바 -->
+      <div class="progress-track">
+        <div id="prac-progress-bar" class="progress-fill"></div>
+      </div>
+
+      <!-- 타자 제시 문장 창 -->
+      <div class="sentence-display">
+        <div id="target-sentence" class="target-text">
+          <!-- JS 동적 글자 렌더링 -->
+        </div>
+      </div>
+
+      <!-- 타자 입력창 -->
+      <div class="practice-input-wrap">
+        <input type="text" id="practice-input" class="typing-input" placeholder="위 문장을 똑같이 입력하세요... (Enter 또는 스페이스 완료)" autocomplete="off" autofocus>
+      </div>
+
+      <!-- 키보드 안내 가이드 -->
+      <div class="keyboard-guide">
+        💡 <b>타자 꿀팁 :</b> 손가락의 기본 자리(ASDF, JKL;)를 유지하고 화면의 글자를 보며 리듬감 있게 타이핑해 보세요! Enter 키를 치면 다음 문장으로 넘어갑니다.
+      </div>
+    </section>
+
+    <!-- 2. 산성비 타자 게임 패널 -->
+    <section id="panel-game" class="view-panel">
+      <div class="game-hud">
+        <div class="hud-hearts" id="hud-hearts">
+          ❤️ ❤️ ❤️ ❤️ ❤️
+        </div>
+        <div class="hud-score-wrap">
+          <div class="hud-score-item">
+            <span class="hud-val" id="game-score">0</span>
+            <span class="hud-lbl">SCORE</span>
+          </div>
+          <div class="hud-score-item">
+            <span class="hud-val" id="game-combo" style="color:#38bdf8;">0</span>
+            <span class="hud-lbl">COMBO</span>
+          </div>
+          <div class="hud-score-item">
+            <span class="hud-val" id="game-level-disp" style="color:#34d399;">Lv.1</span>
+            <span class="hud-lbl">LEVEL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 떨어지는 단어 캔버스 영역 -->
+      <div class="game-canvas-area" id="game-canvas">
+        <div class="danger-line"></div>
+        <div class="danger-label">DEFENSE LINE</div>
+
+        <!-- 게임 오버 / 클리어 오버레이 -->
+        <div class="game-overlay" id="game-overlay">
+          <div class="overlay-title" id="overlay-title">GAME OVER</div>
+          <div class="overlay-desc" id="overlay-desc">최종 점수: 0점</div>
+          <button class="btn-restart" id="btn-game-restart">다시 시작하기 🔄</button>
+        </div>
+      </div>
+
+      <!-- 게임 입력창 및 시작 버튼 -->
+      <div class="game-input-wrap">
+        <input type="text" id="game-input" class="game-input" placeholder="떨어지는 단어를 입력하고 Enter 치세요!" autocomplete="off" disabled>
+        <button id="btn-game-start" class="btn-game-action">게임 시작 ▶</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 사운드 엔진 & 스크립트 -->
+  <script>
+    /* ========================================================
+       1. Web Audio API 신시사이저 사운드 엔진
+       ======================================================== */
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.muted = false;
+      }
+      init() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioCtx();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+      playTypeKey() {
+        if (this.muted) return;
+        this.init();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(600 + Math.random() * 200, this.ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.05);
+      }
+      playCorrect() {
+        if (this.muted) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, now); // C5
+        osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      }
+      playWrong() {
+        if (this.muted) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, now);
+        osc.frequency.setValueAtTime(110, now + 0.1);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.3);
+      }
+      playClear() {
+        if (this.muted) return;
+        this.init();
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        notes.forEach((freq, idx) => {
+          const now = this.ctx.currentTime + idx * 0.08;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        });
+      }
+      playGameOver() {
+        if (this.muted) return;
+        this.init();
+        const notes = [440, 392, 349.23, 293.66];
+        notes.forEach((freq, idx) => {
+          const now = this.ctx.currentTime + idx * 0.14;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        });
+      }
+    }
+    const sound = new SoundEngine();
+
+    /* ========================================================
+       2. 콘텐츠 데이터베이스 (한글 / 영문)
+       ======================================================== */
+    const DATA = {
+      // 문장 타자 연습 데이터
+      practice: {
+        ko: {
+          easy: [
+            "하늘이 푸르고 맑은 날입니다.",
+            "바람이 솔솔 불어옵니다.",
+            "책을 읽으면 마음이 자랍니다.",
+            "우리는 서로 도우며 살아갑니다.",
+            "오늘도 즐거운 하루를 시작해요.",
+            "작은 미소가 큰 행복을 줍니다.",
+            "친구와 함께 뛰놀며 웃어요.",
+            "시간은 소중한 선물입니다."
+          ],
+          normal: [
+            "시작이 반이라는 말처럼 용기를 내어 도전해 보세요.",
+            "실패는 성공으로 나아가는 과정에서 만나는 배움입니다.",
+            "아름다운 말 한마디가 누군가의 마음에 꽃을 피웁니다.",
+            "모든 일에 감사하는 마음을 가지면 세상이 따뜻해집니다.",
+            "노력은 결코 우리를 배신하지 않는 든든한 나무입니다.",
+            "다름을 인정하고 존중할 때 진정한 우정이 싹틉니다."
+          ],
+          hard: [
+            "별을 노래하는 마음으로 모든 죽어가는 것을 사랑해야지.",
+            "인간의 위대함은 생각하는 능력과 타인을 배려하는 마음에 있다.",
+            "배움에는 끝이 없으며 날마다 새로운 지혜를 채워가는 기쁨이 크다.",
+            "역경을 이겨내고 피어난 꽃은 그 어떤 꽃보다 눈부시게 향기롭다."
+          ]
+        },
+        en: {
+          easy: [
+            "The sky is blue and clear.",
+            "Practice makes perfect.",
+            "Time is gold and treasure.",
+            "Always do your best today.",
+            "Smile can change the world.",
+            "Reading opens your mind.",
+            "Believe in your own power.",
+            "Music heals every broken heart."
+          ],
+          normal: [
+            "A journey of a thousand miles begins with a single step.",
+            "Kind words can be short and easy to speak, but their echoes are endless.",
+            "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+            "In the middle of every difficulty lies great opportunity."
+          ],
+          hard: [
+            "The future belongs to those who believe in the beauty of their dreams.",
+            "Happiness is not something ready-made. It comes from your own actions.",
+            "Knowledge is power, but enthusiasm pulls the switch to make things work."
+          ]
+        }
+      },
+
+      // 산성비 타자 게임 단어 데이터
+      game: {
+        ko: {
+          easy: [
+            "하늘", "구름", "바다", "나무", "사과", "별빛", "나비", "꽃잎", 
+            "친구", "우정", "희망", "사랑", "미소", "행복", "바람", "봄날",
+            "동화", "모험", "바다", "햇살", "소리", "노래", "마음", "연필"
+          ],
+          normal: [
+            "인싸가족", "타자마스터", "자전거", "무지개", "도서관", "우주선", 
+            "컴퓨터", "선생님", "운동장", "호수공원", "해바라기", "초콜릿",
+            "상추튀김", "돌하르방", "간절곶", "대한민국", "지혜로움", "사이버"
+          ],
+          hard: [
+            "스마트폰", "프로그래밍", "알고리즘", "인공지능", "환경보호",
+            "문화유산", "세계평화", "독서삼매경", "유비무환", "만고불변"
+          ]
+        },
+        en: {
+          easy: [
+            "sky", "sun", "star", "tree", "book", "love", "smile", "blue",
+            "cat", "dog", "bird", "fish", "gold", "wind", "rain", "hope",
+            "game", "play", "code", "song", "food", "milk", "kind", "fast"
+          ],
+          normal: [
+            "master", "typing", "galaxy", "rocket", "forest", "friend",
+            "school", "planet", "summer", "winter", "orange", "yellow",
+            "guitar", "runner", "future", "island", "energy", "motion"
+          ],
+          hard: [
+            "computer", "algorithm", "universe", "chocolate", "adventure",
+            "challenge", "butterfly", "wonderful", "creativity", "harmony"
+          ]
+        }
+      }
+    };
+
+    /* ========================================================
+       3. 전역 상태 관리
+       ======================================================== */
+    let currentMode = 'practice'; // 'practice' or 'game'
+    let currentLang = 'ko';       // 'ko' or 'en'
+    let currentLevel = 'easy';    // 'easy', 'normal', 'hard'
+
+    // 타자 연습 상태
+    let practiceSentenceIndex = 0;
+    let practiceSentences = [];
+    let practiceStartTime = null;
+    let practiceTotalTyped = 0;
+    let practiceTotalErrors = 0;
+
+    // 타자 게임 상태
+    let gameRunning = false;
+    let gameScore = 0;
+    let gameCombo = 0;
+    let gameLives = 5;
+    let gameLevel = 1;
+    let fallingWords = []; // { id, text, elem, x, y, speed }
+    let gameSpawnTimer = null;
+    let gameLoopFrame = null;
+    let nextWordId = 0;
+
+    /* ========================================================
+       4. UI 요소 참조
+       ======================================================== */
+    const btnSoundToggle = document.getElementById('btn-sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+    const modeTabs = document.querySelectorAll('.mode-tab-btn');
+    const langBtns = document.querySelectorAll('.chip-btn[data-lang]');
+    const levelBtns = document.querySelectorAll('.chip-btn[data-level]');
+
+    const panelPractice = document.getElementById('panel-practice');
+    const panelGame = document.getElementById('panel-game');
+
+    // 연습 모드 엘리먼트
+    const targetSentenceElem = document.getElementById('target-sentence');
+    const practiceInput = document.getElementById('practice-input');
+    const pracWpmElem = document.getElementById('prac-wpm');
+    const pracAccElem = document.getElementById('prac-acc');
+    const pracIndexElem = document.getElementById('prac-index');
+    const pracProgressBar = document.getElementById('prac-progress-bar');
+    const btnNextSentence = document.getElementById('btn-next-sentence');
+
+    // 게임 모드 엘리먼트
+    const gameCanvas = document.getElementById('game-canvas');
+    const gameInput = document.getElementById('game-input');
+    const btnGameStart = document.getElementById('btn-game-start');
+    const gameOverlay = document.getElementById('game-overlay');
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayDesc = document.getElementById('overlay-desc');
+    const btnGameRestart = document.getElementById('btn-game-restart');
+    const hudHearts = document.getElementById('hud-hearts');
+    const gameScoreElem = document.getElementById('game-score');
+    const gameComboElem = document.getElementById('game-combo');
+    const gameLevelDisp = document.getElementById('game-level-disp');
+
+    /* ========================================================
+       5. 사운드 및 모드 전환 이벤트
+       ======================================================== */
+    btnSoundToggle.addEventListener('click', () => {
+      sound.muted = !sound.muted;
+      soundIcon.textContent = sound.muted ? '🔇' : '🔊';
+      btnSoundToggle.innerHTML = `${soundIcon.outerHTML} 사운드 ${sound.muted ? 'OFF' : 'ON'}`;
+      if (!sound.muted) sound.playCorrect();
+    });
+
+    modeTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        modeTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentMode = tab.dataset.tab;
+        sound.init();
+
+        if (currentMode === 'practice') {
+          panelPractice.classList.add('active');
+          panelGame.classList.remove('active');
+          stopGame();
+          initPractice();
+        } else {
+          panelPractice.classList.remove('active');
+          panelGame.classList.add('active');
+          resetGameUI();
+        }
+      });
+    });
+
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        langBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLang = btn.dataset.lang;
+        sound.playCorrect();
+        if (currentMode === 'practice') {
+          initPractice();
+        } else {
+          if (gameRunning) stopGame();
+          resetGameUI();
+        }
+      });
+    });
+
+    levelBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        levelBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLevel = btn.dataset.level;
+        sound.playCorrect();
+        if (currentMode === 'practice') {
+          initPractice();
+        } else {
+          if (gameRunning) stopGame();
+          resetGameUI();
+        }
+      });
+    });
+
+    /* ========================================================
+       6. 문장 타자 연습 로직 (Practice Engine)
+       ======================================================== */
+    function initPractice() {
+      practiceSentences = [...DATA.practice[currentLang][currentLevel]];
+      practiceSentenceIndex = 0;
+      practiceStartTime = null;
+      practiceTotalTyped = 0;
+      practiceTotalErrors = 0;
+      loadPracticeSentence();
+    }
+
+    function loadPracticeSentence() {
+      const currentSentence = practiceSentences[practiceSentenceIndex];
+      pracIndexElem.textContent = `${practiceSentenceIndex + 1}/${practiceSentences.length}`;
+      pracProgressBar.style.width = `${((practiceSentenceIndex) / practiceSentences.length) * 100}%`;
+
+      // 글자별 렌더링
+      targetSentenceElem.innerHTML = '';
+      for (let i = 0; i < currentSentence.length; i++) {
+        const span = document.createElement('span');
+        span.className = `char-item ${i === 0 ? 'char-current' : ''}`;
+        span.textContent = currentSentence[i];
+        targetSentenceElem.appendChild(span);
+      }
+
+      practiceInput.value = '';
+      practiceInput.focus();
+    }
+
+    practiceInput.addEventListener('input', (e) => {
+      if (!practiceStartTime) practiceStartTime = performance.now();
+      sound.playTypeKey();
+
+      const target = practiceSentences[practiceSentenceIndex];
+      const typed = practiceInput.value;
+      const charElems = targetSentenceElem.querySelectorAll('.char-item');
+
+      let correctCount = 0;
+      let wrongCount = 0;
+
+      charElems.forEach((span, idx) => {
+        span.className = 'char-item';
+        if (idx < typed.length) {
+          if (typed[idx] === target[idx]) {
+            span.classList.add('char-correct');
+            correctCount++;
+          } else {
+            span.classList.add('char-wrong');
+            wrongCount++;
+          }
+        } else if (idx === typed.length) {
+          span.classList.add('char-current');
+        }
+      });
+
+      // 속도(CPM) 및 정확도 계산
+      const elapsedMinutes = (performance.now() - practiceStartTime) / 60000;
+      if (elapsedMinutes > 0.01) {
+        const cpm = Math.round(typed.length / elapsedMinutes);
+        pracWpmElem.textContent = cpm;
+      }
+      const acc = typed.length > 0 ? Math.round((correctCount / typed.length) * 100) : 100;
+      pracAccElem.textContent = `${acc}%`;
+
+      // 문장 완성 확인 (일치하면 완료)
+      if (typed === target) {
+        sound.playClear();
+        setTimeout(() => {
+          practiceSentenceIndex++;
+          if (practiceSentenceIndex >= practiceSentences.length) {
+            pracProgressBar.style.width = '100%';
+            alert(`🎉 축하합니다! ${currentLang === 'ko' ? '한글' : '영문'} ${currentLevel} 난이도 문장 연습을 모두 완료했습니다!`);
+            practiceSentenceIndex = 0;
+          }
+          loadPracticeSentence();
+        }, 200);
+      }
+    });
+
+    btnNextSentence.addEventListener('click', () => {
+      practiceSentenceIndex = (practiceSentenceIndex + 1) % practiceSentences.length;
+      loadPracticeSentence();
+      sound.playCorrect();
+    });
+
+    /* ========================================================
+       7. 산성비 타자 게임 로직 (Raindrop Falling Engine)
+       ======================================================== */
+    function resetGameUI() {
+      gameRunning = false;
+      gameScore = 0;
+      gameCombo = 0;
+      gameLives = 5;
+      gameLevel = 1;
+      updateHud();
+      clearFallingWords();
+      gameOverlay.classList.remove('active');
+      btnGameStart.textContent = '게임 시작 ▶';
+      gameInput.value = '';
+      gameInput.disabled = true;
+    }
+
+    function updateHud() {
+      gameScoreElem.textContent = gameScore;
+      gameComboElem.textContent = gameCombo;
+      gameLevelDisp.textContent = `Lv.${gameLevel}`;
+
+      let heartsStr = '';
+      for (let i = 0; i < 5; i++) {
+        heartsStr += i < gameLives ? '❤️ ' : '🤍 ';
+      }
+      hudHearts.textContent = heartsStr.trim();
+    }
+
+    function clearFallingWords() {
+      fallingWords.forEach(w => {
+        if (w.elem && w.elem.parentNode) w.elem.parentNode.removeChild(w.elem);
+      });
+      fallingWords = [];
+    }
+
+    btnGameStart.addEventListener('click', () => {
+      if (gameRunning) {
+        stopGame();
+        btnGameStart.textContent = '게임 시작 ▶';
+      } else {
+        startGame();
+        btnGameStart.textContent = '게임 일시정지 ⏸';
+      }
+    });
+
+    btnGameRestart.addEventListener('click', () => {
+      gameOverlay.classList.remove('active');
+      startGame();
+      btnGameStart.textContent = '게임 일시정지 ⏸';
+    });
+
+    function startGame() {
+      resetGameUI();
+      gameRunning = true;
+      gameInput.disabled = false;
+      gameInput.focus();
+      sound.playClear();
+
+      // 스폰 타이머 설정 (난이도 및 레벨 반영)
+      const spawnInterval = currentLevel === 'easy' ? 2200 : (currentLevel === 'normal' ? 1800 : 1400);
+      gameSpawnTimer = setInterval(spawnWord, spawnInterval);
+
+      // 메인 애니메이션 루프 시작
+      lastFrameTime = performance.now();
+      gameLoopFrame = requestAnimationFrame(gameLoop);
+    }
+
+    function stopGame() {
+      gameRunning = false;
+      clearInterval(gameSpawnTimer);
+      cancelAnimationFrame(gameLoopFrame);
+      gameInput.disabled = true;
+    }
+
+    function spawnWord() {
+      if (!gameRunning) return;
+      const wordList = DATA.game[currentLang][currentLevel];
+      const randomText = wordList[Math.floor(Math.random() * wordList.length)];
+
+      const wordDiv = document.createElement('div');
+      wordDiv.className = 'word-drop';
+      wordDiv.textContent = randomText;
+      gameCanvas.appendChild(wordDiv);
+
+      const canvasWidth = gameCanvas.clientWidth;
+      const wordWidth = Math.max(80, randomText.length * 18);
+      const randomX = Math.max(10, Math.min(canvasWidth - wordWidth - 20, Math.random() * (canvasWidth - wordWidth)));
+
+      // 기본 속도 계산 (난이도 + 레벨 가속)
+      const baseSpeed = currentLevel === 'easy' ? 0.6 : (currentLevel === 'normal' ? 0.9 : 1.3);
+      const speed = baseSpeed + (gameLevel * 0.12);
+
+      const wordObj = {
+        id: nextWordId++,
+        text: randomText,
+        elem: wordDiv,
+        x: randomX,
+        y: 0,
+        speed: speed
+      };
+
+      wordDiv.style.left = `${randomX}px`;
+      wordDiv.style.top = `0px`;
+
+      fallingWords.push(wordObj);
+    }
+
+    let lastFrameTime = performance.now();
+    function gameLoop(now) {
+      if (!gameRunning) return;
+      const dt = (now - lastFrameTime) / 16.66; // 60fps 정규화
+      lastFrameTime = now;
+
+      const canvasHeight = gameCanvas.clientHeight;
+      const dangerY = canvasHeight - 48; // 디펜스 라인 위치
+
+      for (let i = fallingWords.length - 1; i >= 0; i--) {
+        const w = fallingWords[i];
+        w.y += w.speed * dt;
+        w.elem.style.top = `${w.y}px`;
+
+        // 위험 수위 진입 시 경고 스타일
+        if (w.y > dangerY - 70) {
+          w.elem.classList.add('danger-low');
+        }
+
+        // 바닥 충돌 시 (목숨 차감)
+        if (w.y >= dangerY) {
+          w.elem.parentNode.removeChild(w.elem);
+          fallingWords.splice(i, 1);
+          sound.playWrong();
+          gameLives--;
+          gameCombo = 0;
+          updateHud();
+
+          if (gameLives <= 0) {
+            handleGameOver();
+            return;
+          }
+        }
+      }
+
+      gameLoopFrame = requestAnimationFrame(gameLoop);
+    }
+
+    // 타자 입력 검증 (Enter 시)
+    gameInput.addEventListener('keydown', (e) => {
+      if (!gameRunning) return;
+      if (e.key === 'Enter') {
+        const inputVal = gameInput.value.trim();
+        gameInput.value = '';
+        if (!inputVal) return;
+
+        // 가장 아래쪽에 있는 일치 단어 우선 파괴
+        let matchIndex = -1;
+        let maxY = -1;
+
+        for (let i = 0; i < fallingWords.length; i++) {
+          if (fallingWords[i].text === inputVal) {
+            if (fallingWords[i].y > maxY) {
+              maxY = fallingWords[i].y;
+              matchIndex = i;
+            }
+          }
+        }
+
+        if (matchIndex !== -1) {
+          // 적중 성공!
+          const target = fallingWords[matchIndex];
+          sound.playCorrect();
+
+          // 폭발 이펙트 애니메이션
+          target.elem.style.transform = 'scale(1.4)';
+          target.elem.style.opacity = '0';
+          setTimeout(() => {
+            if (target.elem.parentNode) target.elem.parentNode.removeChild(target.elem);
+          }, 150);
+
+          fallingWords.splice(matchIndex, 1);
+
+          gameCombo++;
+          const comboBonus = Math.floor(gameCombo / 3) * 10;
+          gameScore += 100 + comboBonus;
+
+          // 레벨업 체크 (500점마다 레벨업)
+          const newLevel = 1 + Math.floor(gameScore / 500);
+          if (newLevel > gameLevel) {
+            gameLevel = newLevel;
+            sound.playClear();
+          }
+
+          updateHud();
+        } else {
+          // 오타 시
+          sound.playTypeKey();
+          gameCombo = 0;
+          updateHud();
+        }
+      }
+    });
+
+    function handleGameOver() {
+      stopGame();
+      sound.playGameOver();
+      overlayTitle.textContent = 'GAME OVER 💥';
+      overlayTitle.style.color = '#ef4444';
+      overlayDesc.innerHTML = `방어선이 무너졌습니다!<br>최종 달성 점수: <b style="color:#f59e0b; font-size:22px;">${gameScore}점</b> (최고 콤보: ${gameCombo})`;
+      gameOverlay.classList.add('active');
+    }
+
+    // 초기화 실행
+    initPractice();
+  </script>
+</body>
+</html>
