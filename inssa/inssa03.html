@@ -3,106 +3,288 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>인싸가족 시트콤 뮤지컬 - 제3편 : 안동 하회마을의 갓 쓴 힙합 대소동</title>
+  <title>인싸가족 시트콤 뮤지컬 - 제3편 : 안동 하회마을의 갓 쓴 힙합 대소동 (익스텐디드 에디션)</title>
   <style>
-    :root { --primary: #d97706; --bg: #fffbeb; --card-bg: #ffffff; --text-main: #1f2937; --border: #fde68a; --bongja: #ec4899; --bongdu: #3b82f6; --yepd: #10b981; }
+    :root { 
+      --primary: #d97706; 
+      --bg: #fffbeb; 
+      --card-bg: #ffffff; 
+      --text-main: #1f2937; 
+      --border: #fde68a; 
+      --bongja: #ec4899; 
+      --bongdu: #3b82f6; 
+      --yepd: #10b981; 
+      --highlight: #b45309;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, sans-serif; }
-    body { background: radial-gradient(circle at 50% 0%, #fef3c7 0%, #fffbeb 100%); color: var(--text-main); padding: 20px 14px; line-height: 1.85; font-size: 17px; }
-    .book-container { max-width: 720px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 28px; box-shadow: 0 12px 36px rgba(217, 119, 6, 0.15); padding: 30px 24px; }
-    .novel-cover { text-align: center; margin-bottom: 28px; }
-    .tour-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: #fff; font-size: 13px; font-weight: 800; padding: 6px 16px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; }
-    .novel-title { font-size: 26px; font-weight: 900; color: #78350f; line-height: 1.35; margin-bottom: 6px; }
-    .novel-subtitle { font-size: 17px; font-weight: 800; color: #b45309; margin-bottom: 18px; }
-    .cover-poster-wrap { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
+    body { background: radial-gradient(circle at 50% 0%, #fef3c7 0%, #fffbeb 100%); color: var(--text-main); padding: 24px 14px; line-height: 1.9; font-size: 17.5px; }
+    .book-container { max-width: 740px; margin: 0 auto; background: var(--card-bg); border: 3px solid var(--border); border-radius: 30px; box-shadow: 0 16px 40px rgba(217, 119, 6, 0.16); padding: 36px 28px; }
+    .novel-cover { text-align: center; margin-bottom: 30px; }
+    .tour-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: #fff; font-size: 13.5px; font-weight: 800; padding: 6px 18px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(180, 83, 9, 0.25); }
+    .novel-title { font-size: 28px; font-weight: 900; color: #78350f; line-height: 1.35; margin-bottom: 8px; }
+    .novel-subtitle { font-size: 18px; font-weight: 800; color: #b45309; margin-bottom: 20px; }
+    .cover-poster-wrap { width: 100%; border-radius: 22px; overflow: hidden; margin-bottom: 22px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); border: 2px solid #fed7aa; line-height: 0; }
     .cover-poster-wrap svg { width: 100%; height: auto; display: block; }
-    .progress-wrap { background: #fef3c7; border-radius: 10px; height: 8px; margin-bottom: 28px; overflow: hidden; }
+    .progress-wrap { background: #fef3c7; border-radius: 10px; height: 9px; margin-bottom: 30px; overflow: hidden; }
     .progress-bar { height: 100%; background: linear-gradient(90deg, #d97706, #f59e0b); width: 0%; transition: width 0.3s; }
-    .chapter-section { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 2px dashed var(--border); }
-    .chapter-badge { display: inline-flex; font-size: 12px; font-weight: 800; color: #b45309; background: #fef3c7; padding: 4px 12px; border-radius: 12px; margin-bottom: 10px; }
-    .chapter-title { font-size: 20px; font-weight: 900; color: #78350f; margin-bottom: 16px; }
-    .story-p { margin-bottom: 16px; text-indent: 8px; word-break: keep-all; }
-    .talk-box { margin: 14px 0; padding: 12px 16px; border-radius: 14px; font-size: 16px; line-height: 1.6; border-left: 5px solid #ccc; }
+    .chapter-section { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 2px dashed var(--border); }
+    .chapter-badge { display: inline-flex; font-size: 12.5px; font-weight: 800; color: #b45309; background: #fef3c7; padding: 4px 14px; border-radius: 14px; margin-bottom: 12px; border: 1px solid #fde68a; }
+    .chapter-title { font-size: 22px; font-weight: 900; color: #78350f; margin-bottom: 18px; }
+    .story-p { margin-bottom: 18px; text-indent: 10px; word-break: keep-all; }
+    .talk-box { margin: 16px 0; padding: 14px 18px; border-radius: 16px; font-size: 16.5px; line-height: 1.65; border-left: 6px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     .talk-bongja { background: #fdf2f8; border-left-color: var(--bongja); color: #831843; }
     .talk-bongdu { background: #eff6ff; border-left-color: var(--bongdu); color: #1e3a8a; }
     .talk-yepd { background: #ecfdf5; border-left-color: var(--yepd); color: #064e3b; }
-    .talk-name { font-weight: 900; font-size: 13px; margin-bottom: 4px; }
-    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 2px 8px; border-radius: 6px; font-size: 14px; margin: 0 4px; }
-    .musical-lyrics { background: linear-gradient(135deg, #fef3c7, #fdf2f8); border: 2px solid #fde68a; border-radius: 16px; padding: 16px 20px; margin: 20px 0; text-align: center; font-style: italic; color: #78350f; font-weight: 700; }
-    .nav-bar { margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .btn-nav { background: linear-gradient(135deg, #d97706, #b45309); color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; padding: 12px 24px; border-radius: 24px; }
+    .talk-guest { background: #fefce8; border-left-color: #eab308; color: #713f12; }
+    .talk-name { font-weight: 900; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .sfx { font-weight: 900; color: #ea580c; background: #ffedd5; padding: 3px 9px; border-radius: 8px; font-size: 14px; margin: 0 4px; border: 1px solid #fed7aa; }
+    .musical-lyrics { background: linear-gradient(135deg, #fffbeb, #fdf2f8); border: 2px solid #fde68a; border-radius: 18px; padding: 20px 22px; margin: 24px 0; text-align: center; color: #78350f; font-weight: 700; line-height: 1.85; box-shadow: inset 0 2px 6px rgba(217, 119, 6, 0.08); }
+    .lyrics-tag { display: inline-block; background: #78350f; color: #fff; font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 10px; margin-bottom: 8px; }
+    .director-cut { background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 18px; font-size: 15px; color: #475569; margin: 18px 0; }
+    .nav-bar { margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn-nav { background: linear-gradient(135deg, #d97706, #b45309); color: #fff; text-decoration: none; font-size: 14.5px; font-weight: 800; padding: 12px 24px; border-radius: 24px; box-shadow: 0 4px 12px rgba(180, 83, 9, 0.25); transition: transform 0.2s; }
+    .btn-nav:hover { transform: translateY(-2px); }
   </style>
 </head>
 <body>
   <div class="book-container">
     <header class="novel-cover">
-      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제3화 (안동 편)</div>
+      <div class="tour-badge">🎪 인싸가족 전국투어 뮤지컬 · 제3화 (안동 편 - 폭소 익스텐디드)</div>
       <h1 class="novel-title">인싸가족 : 시트콤 뮤지컬</h1>
       <div class="novel-subtitle">제3편 : 안동 하회마을의 갓 쓴 힙합 대소동</div>
       <div class="cover-poster-wrap">
-        <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
-          <rect width="680" height="360" fill="#fef3c7"/>
-          <!-- 안동 한옥 기와지붕 -->
-          <path d="M100 180 Q340 100 580 180 L560 210 L120 210 Z" fill="#334155"/>
-          <!-- 봉자 (한복 치마에 선글라스) -->
-          <circle cx="200" cy="200" r="28" fill="#fed7aa"/>
-          <path d="M175 190 Q200 150 225 190" fill="#db2777"/>
-          <rect x="185" y="195" width="30" height="10" rx="3" fill="#000"/>
-          <path d="M165 240 L235 240 L245 320 L155 320 Z" fill="#ec4899"/>
-          <!-- 봉두 (도포 입고 갓 썼는데 대두라 갓이 턱없이 작음) -->
-          <ellipse cx="450" cy="210" rx="46" ry="40" fill="#fed7aa"/>
-          <!-- 너무 작은 갓 -->
-          <ellipse cx="450" cy="165" rx="30" ry="8" fill="#0f172a"/>
-          <rect x="440" y="145" width="20" height="20" fill="#0f172a"/>
-          <text x="495" y="180" font-size="20">💦</text>
-          <!-- 안동 간고등어 들고 랩하는 봉두 -->
-          <ellipse cx="370" cy="250" rx="20" ry="8" fill="#64748b" transform="rotate(-30 370 250)"/>
-          <text x="340" y="340" font-size="15" font-weight="900" fill="#78350f" text-anchor="middle">🎎 선비의 고장 안동에서 터진 갓 쓴 K-힙합!</text>
+        <svg viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg">
+          <!-- 배경: 안동 하회마을 부용대와 낙동강 -->
+          <defs>
+            <linearGradient id="andongSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fef3c7"/>
+              <stop offset="60%" stop-color="#fed7aa"/>
+              <stop offset="100%" stop-color="#fde047"/>
+            </linearGradient>
+            <linearGradient id="riverGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="100%" stop-color="#0284c7"/>
+            </linearGradient>
+          </defs>
+          <rect width="680" height="370" fill="url(#andongSky)"/>
+          <!-- 부용대 절벽 실루엣 -->
+          <path d="M0 240 Q160 140 320 210 Q480 130 680 230 L680 370 L0 370 Z" fill="#78350f" opacity="0.25"/>
+          <!-- 낙동강 S자 물결 -->
+          <path d="M0 290 Q220 250 360 300 T680 270 L680 370 L0 370 Z" fill="url(#riverGrad)" opacity="0.65"/>
+          <!-- 안동 한옥 기와지붕 처마 -->
+          <path d="M80 150 Q340 70 600 150 L580 185 Q340 105 100 185 Z" fill="#1e293b"/>
+          <line x1="80" y1="150" x2="55" y2="135" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+          <line x1="600" y1="150" x2="625" y2="135" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+          
+          <!-- 봉자 캐릭터: 분홍 퓨전 개량한복 치마 + 힙합 선글라스 + 브이 포즈 -->
+          <circle cx="210" cy="210" r="28" fill="#fed7aa"/>
+          <path d="M185 200 Q210 160 235 200" fill="#db2777"/>
+          <rect x="195" y="205" width="32" height="11" rx="4" fill="#0f172a"/> <!-- 선글라스 -->
+          <path d="M175 250 L245 250 L260 335 L160 335 Z" fill="#ec4899"/> <!-- 풍성한 분홍 치마 -->
+          <text x="210" y="240" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">ENFP</text>
+
+          <!-- 중앙 예PD: 꽹과리와 큐시트 들고 혈압 올라 뒷목 잡는 포즈 -->
+          <circle cx="340" cy="205" r="23" fill="#fed7aa"/>
+          <circle cx="340" cy="188" r="16" fill="#10b981"/> <!-- 연출모자 -->
+          <circle cx="372" cy="235" r="14" fill="#eab308" stroke="#ca8a04" stroke-width="2"/> <!-- 꽹과리 -->
+          <text x="335" y="170" font-size="18">💢</text>
+
+          <!-- 봉두 캐릭터: 초대형 대두 + 턱없이 작은 미니 갓(머리 위에 얹힘) + 닭다리 마이크 -->
+          <ellipse cx="480" cy="225" rx="56" ry="48" fill="#fed7aa"/> <!-- 거대 대두 -->
+          <!-- 턱걸이 미니 갓 -->
+          <ellipse cx="480" cy="172" rx="28" ry="7" fill="#0f172a"/>
+          <rect x="470" y="148" width="20" height="24" fill="#0f172a"/>
+          <line x1="465" y1="172" x2="455" y2="230" stroke="#0f172a" stroke-width="2"/> <!-- 갓끈이 터지기 직전 -->
+          <line x1="495" y1="172" x2="505" y2="230" stroke="#0f172a" stroke-width="2"/>
+          <text x="545" y="195" font-size="22">💦</text>
+          <!-- 손에 든 거대한 안동 찜닭 닭다리 -->
+          <ellipse cx="410" cy="265" rx="18" ry="10" fill="#9a3412" transform="rotate(-25 410 265)"/>
+          <rect x="388" y="268" width="14" height="6" fill="#f8fafc" rx="2" transform="rotate(-25 388 268)"/>
+
+          <!-- 타이틀 띠 -->
+          <rect x="60" y="325" width="560" height="32" rx="16" fill="rgba(120, 53, 15, 0.88)"/>
+          <text x="340" y="347" font-size="14.5" font-weight="900" fill="#fef08a" text-anchor="middle">🍗 머리둘레 62cm 봉두의 미니 갓 참사와 찜닭 10인분 힙합 대격돌!</text>
         </svg>
       </div>
       <div class="progress-wrap"><div id="novel-progress" class="progress-bar"></div></div>
     </header>
 
+    <!-- 1장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">📜 1장 / 총 4장</div>
-      <h2 class="chapter-title">1. 유교의 고장 안동, 도포와 갓의 굴욕</h2>
-      <p class="story-p">투어 버스가 낙동강 줄기를 따라 경상북도 안동 하회마을에 도착했다. 고즈넉한 기와집과 솔바람이 부는 이곳에서 예PD는 특별한 '전통 퓨전 국악 뮤지컬' 콘셉트를 기획했다.</p>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"안동 공연의 핵심은 예절과 풍류야! 조선 선비의 멋을 현대 힙합 비트에 얹는 거지!"</div>
-      <p class="story-p">하지만 문제가 생겼다. 안동 시장에서 특별 제작한 전통 갓이 봉두의 거대한 머리에 전혀 들어가지 않는 것이었다! 봉두가 머리에 얹은 갓은 마치 거대한 멜론 위에 얹힌 조그만 도토리 같았다.</p>
-      <div class="talk-box talk-bongja"><div class="talk-name" style="color:var(--bongja)">💄 봉자 (배를 잡고 구르며)</div>"푸하하하! 박봉두 갓 쓴 꼬락서니 좀 봐! 머리 둘레가 60cm인데 저 갓은 유치원생용이냐?!"</div>
-    </section>
-
-    <section class="chapter-section">
-      <div class="chapter-badge">🐟 2장 / 총 4장</div>
-      <h2 class="chapter-title">2. 안동 찜닭 5인분과 잃어버린 마이크</h2>
-      <p class="story-p">리허설 1시간 전, 봉두가 대기실에서 감쪽같이 사라졌다. 예PD와 봉자가 찾아 헤맨 끝에 발견한 곳은 구시장 찜닭 골목이었다. 봉두는 안동 찜닭 대짜와 간고등어구이를 눈 깜짝할 새에 해치우고 있었다.</p>
-      <div class="talk-box talk-bongdu"><div class="talk-name" style="color:var(--bongdu)">🍗 봉두 (당면을 후루룩 삼키며)</div>"아니 누나, 안동에 왔으면 찜닭 당면을 흡입해야 국악 랩 성량이 터져 나온다고!"</div>
-    </section>
-
-    <section class="chapter-section">
-      <div class="chapter-badge">🎤 3장 / 총 4장</div>
-      <h2 class="chapter-title">3. 하회탈 탈춤 배틀과 판소리 랩</h2>
-      <p class="story-p">안동 문화예술의전당 본공연. 봉자는 고운 개량한복 치마에 힙한 선글라스를 끼고 등장해 꽹과리 비트에 맞춰 환상적인 판소리 랩을 쏟아냈다.</p>
-      <div class="musical-lyrics">
-        "얼씨구 지화자 인싸가 왔다~ (봉자)<br>
-        간고등어보다 짭조름한 내 랩 스킬! (봉두)<br>
-        양반님들도 어깨춤을 덩실덩실~"
+      <div class="chapter-badge">📜 제1장 / 총 5장</div>
+      <h2 class="chapter-title">1. 유교와 선비의 도시, 그리고 '머리둘레 62cm'의 비극</h2>
+      <p class="story-p">투어 버스가 굽이치는 낙동강 물줄기와 고즈넉한 솔숲을 지나 경상북도 안동 하회마을에 들어섰다. 기와지붕 처마마다 고풍스러운 멋이 흐르는 이곳, 유교의 본고장에서 예PD는 야심 찬 기획을 발표했다.</p>
+      
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (비장한 목소리로 지휘봉을 휘두르며)</div>
+        "서울과 성남에선 K-POP과 테크 비트로 젊은 층을 사로잡았지? 하지만 이곳 안동은 달라! 종갓집 종손 어르신들부터 유림 선비님들까지 전 세대를 아우르는 **‘조선 힙합 유교 랩 뮤지컬’**을 선보일 거다!"
       </div>
-      <p class="story-p">이때 봉두가 찌그러진 갓을 비스듬히 눌러쓰고 무대 중앙으로 뛰어들며 '하회탈 비보잉 덤블링'을 시도했다! 머리가 무거워 앞으로 굴렀지만, 그 모습이 오히려 전설의 취발이 탈춤처럼 보여 어르신 관객들의 박수갈채가 터져 나왔다. <span class="sfx">얼쑤- 좋다!</span></p>
+
+      <p class="story-p">예PD가 의기양양하게 꺼내든 것은 장인이 한 땀 한 땀 말총으로 엮은 명품 흑립(전통 갓)과 눈부신 옥빛 도포였다. 봉자는 분홍빛 모던 개량한복 치마를 입고 거울 앞에서 아이라인을 매만지며 환호했다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (거울에 뽀뽀할 기세로)</div>
+        "어머 어머! 나 완전 황진이 환생 아니야? 여기에 힙합 블랙 선글라스 끼고 틱톡 챌린지 찍으면 안동 유림 어르신들도 ‘좋아요’ 누르실 각인데?!"
+      </div>
+
+      <p class="story-p">문제는 그 시각, 도포를 입고 머리에 갓을 얹으려던 봉두 쪽에서 터졌다. <span class="sfx">뿌드득- 뚝!</span></p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (얼굴이 시뻘겋게 터질 듯 부풀어 오르며)</div>
+        "으아악! 예PD님! 이거 갓 맞아요?! 왜 이마 반도 안 들어가요?! 관자놀이가 으스러질 것 같아요!! 숨이 안 쉬어져!!"
+      </div>
+
+      <p class="story-p">봉두의 머리둘레는 자타공인 62cm. 성인 남성 특대형 모자도 꽉 끼는 국보급 대두였다. 반면 장인이 준비한 전통 갓은 평균 선비용 규격인 55cm. 봉두의 정수리에 얹힌 갓은 마치 **‘커다란 수박 위에 얹힌 삶은 메추리알’** 꼴이었다. 갓끈을 턱 밑에 묶으려 당길 때마다 봉두의 두 턱 살이 사방으로 터져 나와 푸들 강아지처럼 볼이 찌그러졌다.</p>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (바닥을 구르며 통곡하듯 폭소)</div>
+        "푸하하하하핫!! 야 박봉두!! 너 갓 쓴 게 아니라 정수리에 미니 종지 그릇 올려놓은 것 같아!! 갓끈 끊어지겠다!! 저러다 갓 날아가면 살상 무기야!!"
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (뒷목을 잡으며 혈압 상승)</div>
+        "저... 저 갓이 안동 국가무형문화재 장인 어르신한테 삼고초려해서 빌려온 거란 말이다! 머리통 힘 빼 봉두야!! 갓 찢어지면 우리 전국투어 개런티 전액 몰수야!!"
+      </div>
     </section>
 
+    <!-- 2장 -->
     <section class="chapter-section">
-      <div class="chapter-badge">🎉 4장 / 총 4장</div>
-      <h2 class="chapter-title">4. 선비들도 반한 흥 폭발 피날레</h2>
-      <p class="story-p">엄숙할 것만 같았던 안동의 객석은 10대 팬부터 백발의 할아버지까지 하나 되어 "인싸! 인싸!"를 연호했다. 성공적으로 공연을 마친 뒤 예PD가 지도를 펼쳤다.</p>
-      <div class="talk-box talk-yepd"><div class="talk-name" style="color:var(--yepd)">🎬 예PD</div>"안동의 기세를 이어받아 다음은 맛과 예술의 성지, 빛고을 **광주**다! 광주 충장로에서 스트리트 댄스 배틀이 기다리고 있어!"</div>
+      <div class="chapter-badge">🍗 제2장 / 총 5장</div>
+      <h2 class="chapter-title">2. 사라진 대두 선비와 안동 구시장 찜닭의 습격</h2>
+      <p class="story-p">리허설 시작 40분 전. 하회마을 특설 야외무대 스태프들이 발을 동동 구르기 시작했다. 주연 배우인 봉두가 찌그러진 갓을 머리에 얹은 채 감쪽같이 증발해 버린 것이다!</p>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (무전기를 집어던지며)</div>
+        "봉두 어디 갔어?! 대기실에 도포만 팽개쳐져 있고 사람이 없어!! 마이크 세팅 다 끝났는데!!"
+      </div>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (휴대폰 위치 추적 앱을 켜며)</div>
+        "예PD님, 침착하세요. 봉두의 행동 패턴은 과학이에요. 14살 ISFJ 박봉두는 스트레스를 받으면 머리를 식히러 가는 게 아니라 **위장을 채우러** 갑니다. 지금 시간이 오후 1시 30분... 봉두의 5끼 루틴 중 '세 번째 간식 겸 점심 2차' 타임이에요!"
+      </div>
+
+      <p class="story-p">봉자의 추리는 100% 적중했다. 차를 타고 15분을 달려 도착한 안동 구시장 찜닭 골목 입구. 저 멀리서 달콤 짭조름한 간장 냄새와 칼칼한 청양고추 향기가 진동하는 유명 찜닭집 유리창 너머로 낯익은 거대한 실루엣이 보였다.</p>
+
+      <div class="talk-box talk-guest">
+        <div class="talk-name" style="color:#a16207">👵 찜닭집 욕쟁이 할머니</div>
+        "아이고 저 머리 큰 도령 보소! 혼자 와서 대짜(4~5인분) 냄비를 뼈까지 발라먹고, 당면 사리 세 번 추가에 공깃밥 네 개를 싹싹 비비고 앉았네! 복스럽다 복스러워!"
+      </div>
+
+      <p class="story-p">가게 안으로 뛰어 들어간 예PD와 봉자의 눈앞에 펼쳐진 광경은 가히 충격적이었다. 봉두는 찌그러진 미니 갓을 삐딱하게 쓴 채, 양손에 튼실한 토종닭 다리를 몽둥이처럼 쥐고 당면을 진공청소기처럼 흡입하고 있었다. <span class="sfx">후루루루룩 쩝쩝 꿀꺽!</span></p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🍗 봉두 (입가에 춘장 같은 간장 양념을 잔뜩 묻힌 채)</div>
+        "어? 누나? 예PD님? 왜 벌써 왔어요? 밥 비빈 거 이제 두 숟가락 남았는데! 안동에 와서 간장 찜닭 당면을 안 채우면 탄수화물 부족으로 무대에서 판소리 랩 고음이 안 터진단 말이에요!"
+      </div>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (기겁하며)</div>
+        "야 이 돼지야!! 넌 하루 두 끼 철저히 칼로리 조절하는 이 누나의 프로 정신을 좀 본받아라! 저 기름기 좔좔 흐르는 입술로 마이크 잡으면 마이크 감전된다!!"
+      </div>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (이마를 짚으며)</div>
+        "됐어, 말릴 시간 없다! 봉두야, 손에 든 그 닭다리 마이크 삼아서 당장 씹으면서 버스로 튀어 뛰어!!!"
+      </div>
     </section>
 
+    <!-- 3장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🎤 제3장 / 총 5장</div>
+      <h2 class="chapter-title">3. 안동 하회마을 특설무대, 갓 쓴 힙합의 폭발</h2>
+      <p class="story-p">공연장인 하회마을 만송정 솔숲 앞 야외 특설무대. 객석에는 안동의 문중 어르신들과 도포를 차려입은 유림들, 그리고 전국 각지에서 인싸가족을 보러 온 초중고 팬 3천여 명이 인산인해를 이루고 있었다.</p>
+
+      <p class="story-p"><span class="sfx">징- 쿵덕쿵 쾅쾅!</span> 웅장한 대북 소리와 함께 현대적인 808 힙합 베이스가 숲 전체를 뒤흔들었다. 먼저 무대 중앙으로 뛰어나온 봉자가 화려한 턴과 함께 핑크빛 한복 치마를 휘날리며 관객들의 시선을 강탈했다.</p>
+
+      <div class="musical-lyrics">
+        <span class="lyrics-tag">🎵 넘버 1: 조선 인싸 황진이 랩 (봉자 Solo)</span><br>
+        "낙동강 굽이도는 물결을 보아라~ 뷰티 인싸 봉자가 왔다!<br>
+        유교 걸 유교 보이 모두 멈추고 내 몸짓에 집중해!<br>
+        립스틱 바르고 부채를 쫙 펴면 여기가 바로 한양 핫플레이스!<br>
+        어르신들 손뼉 치고 청춘들은 소리 질러~ 얼씨구 좋다!"
+      </div>
+
+      <p class="story-p">객석의 어르신들이 "어이쿠, 낭자가 춤사위가 보통이 아니네!"라며 지팡이를 흔들기 시작했다. 분위기가 최고조에 달했을 때, 반대편 무대 장막을 뚫고 봉두가 우스꽝스러운 자태로 튀어나왔다!</p>
+
+      <p class="story-p">그런데 봉두의 머리통에는 갓이 아니라, 갓이 들어가지 않아 급하게 예PD가 씌워준 **‘안동 하회탈(이매탈)’**이 얼굴 위로 턱없이 작게 걸쳐져 있었다. 눈구멍이 봉두의 볼살에 파묻혀 앞이 제대로 보이지 않는 상태였다!</p>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (앞이 안 보여 비틀거리며 랩 개시)</div>
+        "누나 비켜봐라! 찜닭 파워 완충된 대두 선비가 나간다!!<br>
+        머리가 커서 슬픈 짐승이여? 아니, 머리가 커서 울림통이 대포다!!"
+      </div>
+    </section>
+
+    <!-- 4장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">💥 제4장 / 총 5장</div>
+      <h2 class="chapter-title">4. 전설의 꽈당 덤블링과 기적의 취발이 댄스</h2>
+      <p class="story-p">봉두는 비트가 절정으로 치닫자 준비했던 비보잉 프리즈 동작을 시도했다. "받아라, 하회탈 윈드밀!" 하지만 뱃속에 들어찬 찜닭 5인분의 무게와 62cm 거대 머리의 하중을 이기지 못하고 그만 발을 헛디뎠다. <span class="sfx">쿵- 쿠구궁!!</span></p>
+
+      <p class="story-p">봉두의 육중한 몸이 무대 바닥을 구르며 앞으로 세 바퀴를 굴렀다. 객석에 있던 예PD는 심장이 멎는 줄 알았다. "망했다! 방송 사고다!"</p>
+
+      <p class="story-p">하지만 그 순간, 기적이 일어났다. 앞으로 떼구르르 구른 봉두가 반동을 이용해 튕겨 올라오더니, 엉겁결에 무대 난간을 짚고 엉덩이를 씰룩거리며 안동 전통 탈춤의 '취발이(술 취한 스님)' 춤사위를 완벽하게 오마주한 것이다!</p>
+
+      <div class="musical-lyrics">
+        <span class="lyrics-tag">🎵 넘버 2: 대두 취발이와 찜닭의 합창 (봉자 & 봉두 Duet)</span><br>
+        "넘어져도 멈추지 않아! 이것이 바로 인생의 풍류로다! (봉두)<br>
+        박봉두 머리 무게로 무대 바닥 뚫릴 뻔했잖아! (봉자)<br>
+        배가 부르면 웃음이 나고, 춤을 추면 세상이 둥실둥실! (봉두)<br>
+        조선 팔도 최고 인싸는 바로 우리 안동 하회패밀리! (합창)"
+      </div>
+
+      <p class="story-p">봉두가 배를 통통 두드리며 하회탈 특유의 바보 웃음 소리를 내자, 점잖게 앉아 계시던 종갓집 90세 할아버지 선비님이 자리에서 벌떡 일어나셨다.</p>
+
+      <div class="talk-box talk-guest">
+        <div class="talk-name" style="color:#a16207">👴 종갓집 대종손 할아버지 (갓을 고쳐 쓰며 흥겹게 어깨춤)</div>
+        "명창이다! 명창이야!! 저 도령의 배포와 뱃살에서 나오는 성량이 조선 제일의 광대로세! 지화자 좋다, 기생 낭자도 얼쑤 잘한다!!"
+      </div>
+
+      <p class="story-p">할아버지의 호통 같은 추임새를 신호탄으로 3천여 명의 관객들이 일제히 기립해 "얼쑤! 좋다! 지화자!"를 떼창했다. 힙합 트랩 비트와 꽹과리 소리, 그리고 봉두의 뒤뚱거리는 탈춤이 기막히게 버무려져 하회마을 전체가 광란의 축제판으로 변했다. <span class="sfx">와아아아- 짝짝짝!!</span></p>
+    </section>
+
+    <!-- 5장 -->
+    <section class="chapter-section">
+      <div class="chapter-badge">🚀 제5장 / 에필로그</div>
+      <h2 class="chapter-title">5. 훈장님의 칭찬과 빛고을 광주를 향한 출사표</h2>
+      <p class="story-p">무대가 끝나고 대기실. 봉두는 땀에 흠뻑 젖은 얼굴로 찜닭집에서 싸 온 누룽지를 오독오독 씹고 있었다. 문을 열고 들어온 사람은 다름 아닌 안동 하회마을 보존회 회장 훈장님이었다.</p>
+
+      <div class="talk-box talk-guest">
+        <div class="talk-name" style="color:#a16207">📜 안동 훈장님 (인자한 미소로 특대형 종이 상자를 건네며)</div>
+        "내 팔십 평생 전통 갓을 저리 복스럽게 터뜨릴 뻔한 장사는 처음 보았네. 허허! 여기 우리 문중에서 특수 제작한 **'둘레 65cm 초대형 특대 갓'**과 안동 간고등어 다섯 손을 선물로 줄 터이니 다음 투어에서도 민족의 얼을 널리 알리게나!"
+      </div>
+
+      <div class="talk-box talk-bongdu">
+        <div class="talk-name" style="color:var(--bongdu)">🎮 봉두 (간고등어 상자를 끌어안으며 눈물 찔끔)</div>
+        "훈장님!! 제 머리를 알아봐 주신 분은 할아버지가 처음이에요! 간고등어는 오늘 밤 야식 4번째 끼니로 맛있게 구워 먹겠습니다!"
+      </div>
+
+      <div class="talk-box talk-bongja">
+        <div class="talk-name" style="color:var(--bongja)">💄 봉자 (질색하며)</div>
+        "투어 버스 안에서 생선 굽기만 해봐라, 진짜 낙동강에 빠뜨려 버릴 테니까!"
+      </div>
+
+      <p class="story-p">예PD는 그새 유튜브에 올라간 공연 실황 쇼츠 영상을 보며 비명을 질렀다. "조회수 150만 돌파했다! '안동 찜닭 먹방 덤블링 힙합 선비'로 떡상했어!"</p>
+
+      <div class="talk-box talk-yepd">
+        <div class="talk-name" style="color:var(--yepd)">🎬 예PD (지도에 큼직한 깃발을 꽂으며)</div>
+        "서울, 성남, 안동까지 3연속 대박이다! 자, 기세 몰아서 다음은 맛과 멋, 그리고 길거리 댄스의 심장부, 빛고을 **광주 충장로**다! 봉자, 봉두야, 상추튀김 쌈 싸 먹으며 댄스 배틀 뜰 준비해라!"
+      </div>
+
+      <div class="director-cut">
+        🎬 <b>안동 투어 비하인드 쿠키 영상 :</b><br>
+        훈장님이 선물해 주신 '둘레 65cm 특대형 갓'을 쓴 봉두. 이번엔 너무 헐렁해서 눈을 완전히 덮어버리자 앞이 안 보여 버스 짐칸 문에 이마를 쾅 부딪혔다. 봉자는 그걸 찍어 틱톡에 올렸고 10분 만에 '좋아요' 20만 개를 달성했다.
+      </div>
+    </section>
+
+    <!-- 하단 내비게이션 -->
     <div class="nav-bar">
       <a href="inssa02.html" class="btn-nav" style="background: #64748b;">⬅️ 제2편 (성남 편)</a>
-      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털</a>
+      <a href="../index.html" class="btn-nav" style="background: #475569;">🏠 메인 포털 허브</a>
       <a href="inssa04.html" class="btn-nav">제4편 (광주 편) ➡️</a>
     </div>
   </div>
+
   <script>
     window.addEventListener('scroll', () => {
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
