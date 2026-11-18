@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>초등 6학년 2학기 수학 마스터 - 단원별 핵심 개념 & 예제 & 족집게 포인트</title>
+  <title>초등 6학년 2학기 수학 마스터 - 스마트 인터랙티브 스터디룸</title>
   <style>
     :root {
       --primary: #8b5cf6;
@@ -158,6 +158,12 @@
     }
     .unit-btn.active .unit-badge { background: #8b5cf6; color: #fff; }
 
+    /* 단원 완료 체크박스 표시 */
+    .unit-check-badge {
+      margin-left: auto;
+      font-size: 14px;
+    }
+
     /* 우측 상세 콘텐츠 영역 */
     .content-panel {
       flex: 1;
@@ -172,7 +178,7 @@
     .unit-hero {
       border-bottom: 2px dashed var(--border);
       padding-bottom: 20px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .unit-tag {
       display: inline-block;
@@ -196,6 +202,39 @@
       color: var(--text-dim);
     }
 
+    /* 학습 탭 네비게이션 (개념정리 / 시각화 실험실 / 실전 퀴즈 풀기) */
+    .study-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 26px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+    .study-tab-btn {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 10px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .study-tab-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .study-tab-btn.active {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: #fff;
+      border-color: #a855f7;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
     /* 섹션 타이틀 */
     .section-title {
       font-size: 20px;
@@ -204,7 +243,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      margin: 32px 0 16px 0;
+      margin: 28px 0 16px 0;
     }
 
     /* 개념 정리 박스 */
@@ -247,6 +286,74 @@
       gap: 10px;
     }
 
+    /* 시각화 인터랙티브 실험실 박스 */
+    .lab-box {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+      border: 2px solid #8b5cf6;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .lab-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #a78bfa;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .lab-desc {
+      font-size: 14.5px;
+      color: var(--text-dim);
+      margin-bottom: 18px;
+    }
+    .lab-control-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+    .lab-input {
+      background: #090d16;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 800;
+      width: 90px;
+      text-align: center;
+    }
+    .lab-btn {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      border: none;
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lab-btn:hover { transform: translateY(-1px); }
+    .lab-result-display {
+      background: #090d16;
+      border: 1px dashed #a855f7;
+      border-radius: 14px;
+      padding: 18px;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fde047;
+      line-height: 1.8;
+    }
+
     /* 족집게 핵심 포인트 박스 */
     .point-box {
       background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(139, 92, 246, 0.15));
@@ -284,65 +391,87 @@
       font-weight: 900;
     }
 
-    /* 개념별 예제 문제 박스 */
-    .example-card {
+    /* 실전 퀴즈 테스트 카드 (자가 채점 시스템) */
+    .quiz-card {
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 18px;
       padding: 22px;
       margin-bottom: 20px;
     }
-    .example-q-badge {
-      display: inline-block;
+    .quiz-q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .quiz-badge {
       background: #10b981;
       color: #fff;
       font-size: 12px;
       font-weight: 900;
       padding: 3px 10px;
       border-radius: 10px;
-      margin-bottom: 10px;
     }
-    .example-q-text {
-      font-size: 16px;
+    .quiz-status-pill {
+      font-size: 13px;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+    .quiz-status-pill.unsolved { background: rgba(255,255,255,0.1); color: var(--text-dim); }
+    .quiz-status-pill.correct { background: #10b981; color: #fff; }
+    .quiz-status-pill.wrong { background: #ef4444; color: #fff; }
+
+    .quiz-q-text {
+      font-size: 16.5px;
       font-weight: 800;
       color: #fff;
       margin-bottom: 14px;
       line-height: 1.6;
     }
-    .toggle-solution-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border);
-      color: #c084fc;
-      font-size: 13.5px;
-      font-weight: 800;
-      padding: 8px 16px;
+
+    .quiz-input-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .quiz-user-input {
+      flex: 1;
+      background: #090d16;
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 12px;
+      padding: 10px 16px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      outline: none;
+    }
+    .quiz-user-input:focus { border-color: #8b5cf6; }
+    .btn-quiz-check {
+      background: #8b5cf6;
+      border: none;
+      color: #fff;
+      padding: 0 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       transition: all 0.2s;
     }
-    .toggle-solution-btn:hover { background: rgba(192, 132, 252, 0.15); }
+    .btn-quiz-check:hover { background: #7c3aed; }
 
-    .solution-box {
+    .quiz-feedback {
       display: none;
       background: #090d16;
-      border: 1px solid #10b981;
-      border-radius: 14px;
-      padding: 16px 18px;
-      margin-top: 14px;
+      border-radius: 12px;
+      padding: 14px 16px;
       font-size: 14.5px;
-      color: #a7f3d0;
       line-height: 1.7;
     }
-    .solution-box.show { display: block; }
-    .solution-ans {
-      font-weight: 900;
-      font-size: 15.5px;
-      color: #fde047;
-      margin-bottom: 6px;
-    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { border: 1px solid #10b981; color: #a7f3d0; }
+    .quiz-feedback.wrong { border: 1px solid #ef4444; color: #fca5a5; }
 
     @media (max-width: 900px) {
       .math-wrapper { flex-direction: column; }
@@ -360,7 +489,7 @@
       <div class="brand-icon">🎓</div>
       <div>
         <div class="brand-title">초등 6학년 2학기 수학 마스터</div>
-        <div class="brand-sub">교과서 6개 전 단원 개념정리 · 대표 예제 · 족집게 핵심 포인트</div>
+        <div class="brand-sub">개념정리 · 인터랙티브 계산 실험실 · 단원별 실전 퀴즈 & 자가채점</div>
       </div>
     </div>
     <div class="header-links">
@@ -379,7 +508,7 @@
     <aside class="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-title">📚 6학년 2학기 단원 목록</div>
-        <div class="sidebar-desc">학습하고 싶은 단원을 클릭하세요!</div>
+        <div class="sidebar-desc">단원을 클릭하고 실전 문제에 도전하세요!</div>
       </div>
       <nav class="unit-list" id="unit-nav">
         <!-- JS 동적 생성 -->
@@ -394,21 +523,24 @@
 
   <script>
     /* ========================================================
-       초등학교 6학년 2학기 수학 6대 단원 완벽 데이터베이스
-       1단원: 분수의 나눗셈
-       2단원: 소수의 나눗셈
-       3단원: 공간과 입체
-       4단원: 비례식과 비례배분
-       5단원: 원의 넓이
-       6단원: 원기둥, 원뿔, 구
+       초등학교 6학년 2학기 수학 6대 단원 업그레이드 데이터베이스
+       - 핵심 개념 공식
+       - 인터랙티브 시각화 실험실 (Lab)
+       - 시험 족집게 포인트
+       - 실전 자가 채점 퀴즈 (Interactive Quiz with Answer Check)
        ======================================================== */
-    const MATH_UNITS_6_2 = [
+    const MATH_UNITS_6_2_ENHANCED = [
       {
         id: 'unit1',
         num: '1단원',
         title: '분수의 나눗셈',
         icon: '➗',
-        summary: '분모가 같은 분수 나눗셈부터 분모가 다른 분수 나눗셈, 자연수÷분수, 대분수÷분수까지 완벽하게 정복합니다.',
+        summary: '분모가 같은 분수 나눗셈부터 분모가 다른 나눗셈, 자연수÷분수, 대분수÷분수까지 완벽하게 정복합니다.',
+        lab: {
+          title: '🧮 [실험실] 역수 곱셈 변환 계산기',
+          desc: '나누는 분수를 뒤집어 곱셈으로 자동 변환되는 과정을 눈으로 확인해 보세요!',
+          type: 'fraction-division'
+        },
         concepts: [
           {
             title: '1. 분모가 같은 (분수) ÷ (분수)',
@@ -432,20 +564,20 @@
           }
         ],
         points: [
-          '나눗셈(÷)을 곱셈(×)으로 바꿀 때, 뒤에 오는 분수의 위아래(분자, 분모)만 뒤집어야 합니다. (앞의 분수는 그대로!)',
+          '나눗셈(÷)을 곱셈(×)으로 바꿀 때, 뒤에 오는 분수의 위아래(분자, 분모)만 뒤집어야 합니다. (앞의 분수는 절대 뒤집지 마세요!)',
           '대분수는 절대 그대로 역수를 취할 수 없습니다! 반드시 **가분수**로 고친 후에 뒤집으세요.',
           '계산 과정에서 약분을 먼저 진행하면 계산 실수를 거의 제로로 줄일 수 있습니다.'
         ],
-        examples: [
+        quizzes: [
           {
-            q: '휘발유 4/5 L로 6 km를 달리는 오토바이가 있습니다. 이 오토바이는 휘발유 1 L로 몇 km를 갈 수 있을까요?',
-            ans: '7와 1/2 km (또는 7.5 km)',
-            sol: '1 L로 갈 수 있는 거리를 구해야 하므로, (거리) ÷ (휘발유 양)을 계산합니다.\n6 ÷ 4/5 = 6 × 5/4 = 30/4 = 15/2 = 7와 1/2 km'
+            q: '휘발유 4/5 L로 6 km를 달리는 오토바이가 있습니다. 이 오토바이는 휘발유 1 L로 몇 km를 갈 수 있을까요? (분수 또는 소수로 쓰세요)',
+            answers: ['15/2', '7와 1/2', '7.5', '7과 1/2'],
+            sol: '1 L로 갈 수 있는 거리는 (거리) ÷ (휘발유 양) = 6 ÷ 4/5 = 6 × 5/4 = 30/4 = 15/2 = 7.5 km 입니다.'
           },
           {
-            q: '넓이가 3과 1/2 cm²이고 밑변의 길이가 7/8 cm인 평행사변형이 있습니다. 이 평행사변형의 높이는 몇 cm일까요?',
-            ans: '4 cm',
-            sol: '평행사변형 넓이 = (밑변) × (높이) 이므로, 높이 = (넓이) ÷ (밑변)입니다.\n3과 1/2 ÷ 7/8 = 7/2 ÷ 7/8 = 7/2 × 8/7 = 4 cm'
+            q: '넓이가 3과 1/2 cm²이고 밑변의 길이가 7/8 cm인 평행사변형의 높이는 몇 cm일까요?',
+            answers: ['4', '4cm'],
+            sol: '높이 = (넓이) ÷ (밑변) = 3과 1/2 ÷ 7/8 = 7/2 ÷ 7/8 = 7/2 × 8/7 = 4 cm 입니다.'
           }
         ]
       },
@@ -455,6 +587,11 @@
         title: '소수의 나눗셈',
         icon: '🔢',
         summary: '(소수)÷(소수)의 계산에서 나누는 수와 나누어지는 수의 소수점을 똑같이 이동시키는 자릿수 마스터링!',
+        lab: {
+          title: '🔎 [실험실] 소수점 이동 & 나머지 검산기',
+          desc: '몫과 남는 양(나머지)의 소수점 위치를 비교해 보세요.',
+          type: 'decimal-division'
+        },
         concepts: [
           {
             title: '1. 소수점 이동의 기본 원리',
@@ -477,16 +614,16 @@
           '몫의 소수점은 오른쪽으로 옮겨진 새로운 위치에 찍지만, **나머지의 소수점은 옮기기 전 원래 위치**에 찍어야 합니다. (시험 단골 함정!)',
           '나누어떨어지지 않아 반올림할 때는 구하려는 자리의 **다음 자리**에서 반올림합니다.'
         ],
-        examples: [
+        quizzes: [
           {
-            q: '음료수 6.4 L를 병 하나당 0.8 L씩 똑같이 나누어 담으려고 합니다. 병은 모두 몇 개가 필요할까요?',
-            ans: '8개',
+            q: '음료수 6.4 L를 병 하나당 0.8 L씩 똑같이 나누어 담으려고 합니다. 병은 모두 몇 개가 필요할까요? (숫자만 입력)',
+            answers: ['8', '8개'],
             sol: '6.4 ÷ 0.8 에서 소수점을 각각 오른쪽으로 한 자리씩 옮기면 64 ÷ 8 = 8(개)이 됩니다.'
           },
           {
-            q: '밀가루 19.5 kg을 한 상자에 3 kg씩 포장하려고 합니다. 몇 상자까지 포장할 수 있고, 남는 밀가루는 몇 kg일까요?',
-            ans: '6상자 포장, 남는 밀가루: 1.5 kg',
-            sol: '19.5 ÷ 3 = 6 (상자) ... 남는 양\n3 × 6 = 18 kg을 사용했으므로, 남은 양 = 19.5 - 18 = 1.5 kg 입니다.'
+            q: '밀가루 19.5 kg을 한 상자에 3 kg씩 포장하려고 합니다. 6상자를 포장하고 남는 밀가루는 몇 kg일까요?',
+            answers: ['1.5', '1.5kg'],
+            sol: '3 × 6 = 18 kg을 포장했으므로, 남은 양 = 19.5 - 18 = 1.5 kg 입니다.'
           }
         ]
       },
@@ -496,6 +633,11 @@
         title: '공간과 입체',
         icon: '🧊',
         summary: '쌓기나무로 쌓은 모양을 위, 앞, 옆에서 본 모양과 층별 모양, 위에서 본 그림에 수를 적는 입체적 공간 감각을 기릅니다.',
+        lab: {
+          title: '🧱 [실험실] 쌓기나무 층수 합산 시뮬레이터',
+          desc: '위에서 본 각 칸의 숫자를 입력하면 총 쌓기나무 개수와 앞/옆 최고 층수를 자동 분석합니다.',
+          type: 'block-analyzer'
+        },
         concepts: [
           {
             title: '1. 어느 방향에서 보았는지 알아맞히기',
@@ -517,16 +659,16 @@
           '앞에서 본 모양 = 각 줄(열)의 최대 층수!',
           '옆에서 본 모양 = 옆에서 바라본 각 줄의 최대 층수!'
         ],
-        examples: [
+        quizzes: [
           {
-            q: '위에서 본 모양의 각 칸에 1층부터 쌓인 개수가 [ 3, 2 ], [ 1, 3 ] 으로 적혀 있습니다. 사용된 쌓기나무는 모두 몇 개일까요?',
-            ans: '9개',
-            sol: '각 자리에 놓인 개수를 모두 더하면 됩니다: 3 + 2 + 1 + 3 = 9개'
+            q: '위에서 본 모양의 각 칸에 쌓인 개수가 [ 3, 2, 1, 3 ] 으로 적혀 있습니다. 사용된 쌓기나무는 모두 몇 개일까요?',
+            answers: ['9', '9개'],
+            sol: '각 칸의 숫자를 모두 더하면 됩니다: 3 + 2 + 1 + 3 = 9개'
           },
           {
-            q: '쌓기나무로 쌓은 모양을 위에서 보았더니 1층 바닥 모양이 4칸이고, 앞에서 본 모양은 3층 2줄, 옆에서 본 모양은 3층 1줄이었습니다. 가장 적게 사용된 쌓기나무 개수와 가장 많이 사용된 개수를 구하세요.',
-            ans: '최소 5개, 최대 8개',
-            sol: '앞과 옆에서 모두 3층이 보이려면 최고 높이가 3이어야 합니다. 바닥 4칸 중 한 칸은 무조건 3층이어야 하며, 다른 칸들의 조건에 따라 최소 5개에서 최대 8개까지 가능합니다.'
+            q: '쌓기나무 1층 바닥 모양이 4칸이고, 앞에서 본 모양의 최고 높이가 3층, 옆에서 본 모양의 최고 높이도 3층일 때 가장 적게 사용될 수 있는 쌓기나무 개수는?',
+            answers: ['5', '5개'],
+            sol: '3층 블록 1개와 나머지 3칸에 각각 1층씩 놓으면 3 + 1 + 1 + 1 = 5개로 최소 개수를 만족합니다.'
           }
         ]
       },
@@ -536,6 +678,11 @@
         title: '비례식과 비례배분',
         icon: '⚖️',
         summary: '비의 성질, 비례식의 외항과 내항의 곱, 그리고 전체를 주어진 비로 나누는 비례배분의 마법을 배웁니다.',
+        lab: {
+          title: '📐 [실험실] 비례식 미지수(□) & 비례배분 계산기',
+          desc: 'A : B = C : □ 에서 미지수와 전체 금액 비례배분을 실시간으로 계산해 보세요.',
+          type: 'proportion-calc'
+        },
         concepts: [
           {
             title: '1. 비의 성질과 가장 간단한 자연수의 비로 나타내기',
@@ -558,16 +705,16 @@
           '비례배분할 때는 분모에 반드시 **두 비의 합(A + B)**이 들어간다는 점을 명심하세요.',
           '소수나 분수가 섞인 비는 문제를 풀기 전에 무조건 **가장 간단한 자연수의 비**로 먼저 변환하세요.'
         ],
-        examples: [
+        quizzes: [
           {
-            q: '비례식 4 : 7 = 12 : □ 에서 □ 안에 알맞은 수를 비례식의 성질을 이용하여 구하세요.',
-            ans: '21',
-            sol: '(외항의 곱) = (내항의 곱) 성질 이용:\n4 × □ = 7 × 12\n4 × □ = 84\n□ = 84 ÷ 4 = 21'
+            q: '비례식 4 : 7 = 12 : □ 에서 □ 안에 알맞은 수는 얼마일까요?',
+            answers: ['21'],
+            sol: '(외항의 곱) = (내항의 곱) 성질에 의해 4 × □ = 7 × 12 = 84 → □ = 21 입니다.'
           },
           {
-            q: '사탕 60개를 민우와 지아에게 2 : 3 의 비로 나누어 주려고 합니다. 지아가 받는 사탕은 몇 개일까요?',
-            ans: '36개',
-            sol: '전체 비의 합 = 2 + 3 = 5\n지아의 비율 = 3/5\n지아가 받는 사탕 = 60 × (3/5) = 36개 (민우는 60 × 2/5 = 24개)'
+            q: '사탕 60개를 민우와 지아에게 2 : 3 의 비로 나누어 줄 때, 지아가 받는 사탕은 몇 개일까요?',
+            answers: ['36', '36개'],
+            sol: '전체 60개 중 지아의 몫은 3 / (2 + 3) = 3/5 입니다. 60 × 3/5 = 36개 입니다.'
           }
         ]
       },
@@ -577,6 +724,11 @@
         title: '원의 넓이',
         icon: '⭕',
         summary: '원의 둘레(원주), 원주율(π ≒ 3.14), 그리고 원을 무한히 잘라 붙여 직사각형으로 변형해 원의 넓이를 구하는 공식 유도!',
+        lab: {
+          title: '🔴 [실험실] 반지름 입력 원주 & 원의 넓이 시각화',
+          desc: '반지름을 넣으면 원주와 넓이가 자동으로 계산되고 원의 크기가 시각적으로 반응합니다.',
+          type: 'circle-calc'
+        },
         concepts: [
           {
             title: '1. 원주와 지름, 원주율(π)의 뜻',
@@ -599,16 +751,16 @@
           '공식에 **지름**을 넣어야 하는지, **반지름**을 넣어야 하는지 꼼꼼히 확인해야 합니다. (지름이 10 cm면 반지름은 5 cm!)',
           '원주 = 지름 × 원주율  /  원의 넓이 = 반지름 × 반지름 × 원주율'
         ],
-        examples: [
+        quizzes: [
           {
-            q: '지름이 14 cm인 원의 둘레(원주)는 몇 cm일까요? (원주율: 22/7)',
-            ans: '44 cm',
-            sol: '원주 = (지름) × (원주율) = 14 × (22/7) = 44 cm'
+            q: '지름이 14 cm인 원의 둘레(원주)는 몇 cm일까요? (원주율: 22/7 로 계산)',
+            answers: ['44', '44cm'],
+            sol: '원주 = (지름) × (원주율) = 14 × (22/7) = 44 cm 입니다.'
           },
           {
-            q: '반지름이 6 cm인 피자 한 판의 넓이는 몇 cm²일까요? (원주율: 3.14)',
-            ans: '113.04 cm²',
-            sol: '원의 넓이 = (반지름) × (반지름) × (원주율)\n= 6 × 6 × 3.14 = 36 × 3.14 = 113.04 cm²'
+            q: '반지름이 6 cm인 원의 넓이는 몇 cm²일까요? (원주율: 3.14 로 계산)',
+            answers: ['113.04', '113.04cm²'],
+            sol: '원의 넓이 = (반지름) × (반지름) × (원주율) = 6 × 6 × 3.14 = 36 × 3.14 = 113.04 cm² 입니다.'
           }
         ]
       },
@@ -618,6 +770,11 @@
         title: '원기둥, 원뿔, 구',
         icon: '🔮',
         summary: '곡면을 가진 회전체인 원기둥, 원뿔, 구의 구성 요소와 특징, 그리고 전개도를 완벽하게 이해합니다.',
+        lab: {
+          title: '📦 [실험실] 원기둥 전개도 치수 측정기',
+          desc: '밑면 반지름과 높이를 입력하면 옆면 직사각형의 가로(원주)와 세로가 즉시 시각화됩니다.',
+          type: 'cylinder-lab'
+        },
         concepts: [
           {
             title: '1. 원기둥(Cylinder)의 정의와 전개도',
@@ -639,16 +796,16 @@
           '원뿔의 **높이**와 **모선의 길이**를 절대 혼동하지 마세요. (모선은 비스듬한 선, 높이는 직각으로 잰 선분!)',
           '직사각형을 한 변을 축으로 회전시키면 **원기둥**, 직각삼각형을 회전시키면 **원뿔**, 반원을 회전시키면 **구**가 만들어집니다. (회전체의 원리)'
         ],
-        examples: [
+        quizzes: [
           {
-            q: '밑면의 반지름이 5 cm이고 높이가 10 cm인 원기둥의 전개도에서, 옆면 직사각형의 가로와 세로는 각각 몇 cm일까요? (원주율: 3.14)',
-            ans: '가로: 31.4 cm , 세로: 10 cm',
-            sol: '- 세로 = 원기둥의 높이 = 10 cm\n- 가로 = 밑면 원의 원주 = (지름) × (원주율) = (5 × 2) × 3.14 = 31.4 cm'
+            q: '밑면의 반지름이 5 cm이고 높이가 10 cm인 원기둥의 전개도에서, 옆면 직사각형의 가로 길이는 몇 cm일까요? (원주율: 3.14)',
+            answers: ['31.4', '31.4cm'],
+            sol: '옆면 가로 길이 = 밑면 원의 둘레 = (지름) × (원주율) = (5 × 2) × 3.14 = 31.4 cm 입니다.'
           },
           {
-            q: '반지름이 7 cm인 반원 모양의 종이를 지름을 축으로 하여 1회전 시켰을 때 만들어지는 입체도형의 이름과 반지름은 얼마일까요?',
-            ans: '입체도형: 구, 반지름: 7 cm',
-            sol: '반원을 지름을 축으로 회전시키면 공 모양인 ‘구’가 만들어지며, 구의 반지름은 원래 반원의 반지름과 같은 7 cm입니다.'
+            q: '반원을 지름을 축으로 하여 1회전 시켰을 때 만들어지는 둥근 공 모양의 입체도형 이름은 무엇일까요?',
+            answers: ['구'],
+            sol: '반원을 회전시키면 모든 방향의 단면이 원인 ‘구’가 만들어집니다.'
           }
         ]
       }
@@ -660,16 +817,26 @@
     const unitNav = document.getElementById('unit-nav');
     const contentDisplay = document.getElementById('content-display');
     let currentUnitIndex = 0;
+    let currentStudyTab = 'concepts'; // 'concepts', 'lab', 'quizzes'
 
-    // 사이드바 단원 메뉴 생성
+    // 단원별 퀴즈 정답 상태 저장소 (로컬)
+    const quizStatusMap = {};
+
     function renderSidebar() {
       unitNav.innerHTML = '';
-      MATH_UNITS_6_2.forEach((unit, idx) => {
+      MATH_UNITS_6_2_ENHANCED.forEach((unit, idx) => {
         const btn = document.createElement('button');
         btn.className = `unit-btn ${idx === currentUnitIndex ? 'active' : ''}`;
+        
+        // 정답 맞힌 개수 체크
+        const unitSolved = quizStatusMap[unit.id] ? Object.values(quizStatusMap[unit.id]).filter(v => v === true).length : 0;
+        const totalQ = unit.quizzes.length;
+        const checkIcon = unitSolved === totalQ ? '✅' : (unitSolved > 0 ? '📝' : '⚪');
+
         btn.innerHTML = `
           <span class="unit-badge">${unit.num}</span>
           <span>${unit.icon} ${unit.title}</span>
+          <span class="unit-check-badge" title="퀴즈 진행: ${unitSolved}/${totalQ}">${checkIcon}</span>
         `;
         btn.addEventListener('click', () => {
           selectUnit(idx);
@@ -678,29 +845,41 @@
       });
     }
 
-    // 단원 선택 및 우측 상세 표시
     function selectUnit(idx) {
       currentUnitIndex = idx;
+      currentStudyTab = 'concepts';
       document.querySelectorAll('.unit-btn').forEach((b, i) => {
         b.classList.toggle('active', i === idx);
       });
 
-      const unit = MATH_UNITS_6_2[idx];
-      renderUnitDetail(unit);
+      renderUnitDetail(MATH_UNITS_6_2_ENHANCED[idx]);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function renderUnitDetail(unit) {
-      // 1. 헤더 영역
       let html = `
         <div class="unit-hero">
-          <div class="unit-tag">${unit.num} 핵심 총정리</div>
+          <div class="unit-tag">${unit.num} 스마트 스터디</div>
           <h1 class="unit-heading">${unit.icon} ${unit.title}</h1>
           <p class="unit-summary">${unit.summary}</p>
         </div>
+
+        <!-- 학습 모드 3단 탭 -->
+        <div class="study-tabs">
+          <button class="study-tab-btn ${currentStudyTab === 'concepts' ? 'active' : ''}" onclick="switchStudyTab('concepts')">
+            💡 핵심 개념 & 족집게
+          </button>
+          <button class="study-tab-btn ${currentStudyTab === 'lab' ? 'active' : ''}" onclick="switchStudyTab('lab')">
+            🧪 시각화 실험실 (Lab)
+          </button>
+          <button class="study-tab-btn ${currentStudyTab === 'quizzes' ? 'active' : ''}" onclick="switchStudyTab('quizzes')">
+            ✍️ 실전 퀴즈 & 자가 채점
+          </button>
+        </div>
       `;
 
-      // 2. 핵심 개념 정리
+      // 1. 핵심 개념 탭 내용
+      html += `<div id="tab-concepts" class="tab-content ${currentStudyTab === 'concepts' ? 'active' : ''}">`;
       html += `<div class="section-title">💡 핵심 개념 정리 (Concept Summary)</div>`;
       unit.concepts.forEach(c => {
         html += `
@@ -714,7 +893,6 @@
         `;
       });
 
-      // 3. 족집게 핵심 포인트 (주의할 점)
       html += `
         <div class="point-box">
           <div class="point-box-title">⚡ 시험 대비 족집게 핵심 포인트 (Key Points)</div>
@@ -722,35 +900,256 @@
             ${unit.points.map(p => `<li>${p}</li>`).join('')}
           </ul>
         </div>
-      `;
+      </div>`;
 
-      // 4. 개념별 대표 예제 문제 & 정답/해설 토글
-      html += `<div class="section-title">✍️ 개념별 대표 예제 문제 (Practice Examples)</div>`;
-      unit.examples.forEach((ex, exIdx) => {
+      // 2. 시각화 실험실 탭 내용
+      html += `<div id="tab-lab" class="tab-content ${currentStudyTab === 'lab' ? 'active' : ''}">`;
+      html += `
+        <div class="lab-box">
+          <div class="lab-title">${unit.lab.title}</div>
+          <div class="lab-desc">${unit.lab.desc}</div>
+          ${renderLabWidget(unit)}
+        </div>
+      </div>`;
+
+      // 3. 실전 퀴즈 & 자가 채점 탭 내용
+      html += `<div id="tab-quizzes" class="tab-content ${currentStudyTab === 'quizzes' ? 'active' : ''}">`;
+      html += `<div class="section-title">✍️ 개념 확인 실전 퀴즈 (자가 채점 시스템)</div>`;
+      unit.quizzes.forEach((quiz, qIdx) => {
+        const isSolved = quizStatusMap[unit.id] && quizStatusMap[unit.id][qIdx];
+        const statusClass = isSolved ? 'correct' : 'unsolved';
+        const statusText = isSolved ? '완료 (정답)' : '도전 전';
+
         html += `
-          <div class="example-card">
-            <span class="example-q-badge">예제 ${exIdx + 1}</span>
-            <div class="example-q-text">${ex.q}</div>
-            <button class="toggle-solution-btn" onclick="toggleSolution('sol-${exIdx}')">
-              <span>🔍 풀이 및 정답 확인하기</span>
-            </button>
-            <div class="solution-box" id="sol-${exIdx}">
-              <div class="solution-ans">정답: ${ex.ans}</div>
-              <div style="white-space: pre-line;">${ex.sol}</div>
+          <div class="quiz-card" id="quiz-card-${qIdx}">
+            <div class="quiz-q-header">
+              <span class="quiz-badge">문제 ${qIdx + 1}</span>
+              <span class="quiz-status-pill ${statusClass}" id="quiz-status-${qIdx}">${statusText}</span>
             </div>
+            <div class="quiz-q-text">${quiz.q}</div>
+            <div class="quiz-input-row">
+              <input type="text" class="quiz-user-input" id="quiz-input-${qIdx}" placeholder="정답을 입력하세요 (예: 21)" autocomplete="off">
+              <button class="btn-quiz-check" onclick="checkQuizAnswer(${qIdx})">정답 제출 ✔</button>
+            </div>
+            <div class="quiz-feedback" id="quiz-feedback-${qIdx}"></div>
           </div>
         `;
       });
+      html += `</div>`;
 
       contentDisplay.innerHTML = html;
     }
 
-    // 풀이 토글 함수 전역 등록
-    window.toggleSolution = function(solId) {
-      const box = document.getElementById(solId);
-      if (box) {
-        box.classList.toggle('show');
+    // 탭 전환 함수
+    window.switchStudyTab = function(tabName) {
+      currentStudyTab = tabName;
+      document.querySelectorAll('.study-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      const activeTabBtn = Array.from(document.querySelectorAll('.study-tab-btn')).find(b => b.getAttribute('onclick').includes(tabName));
+      if (activeTabBtn) activeTabBtn.classList.add('active');
+
+      const activeContent = document.getElementById(`tab-${tabName}`);
+      if (activeContent) activeContent.classList.add('active');
+    };
+
+    // 실험실 위젯 렌더러
+    function renderLabWidget(unit) {
+      switch(unit.lab.type) {
+        case 'fraction-division':
+          return `
+            <div class="lab-control-row">
+              <span>(자연수)</span>
+              <input type="number" id="lab-frac-n" class="lab-input" value="6">
+              <span>÷ (분수)</span>
+              <input type="number" id="lab-frac-a" class="lab-input" value="2" style="width:60px;"> /
+              <input type="number" id="lab-frac-b" class="lab-input" value="3" style="width:60px;">
+              <button class="lab-btn" onclick="calcFracLab()">역수 곱셈 변환</button>
+            </div>
+            <div class="lab-result-display" id="lab-frac-result">
+              계산 공식: 6 ÷ (2/3) = 6 × (3/2) = (6 × 3) / 2 = 18 / 2 = 9
+            </div>
+          `;
+        case 'decimal-division':
+          return `
+            <div class="lab-control-row">
+              <span>나누어지는 수</span>
+              <input type="number" step="0.1" id="lab-dec-a" class="lab-input" value="19.5">
+              <span>÷ 나누는 수</span>
+              <input type="number" step="0.1" id="lab-dec-b" class="lab-input" value="3">
+              <button class="lab-btn" onclick="calcDecLab()">나머지 분석</button>
+            </div>
+            <div class="lab-result-display" id="lab-dec-result">
+              19.5 ÷ 3 = 6상자 포장 가능, 원래 소수점에 따른 나머지 = 1.5 kg
+            </div>
+          `;
+        case 'block-analyzer':
+          return `
+            <div class="lab-control-row">
+              <span>각 칸의 층수 4개 입력:</span>
+              <input type="number" id="b1" class="lab-input" value="3" style="width:50px;">
+              <input type="number" id="b2" class="lab-input" value="2" style="width:50px;">
+              <input type="number" id="b3" class="lab-input" value="1" style="width:50px;">
+              <input type="number" id="b4" class="lab-input" value="3" style="width:50px;">
+              <button class="lab-btn" onclick="calcBlockLab()">분석하기</button>
+            </div>
+            <div class="lab-result-display" id="lab-block-result">
+              총 쌓기나무 개수: 3 + 2 + 1 + 3 = 9개 | 앞에서 본 최대 층수: 3층
+            </div>
+          `;
+        case 'proportion-calc':
+          return `
+            <div class="lab-control-row">
+              <span>비례식: 4 : 7 = 12 : □</span>
+              <input type="number" id="prop-a" class="lab-input" value="4" style="width:50px;"> :
+              <input type="number" id="prop-b" class="lab-input" value="7" style="width:50px;"> =
+              <input type="number" id="prop-c" class="lab-input" value="12" style="width:50px;"> : □
+              <button class="lab-btn" onclick="calcPropLab()">외항=내항 계산</button>
+            </div>
+            <div class="lab-result-display" id="lab-prop-result">
+              외항의 곱(4 × □) = 내항의 곱(7 × 12 = 84) → □ = 21
+            </div>
+          `;
+        case 'circle-calc':
+          return `
+            <div class="lab-control-row">
+              <span>반지름(r):</span>
+              <input type="number" id="lab-circle-r" class="lab-input" value="6"> cm
+              <span>원주율:</span>
+              <select id="lab-circle-pi" class="lab-input" style="width:90px;">
+                <option value="3.14">3.14</option>
+                <option value="3.1">3.1</option>
+                <option value="3">3</option>
+              </select>
+              <button class="lab-btn" onclick="calcCircleLab()">원주 & 넓이 계산</button>
+            </div>
+            <div class="lab-result-display" id="lab-circle-result">
+              지름 = 12 cm | 원주 = 12 × 3.14 = 37.68 cm | 원의 넓이 = 6 × 6 × 3.14 = 113.04 cm²
+            </div>
+          `;
+        case 'cylinder-lab':
+          return `
+            <div class="lab-control-row">
+              <span>밑면 반지름:</span>
+              <input type="number" id="lab-cyl-r" class="lab-input" value="5"> cm
+              <span>원기둥 높이:</span>
+              <input type="number" id="lab-cyl-h" class="lab-input" value="10"> cm
+              <button class="lab-btn" onclick="calcCylLab()">전개도 치수 확인</button>
+            </div>
+            <div class="lab-result-display" id="lab-cyl-result">
+              전개도 옆면 직사각형 가로(원주) = (5 × 2) × 3.14 = 31.4 cm | 세로 = 10 cm
+            </div>
+          `;
+        default:
+          return `<div>실험실 준비 중</div>`;
       }
+    }
+
+    // 실험실 계산 로직들
+    window.calcFracLab = function() {
+      const n = parseFloat(document.getElementById('lab-frac-n').value) || 0;
+      const a = parseFloat(document.getElementById('lab-frac-a').value) || 1;
+      const b = parseFloat(document.getElementById('lab-frac-b').value) || 1;
+      const res = (n * b) / a;
+      document.getElementById('lab-frac-result').innerHTML = `
+        계산 과정: ${n} ÷ (${a}/${b}) = ${n} × (${b}/${a}) = (${n * b}) / ${a} = <b>${res}</b>
+      `;
+    };
+
+    window.calcDecLab = function() {
+      const a = parseFloat(document.getElementById('lab-dec-a').value) || 0;
+      const b = parseFloat(document.getElementById('lab-dec-b').value) || 1;
+      const quotient = Math.floor(a / b);
+      const remainder = (a - (quotient * b)).toFixed(2);
+      document.getElementById('lab-dec-result').innerHTML = `
+        ${a} ÷ ${b} = <b>${quotient}</b>(몫), 원래 소수점에 의한 남는 양(나머지) = <b>${parseFloat(remainder)}</b>
+      `;
+    };
+
+    window.calcBlockLab = function() {
+      const b1 = parseInt(document.getElementById('b1').value) || 0;
+      const b2 = parseInt(document.getElementById('b2').value) || 0;
+      const b3 = parseInt(document.getElementById('b3').value) || 0;
+      const b4 = parseInt(document.getElementById('b4').value) || 0;
+      const sum = b1 + b2 + b3 + b4;
+      const maxL = Math.max(b1, b2, b3, b4);
+      document.getElementById('lab-block-result').innerHTML = `
+        총 쌓기나무 수: ${b1} + ${b2} + ${b3} + ${b4} = <b>${sum}개</b> | 최고 층수: <b>${maxL}층</b>
+      `;
+    };
+
+    window.calcPropLab = function() {
+      const a = parseFloat(document.getElementById('prop-a').value) || 1;
+      const b = parseFloat(document.getElementById('prop-b').value) || 1;
+      const c = parseFloat(document.getElementById('prop-c').value) || 1;
+      const box = (b * c) / a;
+      document.getElementById('lab-prop-result').innerHTML = `
+        외항의 곱(${a} × □) = 내항의 곱(${b} × ${c} = ${b * c}) → □ = <b>${box}</b>
+      `;
+    };
+
+    window.calcCircleLab = function() {
+      const r = parseFloat(document.getElementById('lab-circle-r').value) || 0;
+      const pi = parseFloat(document.getElementById('lab-circle-pi').value) || 3.14;
+      const circum = (2 * r * pi).toFixed(2);
+      const area = (r * r * pi).toFixed(2);
+      document.getElementById('lab-circle-result').innerHTML = `
+        지름 = ${r * 2} cm | 원주 = <b>${parseFloat(circum)} cm</b> | 원의 넓이 = <b>${parseFloat(area)} cm²</b>
+      `;
+    };
+
+    window.calcCylLab = function() {
+      const r = parseFloat(document.getElementById('lab-cyl-r').value) || 0;
+      const h = parseFloat(document.getElementById('lab-cyl-h').value) || 0;
+      const width = (2 * r * 3.14).toFixed(2);
+      document.getElementById('lab-cyl-result').innerHTML = `
+        옆면 직사각형 가로(원주) = <b>${parseFloat(width)} cm</b> | 세로(높이) = <b>${h} cm</b>
+      `;
+    };
+
+    // 실전 퀴즈 자가 채점 시스템
+    window.checkQuizAnswer = function(qIdx) {
+      const unit = MATH_UNITS_6_2_ENHANCED[currentUnitIndex];
+      const quiz = unit.quizzes[qIdx];
+      const inputElem = document.getElementById(`quiz-input-${qIdx}`);
+      const feedbackElem = document.getElementById(`quiz-feedback-${qIdx}`);
+      const statusElem = document.getElementById(`quiz-status-${qIdx}`);
+      const userVal = inputElem.value.trim().replace(/\s+/g, '');
+
+      if (!userVal) {
+        alert('정답을 입력해 주세요!');
+        return;
+      }
+
+      // 복수 정답 매칭 검사
+      const isCorrect = quiz.answers.some(ans => ans.replace(/\s+/g, '') === userVal);
+
+      if (!quizStatusMap[unit.id]) quizStatusMap[unit.id] = {};
+
+      feedbackElem.classList.remove('correct', 'wrong');
+      feedbackElem.classList.add('show');
+
+      if (isCorrect) {
+        quizStatusMap[unit.id][qIdx] = true;
+        feedbackElem.classList.add('correct');
+        feedbackElem.innerHTML = `
+          🎉 <b>정답입니다! 완벽해요!</b><br>
+          <div style="margin-top:6px; color:#e2e8f0;">${quiz.sol}</div>
+        `;
+        statusElem.className = 'quiz-status-pill correct';
+        statusElem.textContent = '정답 ✔';
+      } else {
+        quizStatusMap[unit.id][qIdx] = false;
+        feedbackElem.classList.add('wrong');
+        feedbackElem.innerHTML = `
+          ❌ <b>아쉽네요. 다시 한 번 풀어보세요!</b><br>
+          <div style="margin-top:6px; color:#e2e8f0;"><b>풀이 힌트 :</b> ${quiz.sol}</div>
+        `;
+        statusElem.className = 'quiz-status-pill wrong';
+        statusElem.textContent = '오답 ❌';
+      }
+
+      renderSidebar();
     };
 
     // 초기 실행
